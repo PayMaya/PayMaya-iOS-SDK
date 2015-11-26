@@ -53,11 +53,10 @@ PayMaya SDK singleton.
  Method to initailize the PayMaya SDK with the user's credentials and environment.
  Refer to PayMayaEnvironment for the different environment that can be used.
  
- @param clientKey The client key given to you for the specified environment
- @param clientSecret The client secret given to you for the specified environment
+ @param APIKey The public-facing API key given to you for the specified environment
  @param environment The environment to be used by the SDK application
  */
-- (void)setClientKey:(NSString *)clientKey withSecret:(NSString *)clientSecret forEnvironment:(PayMayaEnvironment)environment;
+- (void)setAPIKey:(NSString *)apiKey forEnvironment:(PayMayaEnvironment)environment;
 
 #pragma mark - Checkout APIs
 
