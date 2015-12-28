@@ -1,0 +1,14 @@
+PODS:
+  - PayMayaSDK (0.1.2)
+
+DEPENDENCIES:
+  - PayMayaSDK (from `../`)
+
+EXTERNAL SOURCES:
+  PayMayaSDK:
+    :path: ../
+
+SPEC CHECKSUMS:
+  PayMayaSDK: dd48784c4c4fda81e96e2914fbe762c166d8d32f
+
+COCOAPODS: 0.39.0
