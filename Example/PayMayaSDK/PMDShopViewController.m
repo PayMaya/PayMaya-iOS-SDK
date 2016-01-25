@@ -2,8 +2,22 @@
 //  PMDShopViewController.m
 //  PayMayaSDKDemo
 //
-//  Created by Elijah Cayabyab on 31/10/2015.
-//  Copyright © 2015 Elijah Joshua Cayabyab. All rights reserved.
+//  Copyright (c) 2016 PayMaya Philippines, Inc.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+//  associated documentation files (the "Software"), to deal in the Software without restriction,
+//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
+//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all copies or
+//  substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+//  NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "PMDShopViewController.h"
@@ -59,7 +73,7 @@
 - (void)loadView
 {
     self.shopTableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStylePlain];
-    self.shopTableView.backgroundColor = [UIColor clearColor];
+    self.shopTableView.backgroundColor = [UIColor whiteColor];
     self.shopTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.shopTableView.separatorInset = UIEdgeInsetsZero;
     self.shopTableView.delegate = self;
@@ -118,18 +132,25 @@
 
 - (void)shopTableViewCellDidTapBuy:(PMDShopTableViewCell *)shopTableViewCell withProduct:(PMDProduct *)product
 {
-    PMDAddToCartViewController *addToCartViewController = [[PMDAddToCartViewController alloc] initWithNibName:nil bundle:nil product:product];
+    NSNumber *quantity = @(0);
+    for (NSMutableDictionary *boughtProduct in self.boughtProductsArray) {
+        if ([boughtProduct[@"code"] isEqualToString:product.code]) {
+            quantity = boughtProduct[@"quantity"];
+            break;
+        }
+    }
+    PMDAddToCartViewController *addToCartViewController = [[PMDAddToCartViewController alloc] initWithNibName:nil bundle:nil product:product quantity:quantity];
     addToCartViewController.delegate = self;
     [self.navigationController pushViewController:addToCartViewController animated:YES];
 }
 
 #pragma mark - PMDAddToCartVIewControllerDelegate
 
-- (void)addToCartViewController:(PMDAddToCartViewController *)addToCartViewController didAddProductToCart:(PMDProduct *)product quantity:(NSNumber *)quantity
+- (void)addToCartViewController:(PMDAddToCartViewController *)addToCartViewController didUpdateProduct:(PMDProduct *)product quantity:(NSNumber *)quantity
 {
     for (NSMutableDictionary *boughtProduct in self.boughtProductsArray) {
         if ([boughtProduct[@"code"] isEqualToString:product.code]) {
-            boughtProduct[@"quantity"] = @([boughtProduct[@"quantity"] intValue] + [quantity intValue]);
+            boughtProduct[@"quantity"] = @([quantity intValue]);
             return;
         }
     }

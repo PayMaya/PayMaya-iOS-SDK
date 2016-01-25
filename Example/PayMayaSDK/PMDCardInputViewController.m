@@ -2,8 +2,22 @@
 //  PMDCardInputViewController.m
 //  PayMayaSDK
 //
-//  Created by Elijah Cayabyab on 09/12/2015.
-//  Copyright © 2015 Patrick Medina. All rights reserved.
+//  Copyright (c) 2016 PayMaya Philippines, Inc.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+//  associated documentation files (the "Software"), to deal in the Software without restriction,
+//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
+//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all copies or
+//  substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+//  NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "PMDCardInputViewController.h"
@@ -13,7 +27,7 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *scrollViewContentView;
-@property (nonatomic, strong) UILabel *cardInformationLabel;
+@property (nonatomic, strong) UIImageView *cardImageView;
 @property (nonatomic, strong) UITextField *cardNumberTextField;
 @property (nonatomic, strong) UITextField *expiryMonthTextField;
 @property (nonatomic, strong) UIPickerView *expiryMonthPickerView;
@@ -21,6 +35,9 @@
 @property (nonatomic, strong) UIPickerView *expiryYearPickerView;
 @property (nonatomic, strong) UITextField *cvvTextField;
 @property (nonatomic, strong) UIButton *generateTokenButton;
+@property (nonatomic, strong) UILabel *paymentTokenLabel;
+@property (nonatomic, strong) UITextField *paymentTokenTextField;
+@property (nonatomic, strong) UIButton *duplicateTokenButton;
 @property (nonatomic, strong) NSDateFormatter *yearDateFormatter;
 
 @end
@@ -50,10 +67,9 @@
     self.scrollViewContentView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.scrollView addSubview:self.scrollViewContentView];
     
-    self.cardInformationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.cardInformationLabel.text = @"Card Holder Information";
-    self.cardInformationLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.scrollViewContentView addSubview:self.cardInformationLabel];
+    self.cardImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"card"]];
+    self.cardImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.scrollViewContentView addSubview:self.cardImageView];
     
     self.cardNumberTextField = [[UITextField alloc] initWithFrame:CGRectZero];
     self.cardNumberTextField.translatesAutoresizingMaskIntoConstraints = NO;
@@ -114,6 +130,36 @@
     [self.generateTokenButton addTarget:self action:@selector(generateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewContentView addSubview:self.generateTokenButton];
     
+    self.paymentTokenLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.paymentTokenLabel.translatesAutoresizingMaskIntoConstraints  = NO;
+    self.paymentTokenLabel.text = @"Payment Token";
+    self.paymentTokenLabel.hidden = YES;
+    [self.scrollViewContentView addSubview:self.paymentTokenLabel];
+    
+    self.paymentTokenTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+    self.paymentTokenTextField.translatesAutoresizingMaskIntoConstraints = NO;
+    self.paymentTokenTextField.borderStyle = UITextBorderStyleLine;
+    self.paymentTokenTextField.layer.borderWidth = 1;
+    self.paymentTokenTextField.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.paymentTokenTextField.hidden = YES;
+    [self.scrollViewContentView addSubview:self.paymentTokenTextField];
+    
+    self.duplicateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    self.duplicateTokenButton.hidden= YES;
+    self.duplicateTokenButton.layer.cornerRadius = 3.0f;
+    self.duplicateTokenButton.layer.borderWidth = 0.5f;
+    self.duplicateTokenButton.clipsToBounds = YES;
+    self.duplicateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.duplicateTokenButton setTitle:@"Copy" forState:UIControlStateNormal];
+    [self.duplicateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.duplicateTokenButton addTarget:self action:@selector(duplicateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollViewContentView addSubview:self.duplicateTokenButton];
+    
+    self.cardNumberTextField.text = @"5123456789012346";
+    self.expiryMonthTextField.text = @"05";
+    self.expiryYearTextField.text = @"2017";
+    self.cvvTextField.text = @"111";
+    
     [self setUpLayoutConstraints];
 }
 
@@ -122,12 +168,15 @@
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(
                                                                    _scrollView,
                                                                    _scrollViewContentView,
-                                                                   _cardInformationLabel,
+                                                                   _cardImageView,
                                                                    _cardNumberTextField,
                                                                    _expiryMonthTextField,
                                                                    _expiryYearTextField,
                                                                    _cvvTextField,
-                                                                   _generateTokenButton
+                                                                   _generateTokenButton,
+                                                                   _paymentTokenLabel,
+                                                                   _paymentTokenTextField,
+                                                                   _duplicateTokenButton
                                                                    );
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
@@ -136,12 +185,16 @@
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollViewContentView(==_scrollView)]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollViewContentView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardInformationLabel]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_generateTokenButton]-|" options:0 metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cardInformationLabel]-|" options:0 metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cardNumberTextField]-|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_generateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_expiryMonthTextField(_cvvTextField)]-[_expiryYearTextField(_cvvTextField)]-[_cvvTextField(_cvvTextField)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_paymentTokenTextField]-|" options:0 metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_duplicateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentTokenLabel attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cardImageView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.generateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.duplicateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -167,6 +220,20 @@
     [[PayMayaSDK sharedInstance] createPaymentTokenFromCard:card delegate:self];
 }
 
+- (void)duplicateTokenButtonClicked:(id)sender
+{
+    NSLog(@"Copy token to clipboard.");
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.paymentTokenTextField.text;
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Token Copied"
+                                                                   message:@"Payment token copied to clipboard."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - PayMayaPaymentsDelegate
 
 - (void)createPaymentTokenDidFinishWithResult:(PMSDKPaymentTokenResult *)result
@@ -176,19 +243,21 @@
     if (result.status == PMSDKPaymentTokenStatusCreated) {
         paymentTokenStatus = @"Created";
     }
-    else if (result.status == PMSDKPaymentTokenStatusUsed) {
-        paymentTokenStatus = @"Used";
-    }
 
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Token"
-                                                                   message:[NSString stringWithFormat:@"ID: %@\nType: %@\nState: %@\nSource IP: %@\nCreated At: %@\nUpdated At: %@", result.paymentToken.identifier, result.paymentToken.type, paymentTokenStatus, result.paymentToken.sourceIP, result.paymentToken.createdAt, result.paymentToken.updatedAt]
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {}];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Token"
+                                                                       message:[NSString stringWithFormat:@"ID: %@\nType: %@\nState: %@\nSource IP: %@\nCreated At: %@\nUpdated At: %@", result.paymentToken.identifier, result.paymentToken.type, paymentTokenStatus, result.paymentToken.sourceIP, result.paymentToken.createdAt, result.paymentToken.updatedAt]
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        self.paymentTokenTextField.text = result.paymentToken.identifier;
+        self.paymentTokenLabel.hidden = NO;
+        self.paymentTokenTextField.hidden = NO;
+        self.duplicateTokenButton.hidden = NO;
+    });
 }
 
 - (void)createPaymentTokenDidFailWithError:(NSError *)error
@@ -219,11 +288,11 @@
 {
     NSString *text = @"";
     if (pickerView == self.expiryMonthPickerView) {
-        text = [NSString stringWithFormat:@"%02d", row+1];
+        text = [NSString stringWithFormat:@"%02ld", row+1];
     }
     else if (pickerView == self.expiryYearPickerView) {
         NSString *yearString = [self.yearDateFormatter stringFromDate:[NSDate date]];
-        text = [NSString stringWithFormat:@"%02d", [yearString intValue]+row];
+        text = [NSString stringWithFormat:@"%02ld", [yearString intValue]+row];
     }
     return text;
 }
@@ -231,11 +300,11 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (pickerView == self.expiryMonthPickerView) {
-        self.expiryMonthTextField.text = [NSString stringWithFormat:@"%02d", row+1];
+        self.expiryMonthTextField.text = [NSString stringWithFormat:@"%02ld", row+1];
     }
     else if (pickerView == self.expiryYearPickerView) {
         NSString *yearString = [self.yearDateFormatter stringFromDate:[NSDate date]];
-        self.expiryYearTextField.text = [NSString stringWithFormat:@"%02d", [yearString intValue]+row];
+        self.expiryYearTextField.text = [NSString stringWithFormat:@"%02ld", [yearString intValue]+row];
     }
 }
 

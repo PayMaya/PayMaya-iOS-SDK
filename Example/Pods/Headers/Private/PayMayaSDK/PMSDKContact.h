@@ -1,1 +1,1 @@
-../../../../../Pod/Headers/PMSDKContact.h
+../../../../../Pod/Classes/Models/PMSDKContact.h

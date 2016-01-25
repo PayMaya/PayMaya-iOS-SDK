@@ -1,1 +1,1 @@
-../../../../../Pod/Headers/PMSDKCheckoutInformation.h
+../../../../../Pod/Classes/Models/PMSDKCheckoutInformation.h

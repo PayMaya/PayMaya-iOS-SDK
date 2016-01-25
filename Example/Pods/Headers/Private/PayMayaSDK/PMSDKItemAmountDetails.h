@@ -1,1 +1,1 @@
-../../../../../Pod/Headers/PMSDKItemAmountDetails.h
+../../../../../Pod/Classes/Models/PMSDKItemAmountDetails.h

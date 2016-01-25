@@ -1,1 +1,1 @@
-../../../../../Pod/Headers/PMSDKBuyerProfile.h
+../../../../../Pod/Classes/Models/PMSDKBuyerProfile.h

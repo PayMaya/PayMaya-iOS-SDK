@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DE7BE6F3B1A27AE6271223D8'
+               BlueprintIdentifier = '4D97BB30FB7E27FEE8816205'
                BlueprintName = 'PayMayaSDK'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'PayMayaSDK.framework'>

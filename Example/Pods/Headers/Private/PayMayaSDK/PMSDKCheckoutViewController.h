@@ -1,1 +1,1 @@
-../../../../../Pod/Headers/PMSDKCheckoutViewController.h
+../../../../../Pod/Classes/Controllers/PMSDKCheckoutViewController.h

@@ -2,14 +2,27 @@
 //  PMSDKAppDelegate.m
 //  PayMayaSDK
 //
-//  Created by Patrick Medina on 10/29/2015.
-//  Copyright (c) 2015 Patrick Medina. All rights reserved.
+//  Copyright (c) 2016 PayMaya Philippines, Inc.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+//  associated documentation files (the "Software"), to deal in the Software without restriction,
+//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
+//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all copies or
+//  substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+//  NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "PMSDKAppDelegate.h"
 #import <PayMayaSDK/PayMayaSDK.h>
-#import "PMDShopViewController.h"
-#import "PMDCardInputViewController.h"
+#import "PMDHomeViewController.h"
 
 @implementation PMSDKAppDelegate
 
@@ -19,37 +32,17 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     // Setup PayMaya SDK
-    [[PayMayaSDK sharedInstance] setCheckoutAPIKey:@"pk-Vcbn4FBDmR7CXiBD4SfVnftbgHUG40AM4AqRlOBwRze" forEnvironment:PayMayaEnvironmentDebug
+    [[PayMayaSDK sharedInstance] setCheckoutAPIKey:@"pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN" forEnvironment:PayMayaEnvironmentSandbox
      ];
-    [[PayMayaSDK sharedInstance] setPaymentsAPIKey:@"pk-SjRNZLyr9OmovoHs2dXZ6obTxQ39YsPyc3f7oyrtNCX" forEnvironment:PayMayaEnvironmentDebug];
+    [[PayMayaSDK sharedInstance] setPaymentsAPIKey:@"pk-sHQWci2P410ppwFQvsi7IQCpHsIjafy74jrhYb8qfxu" forEnvironment:PayMayaEnvironmentSandbox];
 
-    self.window.rootViewController = self.tabBarController;
+    PMDHomeViewController *homeViewController = [[PMDHomeViewController alloc] initWithNibName:nil bundle:nil];
+    homeViewController.title = @"PayMaya iOS SDK Demo";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     
     return YES;
-}
-
-- (UITabBarController *)tabBarController
-{
-    UITabBarController *tabBarController = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
-    [tabBarController setViewControllers:@[[self checkoutNavigationController], [self paymentsNavigationController]] animated:NO];
-    return tabBarController;
-}
-
-- (UINavigationController *)checkoutNavigationController
-{
-    PMDShopViewController *shopViewController = [[PMDShopViewController alloc] initWithNibName:nil bundle:nil];
-    shopViewController.title = @"Checkout SDK Demo";
-    shopViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Checkout" image:[[UIImage imageNamed:@"checkout"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"checkout-active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    return [[UINavigationController alloc] initWithRootViewController:shopViewController];
-}
-
-- (UINavigationController *)paymentsNavigationController
-{
-    PMDCardInputViewController *cardInputViewController = [[PMDCardInputViewController alloc] initWithNibName:nil bundle:nil];
-    cardInputViewController.title = @"Payments SDK Demo";
-    cardInputViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Payments" image:[[UIImage imageNamed:@"payments"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"payments-active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    return [[UINavigationController alloc] initWithRootViewController:cardInputViewController];
 }
 
 @end

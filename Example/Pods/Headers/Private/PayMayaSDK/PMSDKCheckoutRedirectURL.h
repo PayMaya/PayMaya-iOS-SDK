@@ -1,1 +1,1 @@
-../../../../../Pod/Headers/PMSDKCheckoutRedirectURL.h
+../../../../../Pod/Classes/Models/PMSDKCheckoutRedirectURL.h

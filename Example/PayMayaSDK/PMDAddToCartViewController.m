@@ -2,8 +2,22 @@
 //  PMDAddToCartViewController.m
 //  PayMayaSDKDemo
 //
-//  Created by Elijah Cayabyab on 01/11/2015.
-//  Copyright © 2015 Elijah Joshua Cayabyab. All rights reserved.
+//  Copyright (c) 2016 PayMaya Philippines, Inc.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+//  associated documentation files (the "Software"), to deal in the Software without restriction,
+//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
+//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all copies or
+//  substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+//  NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "PMDAddToCartViewController.h"
@@ -26,16 +40,18 @@
 @property (nonatomic, strong) UIButton *addToCartButton;
 
 @property (nonatomic, strong) PMDProduct *product;
+@property (nonatomic, strong) NSNumber *quantity;
 
 @end
 
 @implementation PMDAddToCartViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil product:(PMDProduct *)product
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil product:(PMDProduct *)product quantity:(NSNumber *)quantity
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.product = product;
+        self.quantity = quantity;
     }
     return self;
 }
@@ -91,7 +107,7 @@
     [self.productQuantityView addSubview:self.productQuantityLabel];
     
     self.productQuantityValueTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.productQuantityValueTextField.text = @"0";
+    self.productQuantityValueTextField.text = [self.quantity stringValue];
     self.productQuantityValueTextField.enabled = NO;
     self.productQuantityValueTextField.translatesAutoresizingMaskIntoConstraints = NO;
     [self.productQuantityView addSubview:self.productQuantityValueTextField];
@@ -191,8 +207,8 @@
     NSNumber *quantity = [[PMDUtilities decimalNumberFormatter] numberFromString:self.productQuantityValueTextField.text];
     NSString *message = [NSString stringWithFormat:@"Successfully added %@ item(s) to cart", quantity];
     if ([quantity intValue] > 0) {
-        if ([self.delegate respondsToSelector:@selector(addToCartViewController:didAddProductToCart:quantity:)]) {
-            [self.delegate addToCartViewController:self didAddProductToCart:self.product quantity:quantity];
+        if ([self.delegate respondsToSelector:@selector(addToCartViewController:didUpdateProduct:quantity:)]) {
+            [self.delegate addToCartViewController:self didUpdateProduct:self.product quantity:quantity];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Add To Cart Successful"
                                                                                             message:message
                                                                                             delegate:self
@@ -201,7 +217,6 @@
             [alertView show];
         }
     }
-    self.productQuantityValueTextField.text = @"0";
 }
 
 @end
