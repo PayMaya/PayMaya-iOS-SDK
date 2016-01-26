@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Models/PMSDKCheckoutInformation.h
+../../../PayMayaSDK/Pod/Classes/Models/PMSDKCheckoutInformation.h

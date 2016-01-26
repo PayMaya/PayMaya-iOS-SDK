@@ -2,11 +2,7 @@ PODS:
   - PayMayaSDK (0.2.0)
 
 DEPENDENCIES:
-  - PayMayaSDK (from `../`)
-
-EXTERNAL SOURCES:
-  PayMayaSDK:
-    :path: ../
+  - PayMayaSDK
 
 SPEC CHECKSUMS:
   PayMayaSDK: 5e4a621a0c9590ee1832c0efe6ddcd41360260c5

@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Models/PMSDKCheckoutRedirectURL.h
+../../../PayMayaSDK/Pod/Classes/Models/PMSDKCheckoutRedirectURL.h

@@ -2,11 +2,11 @@
 use_frameworks!
 
 target 'PayMayaSDK_Example', :exclusive => true do
-  pod "PayMayaSDK", :path => "../"
+	platform :ios, '7.0' 
+	pod 'PayMayaSDK'
 end
 
 target 'PayMayaSDK_Tests', :exclusive => true do
-  pod "PayMayaSDK", :path => "../"
-
-  
+	platform :ios, '7.0' 
+	pod 'PayMayaSDK'
 end

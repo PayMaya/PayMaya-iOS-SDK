@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Models/PMSDKContact.h
+../../../PayMayaSDK/Pod/Classes/Models/PMSDKContact.h

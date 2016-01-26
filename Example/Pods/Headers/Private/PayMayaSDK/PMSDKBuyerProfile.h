@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Models/PMSDKBuyerProfile.h
+../../../PayMayaSDK/Pod/Classes/Models/PMSDKBuyerProfile.h

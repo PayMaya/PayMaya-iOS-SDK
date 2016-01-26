@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Models/PMSDKItemAmountDetails.h
+../../../PayMayaSDK/Pod/Classes/Models/PMSDKItemAmountDetails.h
