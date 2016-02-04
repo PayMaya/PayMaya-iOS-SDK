@@ -22,8 +22,9 @@
 
 #import "PMDCardInputViewController.h"
 #import "PayMayaSDK.h"
+#import "CardIO.h"
 
-@interface PMDCardInputViewController () <UIPickerViewDataSource, UIPickerViewDelegate, PayMayaPaymentsDelegate>
+@interface PMDCardInputViewController () <UIPickerViewDataSource, UIPickerViewDelegate, PayMayaPaymentsDelegate, CardIOPaymentViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *scrollViewContentView;
@@ -34,6 +35,7 @@
 @property (nonatomic, strong) UITextField *expiryYearTextField;
 @property (nonatomic, strong) UIPickerView *expiryYearPickerView;
 @property (nonatomic, strong) UITextField *cvvTextField;
+@property (nonatomic, strong) UIButton *scanCardButton;
 @property (nonatomic, strong) UIButton *generateTokenButton;
 @property (nonatomic, strong) UILabel *paymentTokenLabel;
 @property (nonatomic, strong) UITextField *paymentTokenTextField;
@@ -119,6 +121,17 @@
     self.cvvTextField.keyboardType = UIKeyboardTypeNumberPad;
     [self.scrollViewContentView addSubview:self.cvvTextField];
     
+    self.scanCardButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    self.scanCardButton.enabled = YES;
+    self.scanCardButton.layer.cornerRadius = 3.0f;
+    self.scanCardButton.layer.borderWidth = 0.5f;
+    self.scanCardButton.clipsToBounds = YES;
+    self.scanCardButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.scanCardButton setTitle:@"Scan Card" forState:UIControlStateNormal];
+    [self.scanCardButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.scanCardButton addTarget:self action:@selector(scanCardButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollViewContentView addSubview:self.scanCardButton];
+    
     self.generateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
     self.generateTokenButton.enabled = YES;
     self.generateTokenButton.layer.cornerRadius = 3.0f;
@@ -173,6 +186,7 @@
                                                                    _expiryMonthTextField,
                                                                    _expiryYearTextField,
                                                                    _cvvTextField,
+                                                                   _scanCardButton,
                                                                    _generateTokenButton,
                                                                    _paymentTokenLabel,
                                                                    _paymentTokenTextField,
@@ -185,14 +199,16 @@
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollViewContentView(==_scrollView)]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollViewContentView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cardNumberTextField]-|" options:0 metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_scanCardButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_generateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_expiryMonthTextField(_cvvTextField)]-[_expiryYearTextField(_cvvTextField)]-[_cvvTextField(_cvvTextField)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_paymentTokenTextField]-|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_duplicateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentTokenLabel attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cardImageView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.scanCardButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.generateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.duplicateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
 }
@@ -201,12 +217,19 @@
 {
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
+    [CardIOUtilities preload];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self unregisterForKeyboardNotifications];
+}
+
+- (void)scanCardButtonClicked:(id)sender
+{
+    CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+    [self presentViewController:scanViewController animated:YES completion:nil];
 }
 
 - (void)generateTokenButtonClicked:(id)sender
@@ -342,6 +365,26 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.scrollView.contentInset.top, 0.0, 0.0, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+#pragma mark - Card IO delegates
+
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)scanViewController {
+    NSLog(@"User canceled payment info");
+    // Handle user cancellation here...
+    [scanViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)scanViewController {
+    // The full card number is available as info.cardNumber, but don't log that!
+    NSLog(@"Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv);
+    // Use the card info...
+    self.cardNumberTextField.text = info.cardNumber;
+    self.expiryMonthTextField.text = [NSString stringWithFormat:@"%lu", (unsigned long)info.expiryMonth];
+    self.expiryYearTextField.text = [NSString stringWithFormat:@"%lu", (unsigned long)info.expiryYear];
+    self.cvvTextField.text = info.cvv;
+    
+    [scanViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

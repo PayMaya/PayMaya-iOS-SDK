@@ -7,60 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07F6CEF1A663F8A8EB199AEC640643E2 /* PMSDKItemAmountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBFBC314FF80D335ED7B36721F9E6C /* PMSDKItemAmountDetails.m */; };
+		07F6CEF1A663F8A8EB199AEC640643E2 /* PMSDKItemAmountDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B898078CC8D629BBA75EEAE5A4B0D0 /* PMSDKItemAmountDetails.m */; };
 		0E45ED3A899D27D53EFACB81074DA9FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		0E61C8A6756C86E452FE69BD2D1C801A /* PayMayaSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ADCF1D39D4D221FAD05F3CA056ACDBF5 /* PayMayaSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14C23FC2F0F1DF6538C0EDA97FED9518 /* PMSDKPaymentToken.h in Headers */ = {isa = PBXBuildFile; fileRef = B9395DE710AD3A992CFE1C81A0C2BCCC /* PMSDKPaymentToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1D421ED70474FB44CCEC4E256E11EC35 /* PMSDKPaymentsAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C77F03B932761F824222967AB16956DF /* PMSDKPaymentsAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E5BDCC10961C313DE4F7ECA8DD818EF /* PMSDKCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA34DF62BEDE940AF88F764DB588459 /* PMSDKCheckoutViewController.m */; };
-		21B75C43BAE53DFE532913AB1972D213 /* PMSDKAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F102039C6F96375EBA47149056AEB7F /* PMSDKAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0E61C8A6756C86E452FE69BD2D1C801A /* PayMayaSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 40CBB6A85458CAA0B1F460021BEA258D /* PayMayaSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C23FC2F0F1DF6538C0EDA97FED9518 /* PMSDKPaymentToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD057F306FC5AEEAB3DC8418B7C8CFA /* PMSDKPaymentToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D421ED70474FB44CCEC4E256E11EC35 /* PMSDKPaymentsAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = ACB3608F901FDA90DAD7B70A0137F3D1 /* PMSDKPaymentsAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E5BDCC10961C313DE4F7ECA8DD818EF /* PMSDKCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C18273807E11F9D39DD7A7519B8974C2 /* PMSDKCheckoutViewController.m */; };
+		21B75C43BAE53DFE532913AB1972D213 /* PMSDKAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 136328AE6220E41FA321276D89EC69B0 /* PMSDKAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2203D3B01649AC77D2E7C3FB71AF6164 /* Pods-PayMayaSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7954D0559CE0D014A7DD0C6B9276846 /* Pods-PayMayaSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		23188CBABDC384756D52A373832E3B1F /* PMSDKCard.h in Headers */ = {isa = PBXBuildFile; fileRef = A84EDCDB8BCD7719521A660BD66C5F87 /* PMSDKCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23188CBABDC384756D52A373832E3B1F /* PMSDKCard.h in Headers */ = {isa = PBXBuildFile; fileRef = F10A2BFD4D138354D0C02BDECBF7B8D0 /* PMSDKCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C6FB9412B347B78A94AA36E7998791B /* Pods-PayMayaSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8804FC67AD832B51B11E68237E463F7B /* Pods-PayMayaSDK_Example-dummy.m */; };
-		31E69E435E58129153C76F28E6C76264 /* PMSDKLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 750F884399A386FFED4F628F349D9125 /* PMSDKLoadingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38FC2B2E4208A5D3005204E99BB3F50E /* PMSDKItemAmountDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 69AF537D2E7A139A3EE70A59046E5C15 /* PMSDKItemAmountDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3CA80D9453DC836083C7E5E99764F967 /* PMSDKPaymentTokenResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B216A64DAEAEAE44A8B6E6B2B185EAE /* PMSDKPaymentTokenResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		40F45FAAD4336F406BC00B1EA58225DD /* PMSDKItemAmount.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FFC1501A5A2E8E001F9881C92CBB130 /* PMSDKItemAmount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		31E69E435E58129153C76F28E6C76264 /* PMSDKLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C9545133C139DC4A52A1991281A5FC2 /* PMSDKLoadingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38FC2B2E4208A5D3005204E99BB3F50E /* PMSDKItemAmountDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = E7D5AD6A69824FB2574F65ED5956E65C /* PMSDKItemAmountDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CA80D9453DC836083C7E5E99764F967 /* PMSDKPaymentTokenResult.h in Headers */ = {isa = PBXBuildFile; fileRef = EB7F3E4FD01A5F1D4EB6F5D1C13C6587 /* PMSDKPaymentTokenResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40F45FAAD4336F406BC00B1EA58225DD /* PMSDKItemAmount.h in Headers */ = {isa = PBXBuildFile; fileRef = C3163B8A3B233E966B0434396954BB41 /* PMSDKItemAmount.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D726F929F6F7982D0E3E17DBF53B79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		4B92CB1FF91FB9DCE19F4C3B4153AB1D /* PayMayaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = EADE0E76CA45BB422B9FC6E4B76139C3 /* PayMayaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55FEF6F76380526961BA3CBEEC2D3DFE /* PMSDKCheckoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28684638C302F8E9D869538BA27CA2B9 /* PMSDKCheckoutItem.m */; };
-		577475EA934A0FF1B4CE04D308B03CC4 /* PayMayaSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D54C57925AE5157BAA88583FA39427 /* PayMayaSDK.m */; };
-		5973E5E955DF4A42001F3117F350C31F /* PMSDKAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 40C2ACD098FE13B5B5ED8F60EE03424E /* PMSDKAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4B92CB1FF91FB9DCE19F4C3B4153AB1D /* PayMayaSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F5D9B9BFA0FD2A72743770943BF97EB /* PayMayaSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		55FEF6F76380526961BA3CBEEC2D3DFE /* PMSDKCheckoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F5B2E3924253BA6B707C5AE59403E6 /* PMSDKCheckoutItem.m */; };
+		577475EA934A0FF1B4CE04D308B03CC4 /* PayMayaSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F78533046F1A7BEC51400D69308CFC /* PayMayaSDK.m */; };
+		5973E5E955DF4A42001F3117F350C31F /* PMSDKAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = C3CEE94D5B31F6198B9F66BA0C525683 /* PMSDKAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D81D9894B4867055B7BFC7EA2449FC3 /* Pods-PayMayaSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB20A72A5E8EA1E789DF1DA58D7563E /* Pods-PayMayaSDK_Tests-dummy.m */; };
 		5E5D1852B82ADA94824BC7B0AB6B87F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */; };
 		5FF30678440AE3F578726383DDE6AB7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		6CD6AB8A041D04370B7286A575E04A46 /* PMSDKCheckoutHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C3014458C2FEA878457FFA9474449BA1 /* PMSDKCheckoutHandler.m */; };
-		737EC27D80E070DAE91AE3C9382C32C4 /* PMSDKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BA7D083615DDDD411331D6B4EBACD1 /* PMSDKUtilities.m */; };
-		783701FE945FB10D2428F239CD14A8A2 /* NSObject+KVCParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 192E81E8427E353F0E7ED0B942B0309F /* NSObject+KVCParsing.m */; };
-		7C339050BF5217191B6BEA5BF1C63335 /* PMSDKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E768D3BA2E647FF251C16EFFBE524F9 /* PMSDKLoadingView.m */; };
-		7C5D4BF42D6C42E396806C6689D06BED /* PayMayaSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D15D8BEA3D9D1B48FF0434E3B5BF92 /* PayMayaSDK-dummy.m */; };
-		8C0D1CC0123A1F160BB87C3A47A77FC6 /* PMSDKPaymentsAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A12890CF7637D4015F482BC711D4DF78 /* PMSDKPaymentsAPIManager.m */; };
-		8F4F0723E565411D67F85BA0FFC6DB47 /* PMSDKCheckoutItem.h in Headers */ = {isa = PBXBuildFile; fileRef = C3BB0E3C06E8423C3119D594DD3A418D /* PMSDKCheckoutItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D6C507DAE8AD96CC14AC94B12822762 /* PMSDKCheckoutViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EC67DE34BFB9357161DD8CAB9114082 /* PMSDKCheckoutViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9E0D2C83649090DFDFDE52CBDD805C5D /* PMSDKBuyerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = E22215BA63AA7BFEE7773EB445572B42 /* PMSDKBuyerProfile.m */; };
-		A6416944D4722CDA7903F72C0E499F33 /* PMSDKPaymentToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 444D6E53B2C5EE7A1BDF009129EE7E63 /* PMSDKPaymentToken.m */; };
-		A7AF4CE4F8EBD09229BF0749758A94E7 /* PMSDKAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C7BA4BFDE8269B39254BE8D606FAE /* PMSDKAPIManager.m */; };
-		ACD211BD9595C2226EFB5A5C0848F899 /* PMSDKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F58FB7814EADD92A80A3A873964CEDC8 /* PMSDKAddress.m */; };
-		AFE3279216BD9E36948A0130016F7E28 /* PMSDKBuyerProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A00440DC898BE0AE917BD37DDFDA96 /* PMSDKBuyerProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B76AFE0FD132865188DBC7DEAC3A1A25 /* PMSDKCheckoutResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D8CFEC97E4E6D0BA5512373384ED49 /* PMSDKCheckoutResult.m */; };
-		B95278849EDD23127E0D66B555F0C853 /* PMSDKCheckoutAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9295B49D49203544F61C9F5C7679B373 /* PMSDKCheckoutAPIManager.m */; };
-		BAF61A5B917DDA7C733F163C8CEE895F /* PMSDKCheckoutInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 02851998B182EDBDE3F8B41AA1542B23 /* PMSDKCheckoutInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA352FFCB2AEB8FC2463ACF631DF4A37 /* PMSDKUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = E28412AEA2E4B9574D27EF45F9790B47 /* PMSDKUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA65784F3073966230ADBF396F94B6AC /* PMSDKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3D0D6E81D6DEF9F201A37018990398 /* PMSDKConstants.m */; };
-		CDB72851A6A8ED14563A04867CE388DC /* PMSDKCheckoutRedirectURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 98DAD175DB8C25BB1AA61474AAF87EFD /* PMSDKCheckoutRedirectURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CED2FED3DA35F76F0326AC50B18326DA /* PMSDKCheckoutResult.h in Headers */ = {isa = PBXBuildFile; fileRef = E423E87ECF27E3DA373405D1DB831DCE /* PMSDKCheckoutResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D49BD74DE8A8C9BB48D3AA1336708204 /* PMSDKCheckoutHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = EA122321DC58FCF2AA3E0E91DE8930B9 /* PMSDKCheckoutHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D88C36A72DCC875F3134A56FD4B6D41F /* PMSDKCheckoutInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8726ABB26BFDA09DA7613B4FE00D0D5 /* PMSDKCheckoutInformation.m */; };
-		DB4A02A8CDDC0318EA27DC3A4FA2ECD9 /* PMSDKCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5E91DC849F622586E84364F0087D44 /* PMSDKCard.m */; };
-		E1097D8FF24D13397A9F484A290D09DB /* PMSDKContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D2ADC02D7CB3B100B17325E32727199 /* PMSDKContact.m */; };
-		E26CA07A2EE2ECB58ECAF40EAB843658 /* PMSDKConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = D0DBB8F76CD6EB77401994FDB0FA5DE8 /* PMSDKConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2999BD833243C2CCA8AD0EB5669B1F3 /* PMSDKCheckoutRedirectURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 05750CC2BA7D4D93C6DE210FB2C4D9C6 /* PMSDKCheckoutRedirectURL.m */; };
+		6CD6AB8A041D04370B7286A575E04A46 /* PMSDKCheckoutHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E005532328E5F7568ADD34216827857 /* PMSDKCheckoutHandler.m */; };
+		737EC27D80E070DAE91AE3C9382C32C4 /* PMSDKUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBA06C6B5B8EDBE22F4208598CBB623 /* PMSDKUtilities.m */; };
+		783701FE945FB10D2428F239CD14A8A2 /* NSObject+KVCParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 720FB1EA92FE3E43E6AF201793999A75 /* NSObject+KVCParsing.m */; };
+		7C339050BF5217191B6BEA5BF1C63335 /* PMSDKLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A283EE5489012989466B50CD53CD73 /* PMSDKLoadingView.m */; };
+		7C5D4BF42D6C42E396806C6689D06BED /* PayMayaSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAFB4C32AC8B46C02A2F6E038F72E9A /* PayMayaSDK-dummy.m */; };
+		8C0D1CC0123A1F160BB87C3A47A77FC6 /* PMSDKPaymentsAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F328ADEAA6957022937CF7EB9FEA9 /* PMSDKPaymentsAPIManager.m */; };
+		8F4F0723E565411D67F85BA0FFC6DB47 /* PMSDKCheckoutItem.h in Headers */ = {isa = PBXBuildFile; fileRef = C310A4E510B00F0718793C647606B247 /* PMSDKCheckoutItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D6C507DAE8AD96CC14AC94B12822762 /* PMSDKCheckoutViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AADC7AC9A06A6C53375C4925CC7DBE24 /* PMSDKCheckoutViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9E0D2C83649090DFDFDE52CBDD805C5D /* PMSDKBuyerProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = A76537D1EF8BA3DB016D11A041AA350D /* PMSDKBuyerProfile.m */; };
+		A6416944D4722CDA7903F72C0E499F33 /* PMSDKPaymentToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D8F97895B57B7F9459E0AA6368E725 /* PMSDKPaymentToken.m */; };
+		A7AF4CE4F8EBD09229BF0749758A94E7 /* PMSDKAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C82FBB4138B3DB3C29C4FF03AA182B19 /* PMSDKAPIManager.m */; };
+		ACD211BD9595C2226EFB5A5C0848F899 /* PMSDKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A2224DB4086B924E265ED536EE53F2 /* PMSDKAddress.m */; };
+		AFE3279216BD9E36948A0130016F7E28 /* PMSDKBuyerProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAB9246AF4BBD7CFCDB02660CE78A6D /* PMSDKBuyerProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B76AFE0FD132865188DBC7DEAC3A1A25 /* PMSDKCheckoutResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEEE12371A4D8D77BDC38FE47A9BA0D /* PMSDKCheckoutResult.m */; };
+		B95278849EDD23127E0D66B555F0C853 /* PMSDKCheckoutAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 942BB37F8E725340B24D54B3462D7145 /* PMSDKCheckoutAPIManager.m */; };
+		BAF61A5B917DDA7C733F163C8CEE895F /* PMSDKCheckoutInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A41BB862C9180479C132F0B0C3333FB /* PMSDKCheckoutInformation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA352FFCB2AEB8FC2463ACF631DF4A37 /* PMSDKUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 8998FBDC2350084B265BB3C1423AE559 /* PMSDKUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA65784F3073966230ADBF396F94B6AC /* PMSDKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CB1A86D681757CAE612BF86CC1DF2B /* PMSDKConstants.m */; };
+		CDB72851A6A8ED14563A04867CE388DC /* PMSDKCheckoutRedirectURL.h in Headers */ = {isa = PBXBuildFile; fileRef = D905B1871FE1437CDFFE1D1C2C165911 /* PMSDKCheckoutRedirectURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CED2FED3DA35F76F0326AC50B18326DA /* PMSDKCheckoutResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 212936E9F3B3C9A7ADCA77D2E2249060 /* PMSDKCheckoutResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D49BD74DE8A8C9BB48D3AA1336708204 /* PMSDKCheckoutHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D0605427AD8D48CA8867EA46E3AE44 /* PMSDKCheckoutHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D88C36A72DCC875F3134A56FD4B6D41F /* PMSDKCheckoutInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0266EA5D23BA09126FF089AB7FA70A81 /* PMSDKCheckoutInformation.m */; };
+		DB4A02A8CDDC0318EA27DC3A4FA2ECD9 /* PMSDKCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6594519827E0884CDA5CFF2F752C85F1 /* PMSDKCard.m */; };
+		E1097D8FF24D13397A9F484A290D09DB /* PMSDKContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAF8A33B47745825C7A88F02429B08 /* PMSDKContact.m */; };
+		E26CA07A2EE2ECB58ECAF40EAB843658 /* PMSDKConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6728F79774491290BB8E61B78AB5827A /* PMSDKConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E2999BD833243C2CCA8AD0EB5669B1F3 /* PMSDKCheckoutRedirectURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 994E706D1DD06BB71662D76226DA8CFF /* PMSDKCheckoutRedirectURL.m */; };
 		E455124B6AF94485ACC979CC436607A1 /* Pods-PayMayaSDK_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7726F37E10B682D128E9625FC424E9C7 /* Pods-PayMayaSDK_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E55BB4EA7491997403A0E82A95FAC75E /* PMSDKContact.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B77442E7F3EDDE67527617091C38361 /* PMSDKContact.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EC39756F226B3450CCF2B5481B7BFC28 /* NSObject+KVCParsing.h in Headers */ = {isa = PBXBuildFile; fileRef = 41D8ED8F5EDB49F57AD5C62566874FB4 /* NSObject+KVCParsing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE8902621B6FEA2088CBD746EA93C718 /* PMSDKCheckoutAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B2714244C34C0E979CA44EDCA751CD63 /* PMSDKCheckoutAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F0E52A5D54163424D3985357057D65F4 /* PMSDKPaymentTokenResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 29BBFDD305A3E9B03C5BD4E7C195BE6F /* PMSDKPaymentTokenResult.m */; };
-		F3392AB3882242B907E354DF4734BF37 /* PMSDKItemAmount.m in Sources */ = {isa = PBXBuildFile; fileRef = D87CBABA27EB998C34F69EC568EA3B7C /* PMSDKItemAmount.m */; };
+		E55BB4EA7491997403A0E82A95FAC75E /* PMSDKContact.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B26763AC976976E8CAECC1E45045DBB /* PMSDKContact.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EC39756F226B3450CCF2B5481B7BFC28 /* NSObject+KVCParsing.h in Headers */ = {isa = PBXBuildFile; fileRef = A7F9EA4DFF455064E83E516E7136D677 /* NSObject+KVCParsing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE8902621B6FEA2088CBD746EA93C718 /* PMSDKCheckoutAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 39992A738721EEAEC11E04890665444D /* PMSDKCheckoutAPIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0E52A5D54163424D3985357057D65F4 /* PMSDKPaymentTokenResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33AC355DEA057F56B3E7746BC59FC0 /* PMSDKPaymentTokenResult.m */; };
+		F3392AB3882242B907E354DF4734BF37 /* PMSDKItemAmount.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBDFC1A0B4989BB98308C63867DEBE6 /* PMSDKItemAmount.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,82 +81,93 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02851998B182EDBDE3F8B41AA1542B23 /* PMSDKCheckoutInformation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutInformation.h; path = Pod/Classes/Models/PMSDKCheckoutInformation.h; sourceTree = "<group>"; };
-		05750CC2BA7D4D93C6DE210FB2C4D9C6 /* PMSDKCheckoutRedirectURL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutRedirectURL.m; path = Pod/Classes/Models/PMSDKCheckoutRedirectURL.m; sourceTree = "<group>"; };
+		0266EA5D23BA09126FF089AB7FA70A81 /* PMSDKCheckoutInformation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutInformation.m; path = Pod/Classes/Models/PMSDKCheckoutInformation.m; sourceTree = "<group>"; };
 		0A78DC7155CCDF01448B30929397F74D /* Pods_PayMayaSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayMayaSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CA34DF62BEDE940AF88F764DB588459 /* PMSDKCheckoutViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutViewController.m; path = Pod/Classes/Controllers/PMSDKCheckoutViewController.m; sourceTree = "<group>"; };
-		0E4C7BA4BFDE8269B39254BE8D606FAE /* PMSDKAPIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKAPIManager.m; path = Pod/Classes/Backend/PMSDKAPIManager.m; sourceTree = "<group>"; };
-		15D8CFEC97E4E6D0BA5512373384ED49 /* PMSDKCheckoutResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutResult.m; path = Pod/Classes/Models/PMSDKCheckoutResult.m; sourceTree = "<group>"; };
-		192E81E8427E353F0E7ED0B942B0309F /* NSObject+KVCParsing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KVCParsing.m"; path = "Pod/Classes/Backend/NSObject+KVCParsing.m"; sourceTree = "<group>"; };
-		1D2ADC02D7CB3B100B17325E32727199 /* PMSDKContact.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKContact.m; path = Pod/Classes/Models/PMSDKContact.m; sourceTree = "<group>"; };
-		28684638C302F8E9D869538BA27CA2B9 /* PMSDKCheckoutItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutItem.m; path = Pod/Classes/Models/PMSDKCheckoutItem.m; sourceTree = "<group>"; };
-		29BBFDD305A3E9B03C5BD4E7C195BE6F /* PMSDKPaymentTokenResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKPaymentTokenResult.m; path = Pod/Classes/Models/PMSDKPaymentTokenResult.m; sourceTree = "<group>"; };
+		0F33AC355DEA057F56B3E7746BC59FC0 /* PMSDKPaymentTokenResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKPaymentTokenResult.m; path = Pod/Classes/Models/PMSDKPaymentTokenResult.m; sourceTree = "<group>"; };
+		136328AE6220E41FA321276D89EC69B0 /* PMSDKAPIManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKAPIManager.h; path = Pod/Classes/Backend/PMSDKAPIManager.h; sourceTree = "<group>"; };
+		1D62BBCD650648977DCC219740510707 /* PayMayaSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PayMayaSDK-prefix.pch"; sourceTree = "<group>"; };
+		1F5D9B9BFA0FD2A72743770943BF97EB /* PayMayaSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayMayaSDK.h; path = Pod/Classes/PayMayaSDK.h; sourceTree = "<group>"; };
+		212936E9F3B3C9A7ADCA77D2E2249060 /* PMSDKCheckoutResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutResult.h; path = Pod/Classes/Models/PMSDKCheckoutResult.h; sourceTree = "<group>"; };
+		21D0605427AD8D48CA8867EA46E3AE44 /* PMSDKCheckoutHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutHandler.h; path = Pod/Classes/Controllers/PMSDKCheckoutHandler.h; sourceTree = "<group>"; };
+		21F5B2E3924253BA6B707C5AE59403E6 /* PMSDKCheckoutItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutItem.m; path = Pod/Classes/Models/PMSDKCheckoutItem.m; sourceTree = "<group>"; };
+		2A41BB862C9180479C132F0B0C3333FB /* PMSDKCheckoutInformation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutInformation.h; path = Pod/Classes/Models/PMSDKCheckoutInformation.h; sourceTree = "<group>"; };
 		2F0BF471344362630D55FE42505DBD43 /* Pods-PayMayaSDK_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PayMayaSDK_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2FE0A3158C2C2F739E71AF808F241BDE /* Pods-PayMayaSDK_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PayMayaSDK_Example-frameworks.sh"; sourceTree = "<group>"; };
-		2FEBFBC314FF80D335ED7B36721F9E6C /* PMSDKItemAmountDetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKItemAmountDetails.m; path = Pod/Classes/Models/PMSDKItemAmountDetails.m; sourceTree = "<group>"; };
-		2FFC1501A5A2E8E001F9881C92CBB130 /* PMSDKItemAmount.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKItemAmount.h; path = Pod/Classes/Models/PMSDKItemAmount.h; sourceTree = "<group>"; };
-		3B77442E7F3EDDE67527617091C38361 /* PMSDKContact.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKContact.h; path = Pod/Classes/Models/PMSDKContact.h; sourceTree = "<group>"; };
+		39992A738721EEAEC11E04890665444D /* PMSDKCheckoutAPIManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutAPIManager.h; path = Pod/Classes/Backend/PMSDKCheckoutAPIManager.h; sourceTree = "<group>"; };
+		3B26763AC976976E8CAECC1E45045DBB /* PMSDKContact.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKContact.h; path = Pod/Classes/Models/PMSDKContact.h; sourceTree = "<group>"; };
 		3F1F8E79F4130B3EB9403D8144D9B765 /* Pods-PayMayaSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PayMayaSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		40C2ACD098FE13B5B5ED8F60EE03424E /* PMSDKAddress.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKAddress.h; path = Pod/Classes/Models/PMSDKAddress.h; sourceTree = "<group>"; };
-		41D8ED8F5EDB49F57AD5C62566874FB4 /* NSObject+KVCParsing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+KVCParsing.h"; path = "Pod/Classes/Backend/NSObject+KVCParsing.h"; sourceTree = "<group>"; };
-		444D6E53B2C5EE7A1BDF009129EE7E63 /* PMSDKPaymentToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKPaymentToken.m; path = Pod/Classes/Models/PMSDKPaymentToken.m; sourceTree = "<group>"; };
+		3FEEE12371A4D8D77BDC38FE47A9BA0D /* PMSDKCheckoutResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutResult.m; path = Pod/Classes/Models/PMSDKCheckoutResult.m; sourceTree = "<group>"; };
+		40CBB6A85458CAA0B1F460021BEA258D /* PayMayaSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PayMayaSDK-umbrella.h"; sourceTree = "<group>"; };
 		4754433A5E6022EC9E3420A8FA39CE0D /* Pods-PayMayaSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PayMayaSDK_Example.modulemap"; sourceTree = "<group>"; };
+		485F607F832B034267605E1FF3BEFA1E /* CardIOUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = CardIO/CardIOUtilities.h; sourceTree = "<group>"; };
+		49DAF8A33B47745825C7A88F02429B08 /* PMSDKContact.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKContact.m; path = Pod/Classes/Models/PMSDKContact.m; sourceTree = "<group>"; };
 		4A4E6867C365699638945E04A1E3FD31 /* Pods-PayMayaSDK_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PayMayaSDK_Tests-resources.sh"; sourceTree = "<group>"; };
-		4B8DBBB4A1D2856ED2FDE28E8976E1DB /* PayMayaSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PayMayaSDK-prefix.pch"; sourceTree = "<group>"; };
-		4EC67DE34BFB9357161DD8CAB9114082 /* PMSDKCheckoutViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutViewController.h; path = Pod/Classes/Controllers/PMSDKCheckoutViewController.h; sourceTree = "<group>"; };
+		4CD057F306FC5AEEAB3DC8418B7C8CFA /* PMSDKPaymentToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKPaymentToken.h; path = Pod/Classes/Models/PMSDKPaymentToken.h; sourceTree = "<group>"; };
 		501857BE8788C22CDA0CCF0FFCCCCA40 /* Pods-PayMayaSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PayMayaSDK_Tests.modulemap"; sourceTree = "<group>"; };
-		540CFBF254D382E095E255BEBD718CBF /* PayMayaSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PayMayaSDK.xcconfig; sourceTree = "<group>"; };
+		5201D0F76EF0E3171FF6179DD9160D8E /* libCardIO.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libCardIO.a; path = CardIO/libCardIO.a; sourceTree = "<group>"; };
+		54A283EE5489012989466B50CD53CD73 /* PMSDKLoadingView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKLoadingView.m; path = Pod/Classes/Views/PMSDKLoadingView.m; sourceTree = "<group>"; };
 		564949881A2C91CECCFBF3AB3F36AC0A /* Pods-PayMayaSDK_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PayMayaSDK_Example-resources.sh"; sourceTree = "<group>"; };
-		58BA7D083615DDDD411331D6B4EBACD1 /* PMSDKUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKUtilities.m; path = Pod/Classes/Utilities/PMSDKUtilities.m; sourceTree = "<group>"; };
-		5E768D3BA2E647FF251C16EFFBE524F9 /* PMSDKLoadingView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKLoadingView.m; path = Pod/Classes/Views/PMSDKLoadingView.m; sourceTree = "<group>"; };
-		69AF537D2E7A139A3EE70A59046E5C15 /* PMSDKItemAmountDetails.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKItemAmountDetails.h; path = Pod/Classes/Models/PMSDKItemAmountDetails.h; sourceTree = "<group>"; };
-		6B216A64DAEAEAE44A8B6E6B2B185EAE /* PMSDKPaymentTokenResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKPaymentTokenResult.h; path = Pod/Classes/Models/PMSDKPaymentTokenResult.h; sourceTree = "<group>"; };
+		57578FFFC00B77930D53F6157F62D680 /* libopencv_imgproc.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
+		6594519827E0884CDA5CFF2F752C85F1 /* PMSDKCard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCard.m; path = Pod/Classes/Models/PMSDKCard.m; sourceTree = "<group>"; };
+		6728F79774491290BB8E61B78AB5827A /* PMSDKConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKConstants.h; path = Pod/Classes/Backend/PMSDKConstants.h; sourceTree = "<group>"; };
 		6BB20A72A5E8EA1E789DF1DA58D7563E /* Pods-PayMayaSDK_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PayMayaSDK_Tests-dummy.m"; sourceTree = "<group>"; };
 		6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		74A00440DC898BE0AE917BD37DDFDA96 /* PMSDKBuyerProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKBuyerProfile.h; path = Pod/Classes/Models/PMSDKBuyerProfile.h; sourceTree = "<group>"; };
-		750F884399A386FFED4F628F349D9125 /* PMSDKLoadingView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKLoadingView.h; path = Pod/Classes/Views/PMSDKLoadingView.h; sourceTree = "<group>"; };
+		720FB1EA92FE3E43E6AF201793999A75 /* NSObject+KVCParsing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KVCParsing.m"; path = "Pod/Classes/Backend/NSObject+KVCParsing.m"; sourceTree = "<group>"; };
+		729F328ADEAA6957022937CF7EB9FEA9 /* PMSDKPaymentsAPIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKPaymentsAPIManager.m; path = Pod/Classes/Backend/PMSDKPaymentsAPIManager.m; sourceTree = "<group>"; };
+		76B898078CC8D629BBA75EEAE5A4B0D0 /* PMSDKItemAmountDetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKItemAmountDetails.m; path = Pod/Classes/Models/PMSDKItemAmountDetails.m; sourceTree = "<group>"; };
 		7726F37E10B682D128E9625FC424E9C7 /* Pods-PayMayaSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PayMayaSDK_Example-umbrella.h"; sourceTree = "<group>"; };
 		7843E38AB7494B5E257C0E045F439B75 /* Pods-PayMayaSDK_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PayMayaSDK_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		7B698C7700E105A59A3AFE6AEE2B1AF0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8099174D70D1751FA82F441BA55DD987 /* Pods-PayMayaSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PayMayaSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		860B72ADAEF195D03B1AAFABFB0EA671 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		864C4240C063CF67C38123603F19833C /* PayMayaSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PayMayaSDK.xcconfig; sourceTree = "<group>"; };
+		87FCE36C9B04E5A489C9FEF65EA6197F /* CardIODetectionMode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = CardIO/CardIODetectionMode.h; sourceTree = "<group>"; };
 		8804FC67AD832B51B11E68237E463F7B /* Pods-PayMayaSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PayMayaSDK_Example-dummy.m"; sourceTree = "<group>"; };
-		8F102039C6F96375EBA47149056AEB7F /* PMSDKAPIManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKAPIManager.h; path = Pod/Classes/Backend/PMSDKAPIManager.h; sourceTree = "<group>"; };
-		9295B49D49203544F61C9F5C7679B373 /* PMSDKCheckoutAPIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutAPIManager.m; path = Pod/Classes/Backend/PMSDKCheckoutAPIManager.m; sourceTree = "<group>"; };
+		8828137F6837B018A8F8C3F86CB76B69 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8998FBDC2350084B265BB3C1423AE559 /* PMSDKUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKUtilities.h; path = Pod/Classes/Utilities/PMSDKUtilities.h; sourceTree = "<group>"; };
+		8C9545133C139DC4A52A1991281A5FC2 /* PMSDKLoadingView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKLoadingView.h; path = Pod/Classes/Views/PMSDKLoadingView.h; sourceTree = "<group>"; };
+		8E005532328E5F7568ADD34216827857 /* PMSDKCheckoutHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutHandler.m; path = Pod/Classes/Controllers/PMSDKCheckoutHandler.m; sourceTree = "<group>"; };
+		942BB37F8E725340B24D54B3462D7145 /* PMSDKCheckoutAPIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutAPIManager.m; path = Pod/Classes/Backend/PMSDKCheckoutAPIManager.m; sourceTree = "<group>"; };
 		954F4A8B4E9299437CC90736C97893FA /* Pods-PayMayaSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PayMayaSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		98DAD175DB8C25BB1AA61474AAF87EFD /* PMSDKCheckoutRedirectURL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutRedirectURL.h; path = Pod/Classes/Models/PMSDKCheckoutRedirectURL.h; sourceTree = "<group>"; };
-		A12890CF7637D4015F482BC711D4DF78 /* PMSDKPaymentsAPIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKPaymentsAPIManager.m; path = Pod/Classes/Backend/PMSDKPaymentsAPIManager.m; sourceTree = "<group>"; };
-		A84EDCDB8BCD7719521A660BD66C5F87 /* PMSDKCard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCard.h; path = Pod/Classes/Models/PMSDKCard.h; sourceTree = "<group>"; };
-		AC3D0D6E81D6DEF9F201A37018990398 /* PMSDKConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKConstants.m; path = Pod/Classes/Backend/PMSDKConstants.m; sourceTree = "<group>"; };
-		ADCF1D39D4D221FAD05F3CA056ACDBF5 /* PayMayaSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PayMayaSDK-umbrella.h"; sourceTree = "<group>"; };
+		994E706D1DD06BB71662D76226DA8CFF /* PMSDKCheckoutRedirectURL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutRedirectURL.m; path = Pod/Classes/Models/PMSDKCheckoutRedirectURL.m; sourceTree = "<group>"; };
+		A33931BE0DD93ACC1A30578764A04629 /* PayMayaSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PayMayaSDK.modulemap; sourceTree = "<group>"; };
+		A76537D1EF8BA3DB016D11A041AA350D /* PMSDKBuyerProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKBuyerProfile.m; path = Pod/Classes/Models/PMSDKBuyerProfile.m; sourceTree = "<group>"; };
+		A7F9EA4DFF455064E83E516E7136D677 /* NSObject+KVCParsing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+KVCParsing.h"; path = "Pod/Classes/Backend/NSObject+KVCParsing.h"; sourceTree = "<group>"; };
+		AADC7AC9A06A6C53375C4925CC7DBE24 /* PMSDKCheckoutViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutViewController.h; path = Pod/Classes/Controllers/PMSDKCheckoutViewController.h; sourceTree = "<group>"; };
+		ACB3608F901FDA90DAD7B70A0137F3D1 /* PMSDKPaymentsAPIManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKPaymentsAPIManager.h; path = Pod/Classes/Backend/PMSDKPaymentsAPIManager.h; sourceTree = "<group>"; };
 		AFDC4CF772A0BE7E21C50FCCA95A129F /* Pods-PayMayaSDK_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PayMayaSDK_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		B1D0B212AA823CBBD830DF7E62EA3E1D /* Pods_PayMayaSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayMayaSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2714244C34C0E979CA44EDCA751CD63 /* PMSDKCheckoutAPIManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutAPIManager.h; path = Pod/Classes/Backend/PMSDKCheckoutAPIManager.h; sourceTree = "<group>"; };
-		B9395DE710AD3A992CFE1C81A0C2BCCC /* PMSDKPaymentToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKPaymentToken.h; path = Pod/Classes/Models/PMSDKPaymentToken.h; sourceTree = "<group>"; };
+		B2A2224DB4086B924E265ED536EE53F2 /* PMSDKAddress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKAddress.m; path = Pod/Classes/Models/PMSDKAddress.m; sourceTree = "<group>"; };
+		B5D8F97895B57B7F9459E0AA6368E725 /* PMSDKPaymentToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKPaymentToken.m; path = Pod/Classes/Models/PMSDKPaymentToken.m; sourceTree = "<group>"; };
+		B749AC0425BFC1879CCDD41039EE8C0A /* libopencv_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libopencv_core.a; path = CardIO/libopencv_core.a; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C3014458C2FEA878457FFA9474449BA1 /* PMSDKCheckoutHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutHandler.m; path = Pod/Classes/Controllers/PMSDKCheckoutHandler.m; sourceTree = "<group>"; };
+		C18273807E11F9D39DD7A7519B8974C2 /* PMSDKCheckoutViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutViewController.m; path = Pod/Classes/Controllers/PMSDKCheckoutViewController.m; sourceTree = "<group>"; };
+		C310A4E510B00F0718793C647606B247 /* PMSDKCheckoutItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutItem.h; path = Pod/Classes/Models/PMSDKCheckoutItem.h; sourceTree = "<group>"; };
+		C3163B8A3B233E966B0434396954BB41 /* PMSDKItemAmount.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKItemAmount.h; path = Pod/Classes/Models/PMSDKItemAmount.h; sourceTree = "<group>"; };
 		C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		C3BB0E3C06E8423C3119D594DD3A418D /* PMSDKCheckoutItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutItem.h; path = Pod/Classes/Models/PMSDKCheckoutItem.h; sourceTree = "<group>"; };
-		C5E9BE4A0E55BE9B54C87406ADF1C050 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C77F03B932761F824222967AB16956DF /* PMSDKPaymentsAPIManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKPaymentsAPIManager.h; path = Pod/Classes/Backend/PMSDKPaymentsAPIManager.h; sourceTree = "<group>"; };
+		C3C669E0DC0BF162A0BA89F6D73FF103 /* CardIO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = CardIO/CardIO.h; sourceTree = "<group>"; };
+		C3CEE94D5B31F6198B9F66BA0C525683 /* PMSDKAddress.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKAddress.h; path = Pod/Classes/Models/PMSDKAddress.h; sourceTree = "<group>"; };
 		C7954D0559CE0D014A7DD0C6B9276846 /* Pods-PayMayaSDK_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PayMayaSDK_Tests-umbrella.h"; sourceTree = "<group>"; };
-		C8726ABB26BFDA09DA7613B4FE00D0D5 /* PMSDKCheckoutInformation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCheckoutInformation.m; path = Pod/Classes/Models/PMSDKCheckoutInformation.m; sourceTree = "<group>"; };
-		CA5E91DC849F622586E84364F0087D44 /* PMSDKCard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKCard.m; path = Pod/Classes/Models/PMSDKCard.m; sourceTree = "<group>"; };
-		D0DBB8F76CD6EB77401994FDB0FA5DE8 /* PMSDKConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKConstants.h; path = Pod/Classes/Backend/PMSDKConstants.h; sourceTree = "<group>"; };
+		C82FBB4138B3DB3C29C4FF03AA182B19 /* PMSDKAPIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKAPIManager.m; path = Pod/Classes/Backend/PMSDKAPIManager.m; sourceTree = "<group>"; };
+		CCBDFC1A0B4989BB98308C63867DEBE6 /* PMSDKItemAmount.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKItemAmount.m; path = Pod/Classes/Models/PMSDKItemAmount.m; sourceTree = "<group>"; };
+		D221D5D2946A5CF69D8794352F64B054 /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = CardIO/CardIOPaymentViewController.h; sourceTree = "<group>"; };
 		D5BBFCB9975F7AE6DB0F186898DF3017 /* Pods-PayMayaSDK_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PayMayaSDK_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		D70C55E2CC2B255C25E10E79A409B797 /* PayMayaSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PayMayaSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D713CBD86E6C487354ED388F250C8253 /* Pods-PayMayaSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PayMayaSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		D87CBABA27EB998C34F69EC568EA3B7C /* PMSDKItemAmount.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKItemAmount.m; path = Pod/Classes/Models/PMSDKItemAmount.m; sourceTree = "<group>"; };
-		E22215BA63AA7BFEE7773EB445572B42 /* PMSDKBuyerProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKBuyerProfile.m; path = Pod/Classes/Models/PMSDKBuyerProfile.m; sourceTree = "<group>"; };
-		E28412AEA2E4B9574D27EF45F9790B47 /* PMSDKUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKUtilities.h; path = Pod/Classes/Utilities/PMSDKUtilities.h; sourceTree = "<group>"; };
-		E423E87ECF27E3DA373405D1DB831DCE /* PMSDKCheckoutResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutResult.h; path = Pod/Classes/Models/PMSDKCheckoutResult.h; sourceTree = "<group>"; };
-		E5D15D8BEA3D9D1B48FF0434E3B5BF92 /* PayMayaSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PayMayaSDK-dummy.m"; sourceTree = "<group>"; };
-		EA122321DC58FCF2AA3E0E91DE8930B9 /* PMSDKCheckoutHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutHandler.h; path = Pod/Classes/Controllers/PMSDKCheckoutHandler.h; sourceTree = "<group>"; };
-		EADE0E76CA45BB422B9FC6E4B76139C3 /* PayMayaSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PayMayaSDK.h; path = Pod/Classes/PayMayaSDK.h; sourceTree = "<group>"; };
+		D81C65227369C671D46F684BC758B05E /* CardIOViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = CardIO/CardIOViewDelegate.h; sourceTree = "<group>"; };
+		D905B1871FE1437CDFFE1D1C2C165911 /* PMSDKCheckoutRedirectURL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCheckoutRedirectURL.h; path = Pod/Classes/Models/PMSDKCheckoutRedirectURL.h; sourceTree = "<group>"; };
+		E7D5AD6A69824FB2574F65ED5956E65C /* PMSDKItemAmountDetails.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKItemAmountDetails.h; path = Pod/Classes/Models/PMSDKItemAmountDetails.h; sourceTree = "<group>"; };
+		E8F78533046F1A7BEC51400D69308CFC /* PayMayaSDK.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PayMayaSDK.m; path = Pod/Classes/PayMayaSDK.m; sourceTree = "<group>"; };
+		E9FD1866BD56DFC47BB29240F30E0B98 /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = CardIO/CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		EB7F3E4FD01A5F1D4EB6F5D1C13C6587 /* PMSDKPaymentTokenResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKPaymentTokenResult.h; path = Pod/Classes/Models/PMSDKPaymentTokenResult.h; sourceTree = "<group>"; };
 		EED677191512FD9C88615970772DA832 /* Pods-PayMayaSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PayMayaSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F58FB7814EADD92A80A3A873964CEDC8 /* PMSDKAddress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKAddress.m; path = Pod/Classes/Models/PMSDKAddress.m; sourceTree = "<group>"; };
-		F6D54C57925AE5157BAA88583FA39427 /* PayMayaSDK.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PayMayaSDK.m; path = Pod/Classes/PayMayaSDK.m; sourceTree = "<group>"; };
-		FC83EC9D1B6CDF38D98A3A0117F534F4 /* PayMayaSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PayMayaSDK.modulemap; sourceTree = "<group>"; };
+		F006D79D2A40953490A160DC4F6E187C /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = CardIO/CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		F10A2BFD4D138354D0C02BDECBF7B8D0 /* PMSDKCard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKCard.h; path = Pod/Classes/Models/PMSDKCard.h; sourceTree = "<group>"; };
+		F4CB1A86D681757CAE612BF86CC1DF2B /* PMSDKConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKConstants.m; path = Pod/Classes/Backend/PMSDKConstants.m; sourceTree = "<group>"; };
+		FAAB9246AF4BBD7CFCDB02660CE78A6D /* PMSDKBuyerProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PMSDKBuyerProfile.h; path = Pod/Classes/Models/PMSDKBuyerProfile.h; sourceTree = "<group>"; };
+		FCAFB4C32AC8B46C02A2F6E038F72E9A /* PayMayaSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PayMayaSDK-dummy.m"; sourceTree = "<group>"; };
+		FD895040F8EA8650F4B9E6BB72234A28 /* CardIOView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = CardIO/CardIOView.h; sourceTree = "<group>"; };
+		FFBA06C6B5B8EDBE22F4208598CBB623 /* PMSDKUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PMSDKUtilities.m; path = Pod/Classes/Utilities/PMSDKUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,12 +199,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0BA00344361245572FA7A360C6375C36 /* Pods */ = {
+		17127A17580236979F64EF5945758558 /* PayMayaSDK */ = {
 			isa = PBXGroup;
 			children = (
-				BD14F6CF3F0B7225643B04FCACB9E142 /* PayMayaSDK */,
+				A7F9EA4DFF455064E83E516E7136D677 /* NSObject+KVCParsing.h */,
+				720FB1EA92FE3E43E6AF201793999A75 /* NSObject+KVCParsing.m */,
+				1F5D9B9BFA0FD2A72743770943BF97EB /* PayMayaSDK.h */,
+				E8F78533046F1A7BEC51400D69308CFC /* PayMayaSDK.m */,
+				C3CEE94D5B31F6198B9F66BA0C525683 /* PMSDKAddress.h */,
+				B2A2224DB4086B924E265ED536EE53F2 /* PMSDKAddress.m */,
+				136328AE6220E41FA321276D89EC69B0 /* PMSDKAPIManager.h */,
+				C82FBB4138B3DB3C29C4FF03AA182B19 /* PMSDKAPIManager.m */,
+				FAAB9246AF4BBD7CFCDB02660CE78A6D /* PMSDKBuyerProfile.h */,
+				A76537D1EF8BA3DB016D11A041AA350D /* PMSDKBuyerProfile.m */,
+				F10A2BFD4D138354D0C02BDECBF7B8D0 /* PMSDKCard.h */,
+				6594519827E0884CDA5CFF2F752C85F1 /* PMSDKCard.m */,
+				39992A738721EEAEC11E04890665444D /* PMSDKCheckoutAPIManager.h */,
+				942BB37F8E725340B24D54B3462D7145 /* PMSDKCheckoutAPIManager.m */,
+				21D0605427AD8D48CA8867EA46E3AE44 /* PMSDKCheckoutHandler.h */,
+				8E005532328E5F7568ADD34216827857 /* PMSDKCheckoutHandler.m */,
+				2A41BB862C9180479C132F0B0C3333FB /* PMSDKCheckoutInformation.h */,
+				0266EA5D23BA09126FF089AB7FA70A81 /* PMSDKCheckoutInformation.m */,
+				C310A4E510B00F0718793C647606B247 /* PMSDKCheckoutItem.h */,
+				21F5B2E3924253BA6B707C5AE59403E6 /* PMSDKCheckoutItem.m */,
+				D905B1871FE1437CDFFE1D1C2C165911 /* PMSDKCheckoutRedirectURL.h */,
+				994E706D1DD06BB71662D76226DA8CFF /* PMSDKCheckoutRedirectURL.m */,
+				212936E9F3B3C9A7ADCA77D2E2249060 /* PMSDKCheckoutResult.h */,
+				3FEEE12371A4D8D77BDC38FE47A9BA0D /* PMSDKCheckoutResult.m */,
+				AADC7AC9A06A6C53375C4925CC7DBE24 /* PMSDKCheckoutViewController.h */,
+				C18273807E11F9D39DD7A7519B8974C2 /* PMSDKCheckoutViewController.m */,
+				6728F79774491290BB8E61B78AB5827A /* PMSDKConstants.h */,
+				F4CB1A86D681757CAE612BF86CC1DF2B /* PMSDKConstants.m */,
+				3B26763AC976976E8CAECC1E45045DBB /* PMSDKContact.h */,
+				49DAF8A33B47745825C7A88F02429B08 /* PMSDKContact.m */,
+				C3163B8A3B233E966B0434396954BB41 /* PMSDKItemAmount.h */,
+				CCBDFC1A0B4989BB98308C63867DEBE6 /* PMSDKItemAmount.m */,
+				E7D5AD6A69824FB2574F65ED5956E65C /* PMSDKItemAmountDetails.h */,
+				76B898078CC8D629BBA75EEAE5A4B0D0 /* PMSDKItemAmountDetails.m */,
+				8C9545133C139DC4A52A1991281A5FC2 /* PMSDKLoadingView.h */,
+				54A283EE5489012989466B50CD53CD73 /* PMSDKLoadingView.m */,
+				ACB3608F901FDA90DAD7B70A0137F3D1 /* PMSDKPaymentsAPIManager.h */,
+				729F328ADEAA6957022937CF7EB9FEA9 /* PMSDKPaymentsAPIManager.m */,
+				4CD057F306FC5AEEAB3DC8418B7C8CFA /* PMSDKPaymentToken.h */,
+				B5D8F97895B57B7F9459E0AA6368E725 /* PMSDKPaymentToken.m */,
+				EB7F3E4FD01A5F1D4EB6F5D1C13C6587 /* PMSDKPaymentTokenResult.h */,
+				0F33AC355DEA057F56B3E7746BC59FC0 /* PMSDKPaymentTokenResult.m */,
+				8998FBDC2350084B265BB3C1423AE559 /* PMSDKUtilities.h */,
+				FFBA06C6B5B8EDBE22F4208598CBB623 /* PMSDKUtilities.m */,
+				DBF33FCD936F8CC3FC2578AAEF49A812 /* Support Files */,
 			);
-			name = Pods;
+			path = PayMayaSDK;
 			sourceTree = "<group>";
 		};
 		18340F12838DEE43507667CC74401EB1 /* iOS */ = {
@@ -211,6 +266,15 @@
 				18340F12838DEE43507667CC74401EB1 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		441D12AE76C6DBF4A4650CDE0E4E9DAC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C450E149001B0B1D478E83ED220EB70 /* CardIO */,
+				17127A17580236979F64EF5945758558 /* PayMayaSDK */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		4A4C7032D3F1B26884F177E5406559EA /* Pods-PayMayaSDK_Example */ = {
@@ -231,67 +295,31 @@
 			path = "Target Support Files/Pods-PayMayaSDK_Example";
 			sourceTree = "<group>";
 		};
+		7C450E149001B0B1D478E83ED220EB70 /* CardIO */ = {
+			isa = PBXGroup;
+			children = (
+				C3C669E0DC0BF162A0BA89F6D73FF103 /* CardIO.h */,
+				E9FD1866BD56DFC47BB29240F30E0B98 /* CardIOCreditCardInfo.h */,
+				87FCE36C9B04E5A489C9FEF65EA6197F /* CardIODetectionMode.h */,
+				D221D5D2946A5CF69D8794352F64B054 /* CardIOPaymentViewController.h */,
+				F006D79D2A40953490A160DC4F6E187C /* CardIOPaymentViewControllerDelegate.h */,
+				485F607F832B034267605E1FF3BEFA1E /* CardIOUtilities.h */,
+				FD895040F8EA8650F4B9E6BB72234A28 /* CardIOView.h */,
+				D81C65227369C671D46F684BC758B05E /* CardIOViewDelegate.h */,
+				C728D22B5681FF2790A8E5537BE30E52 /* Frameworks */,
+			);
+			path = CardIO;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				0BA00344361245572FA7A360C6375C36 /* Pods */,
+				441D12AE76C6DBF4A4650CDE0E4E9DAC /* Pods */,
 				FFFBE637D29B56E1F3A41D58972B860C /* Products */,
 				F22D1B0F7407F762C351CB40C29F2BE6 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		BD14F6CF3F0B7225643B04FCACB9E142 /* PayMayaSDK */ = {
-			isa = PBXGroup;
-			children = (
-				41D8ED8F5EDB49F57AD5C62566874FB4 /* NSObject+KVCParsing.h */,
-				192E81E8427E353F0E7ED0B942B0309F /* NSObject+KVCParsing.m */,
-				EADE0E76CA45BB422B9FC6E4B76139C3 /* PayMayaSDK.h */,
-				F6D54C57925AE5157BAA88583FA39427 /* PayMayaSDK.m */,
-				40C2ACD098FE13B5B5ED8F60EE03424E /* PMSDKAddress.h */,
-				F58FB7814EADD92A80A3A873964CEDC8 /* PMSDKAddress.m */,
-				8F102039C6F96375EBA47149056AEB7F /* PMSDKAPIManager.h */,
-				0E4C7BA4BFDE8269B39254BE8D606FAE /* PMSDKAPIManager.m */,
-				74A00440DC898BE0AE917BD37DDFDA96 /* PMSDKBuyerProfile.h */,
-				E22215BA63AA7BFEE7773EB445572B42 /* PMSDKBuyerProfile.m */,
-				A84EDCDB8BCD7719521A660BD66C5F87 /* PMSDKCard.h */,
-				CA5E91DC849F622586E84364F0087D44 /* PMSDKCard.m */,
-				B2714244C34C0E979CA44EDCA751CD63 /* PMSDKCheckoutAPIManager.h */,
-				9295B49D49203544F61C9F5C7679B373 /* PMSDKCheckoutAPIManager.m */,
-				EA122321DC58FCF2AA3E0E91DE8930B9 /* PMSDKCheckoutHandler.h */,
-				C3014458C2FEA878457FFA9474449BA1 /* PMSDKCheckoutHandler.m */,
-				02851998B182EDBDE3F8B41AA1542B23 /* PMSDKCheckoutInformation.h */,
-				C8726ABB26BFDA09DA7613B4FE00D0D5 /* PMSDKCheckoutInformation.m */,
-				C3BB0E3C06E8423C3119D594DD3A418D /* PMSDKCheckoutItem.h */,
-				28684638C302F8E9D869538BA27CA2B9 /* PMSDKCheckoutItem.m */,
-				98DAD175DB8C25BB1AA61474AAF87EFD /* PMSDKCheckoutRedirectURL.h */,
-				05750CC2BA7D4D93C6DE210FB2C4D9C6 /* PMSDKCheckoutRedirectURL.m */,
-				E423E87ECF27E3DA373405D1DB831DCE /* PMSDKCheckoutResult.h */,
-				15D8CFEC97E4E6D0BA5512373384ED49 /* PMSDKCheckoutResult.m */,
-				4EC67DE34BFB9357161DD8CAB9114082 /* PMSDKCheckoutViewController.h */,
-				0CA34DF62BEDE940AF88F764DB588459 /* PMSDKCheckoutViewController.m */,
-				D0DBB8F76CD6EB77401994FDB0FA5DE8 /* PMSDKConstants.h */,
-				AC3D0D6E81D6DEF9F201A37018990398 /* PMSDKConstants.m */,
-				3B77442E7F3EDDE67527617091C38361 /* PMSDKContact.h */,
-				1D2ADC02D7CB3B100B17325E32727199 /* PMSDKContact.m */,
-				2FFC1501A5A2E8E001F9881C92CBB130 /* PMSDKItemAmount.h */,
-				D87CBABA27EB998C34F69EC568EA3B7C /* PMSDKItemAmount.m */,
-				69AF537D2E7A139A3EE70A59046E5C15 /* PMSDKItemAmountDetails.h */,
-				2FEBFBC314FF80D335ED7B36721F9E6C /* PMSDKItemAmountDetails.m */,
-				750F884399A386FFED4F628F349D9125 /* PMSDKLoadingView.h */,
-				5E768D3BA2E647FF251C16EFFBE524F9 /* PMSDKLoadingView.m */,
-				C77F03B932761F824222967AB16956DF /* PMSDKPaymentsAPIManager.h */,
-				A12890CF7637D4015F482BC711D4DF78 /* PMSDKPaymentsAPIManager.m */,
-				B9395DE710AD3A992CFE1C81A0C2BCCC /* PMSDKPaymentToken.h */,
-				444D6E53B2C5EE7A1BDF009129EE7E63 /* PMSDKPaymentToken.m */,
-				6B216A64DAEAEAE44A8B6E6B2B185EAE /* PMSDKPaymentTokenResult.h */,
-				29BBFDD305A3E9B03C5BD4E7C195BE6F /* PMSDKPaymentTokenResult.m */,
-				E28412AEA2E4B9574D27EF45F9790B47 /* PMSDKUtilities.h */,
-				58BA7D083615DDDD411331D6B4EBACD1 /* PMSDKUtilities.m */,
-				E327C3D5299D7DB25227DFB47473CA1D /* Support Files */,
-			);
-			path = PayMayaSDK;
 			sourceTree = "<group>";
 		};
 		BDFFF17980D072AF91939CB0CFE5C75C /* Pods-PayMayaSDK_Tests */ = {
@@ -312,15 +340,25 @@
 			path = "Target Support Files/Pods-PayMayaSDK_Tests";
 			sourceTree = "<group>";
 		};
-		E327C3D5299D7DB25227DFB47473CA1D /* Support Files */ = {
+		C728D22B5681FF2790A8E5537BE30E52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C5E9BE4A0E55BE9B54C87406ADF1C050 /* Info.plist */,
-				FC83EC9D1B6CDF38D98A3A0117F534F4 /* PayMayaSDK.modulemap */,
-				540CFBF254D382E095E255BEBD718CBF /* PayMayaSDK.xcconfig */,
-				E5D15D8BEA3D9D1B48FF0434E3B5BF92 /* PayMayaSDK-dummy.m */,
-				4B8DBBB4A1D2856ED2FDE28E8976E1DB /* PayMayaSDK-prefix.pch */,
-				ADCF1D39D4D221FAD05F3CA056ACDBF5 /* PayMayaSDK-umbrella.h */,
+				5201D0F76EF0E3171FF6179DD9160D8E /* libCardIO.a */,
+				B749AC0425BFC1879CCDD41039EE8C0A /* libopencv_core.a */,
+				57578FFFC00B77930D53F6157F62D680 /* libopencv_imgproc.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DBF33FCD936F8CC3FC2578AAEF49A812 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8828137F6837B018A8F8C3F86CB76B69 /* Info.plist */,
+				A33931BE0DD93ACC1A30578764A04629 /* PayMayaSDK.modulemap */,
+				864C4240C063CF67C38123603F19833C /* PayMayaSDK.xcconfig */,
+				FCAFB4C32AC8B46C02A2F6E038F72E9A /* PayMayaSDK-dummy.m */,
+				1D62BBCD650648977DCC219740510707 /* PayMayaSDK-prefix.pch */,
+				40CBB6A85458CAA0B1F460021BEA258D /* PayMayaSDK-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/PayMayaSDK";
@@ -639,7 +677,7 @@
 		};
 		866CE8EC5C0BBDBF5827BD3B348FDD3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 540CFBF254D382E095E255BEBD718CBF /* PayMayaSDK.xcconfig */;
+			baseConfigurationReference = 864C4240C063CF67C38123603F19833C /* PayMayaSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -765,7 +803,7 @@
 		};
 		E5DFFCCF643D5D2156B08665829D4011 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 540CFBF254D382E095E255BEBD718CBF /* PayMayaSDK.xcconfig */;
+			baseConfigurationReference = 864C4240C063CF67C38123603F19833C /* PayMayaSDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;

@@ -4,9 +4,11 @@ use_frameworks!
 target 'PayMayaSDK_Example', :exclusive => true do
 	platform :ios, '7.0' 
 	pod 'PayMayaSDK'
+	pod 'CardIO'
 end
 
 target 'PayMayaSDK_Tests', :exclusive => true do
 	platform :ios, '7.0' 
 	pod 'PayMayaSDK'
+	pod 'CardIO'
 end
