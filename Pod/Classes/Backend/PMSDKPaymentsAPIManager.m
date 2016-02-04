@@ -31,7 +31,7 @@
                       failureBlock:(void (^)(NSError *))failureBlock
 {
     NSError *error = nil;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/payment-tokens", self.baseUrl]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/v1/payment-tokens", self.baseUrl]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[card idempotentKey] forHTTPHeaderField:@"Idempotent-Token"];
