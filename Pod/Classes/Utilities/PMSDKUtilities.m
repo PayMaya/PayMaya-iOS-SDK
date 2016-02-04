@@ -143,7 +143,7 @@
             baseURL = @"https://api.paymaya.com/sandbox/payments";
             break;
         case PayMayaEnvironmentProduction:
-            baseURL = @"http://private-anon-39be75513-paymayapaymentsapi.apiary-mock.com";
+            baseURL = @"https://api.paymaya.com/payments";
             break;
     }
     return baseURL;
