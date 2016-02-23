@@ -201,6 +201,17 @@
         PMDUserInformationViewController *userInformationViewController = [[PMDUserInformationViewController alloc] initWithNibName:nil bundle:nil cartInformation:cartInformationDictionary];
         [self.navigationController pushViewController:userInformationViewController animated:YES];
     }
+    else {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Cart Error"
+                                                                       message:@"Card should not be empty"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 #pragma mark - UITableViewDelegate and UITableViewDataSource

@@ -22,7 +22,7 @@
 
 #import "PMSDKAppDelegate.h"
 #import <PayMayaSDK/PayMayaSDK.h>
-#import "PMDHomeViewController.h"
+#import "PMDShopViewController.h"
 
 @implementation PMSDKAppDelegate
 
@@ -36,9 +36,9 @@
      ];
     [[PayMayaSDK sharedInstance] setPaymentsAPIKey:@"pk-sHQWci2P410ppwFQvsi7IQCpHsIjafy74jrhYb8qfxu" forEnvironment:PayMayaEnvironmentSandbox];
 
-    PMDHomeViewController *homeViewController = [[PMDHomeViewController alloc] initWithNibName:nil bundle:nil];
-    homeViewController.title = @"PayMaya iOS SDK Demo";
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+    PMDShopViewController *shopViewController = [[PMDShopViewController alloc] initWithNibName:nil bundle:nil];
+    shopViewController.title = @"PayMaya iOS SDK Demo";
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:shopViewController];
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     
