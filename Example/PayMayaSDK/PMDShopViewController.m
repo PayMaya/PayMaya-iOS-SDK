@@ -94,6 +94,7 @@
 - (void)didTapViewCart:(id)sender
 {
     PMDCartViewController *cartViewController = [[PMDCartViewController alloc] initWithBoughtProductsArray:self.boughtProductsArray];
+    cartViewController.apiManager = self.apiManager;
     [self.navigationController pushViewController:cartViewController animated:YES];
 }
 

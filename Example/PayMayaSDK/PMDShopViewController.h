@@ -21,7 +21,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PMDAPIManager.h"
 
 @interface PMDShopViewController : UIViewController
+
+@property (nonatomic, strong) PMDAPIManager *apiManager;
 
 @end

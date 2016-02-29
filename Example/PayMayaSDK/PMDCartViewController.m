@@ -199,6 +199,7 @@
                                                                                     };
         
         PMDUserInformationViewController *userInformationViewController = [[PMDUserInformationViewController alloc] initWithNibName:nil bundle:nil cartInformation:cartInformationDictionary];
+        userInformationViewController.apiManager = self.apiManager;
         [self.navigationController pushViewController:userInformationViewController animated:YES];
     }
     else {
