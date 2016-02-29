@@ -24,6 +24,7 @@
 #import "PMDCardInputViewController.h"
 #import "PMDProduct.h"
 #import "PayMayaSDK.h"
+#import "PMDUtilities.h"
 
 @interface PMDUserInformationViewController () <PayMayaCheckoutDelegate>
 
@@ -52,7 +53,7 @@
 
 @implementation PMDUserInformationViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil cartInformation:(id)cartInformation
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil cartInformation:(NSDictionary *)cartInformation
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -331,8 +332,39 @@
 
 - (void)paymentsButtonClicked:(id)sender
 {
-    PMDCardInputViewController *cardInputViewController = [[PMDCardInputViewController alloc] initWithNibName:nil bundle:nil];
+    NSDictionary *totalAmount = @{
+                                  @"currency" : @"PHP",
+                                  @"amount" : [[PMDUtilities currencyFormatter] numberFromString:[[PMDUtilities currencyFormatter] stringFromNumber:self.cartInformation[@"total"]]]
+                                  };
+    
+    NSDictionary *address = @{
+                              @"line1" : self.line1TextField.text,
+                              @"line2" : self.line2TextField.text,
+                              @"city" : self.cityTextField.text,
+                              @"state" : self.stateTextField.text,
+                              @"zipCode" : self.zipCodeTextField.text,
+                              @"countryCode" : self.countryTextField.text
+                              };
+    
+    NSDictionary *buyer = @{
+                            @"firstName" : self.firstNameTextField.text,
+                            @"middleName" : self.middleNameTextField.text,
+                            @"lastName" : self.lastNameTextField.text,
+                            @"contact" : @{
+                                    @"phone" : self.phoneTextField.text,
+                                    @"email" : self.emailTextField.text
+                                    },
+                            @"billingAddress" : address
+                            };
+    
+    NSDictionary *paymentInformation = @{
+                                         @"totalAmount" : totalAmount,
+                                         @"buyer" : buyer
+                                         };
+    
+    PMDCardInputViewController *cardInputViewController = [[PMDCardInputViewController alloc] initWithNibName:nil bundle:nil paymentInformation:paymentInformation];
     cardInputViewController.title = @"Payments SDK Demo";
+    cardInputViewController.apiManager = self.apiManager;
     [self.navigationController pushViewController:cardInputViewController animated:YES];
 }
 

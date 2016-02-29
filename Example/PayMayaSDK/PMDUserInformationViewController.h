@@ -21,9 +21,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PMDAPIManager.h"
 
 @interface PMDUserInformationViewController : UIViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil cartInformation:cartInformation;
+@property (nonatomic, strong) PMDAPIManager *apiManager;
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil cartInformation:(NSDictionary *)cartInformation;
 
 @end
