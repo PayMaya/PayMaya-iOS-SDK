@@ -21,7 +21,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PMDAPIManager.h"
 
 @interface PMDCardInputViewController : UIViewController
+
+@property (nonatomic, strong) PMDAPIManager *apiManager;
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil paymentInformation:(NSDictionary *)paymentInformation;
 
 @end

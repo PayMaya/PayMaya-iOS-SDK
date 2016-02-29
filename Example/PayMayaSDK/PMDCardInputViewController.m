@@ -22,6 +22,7 @@
 
 #import "PMDCardInputViewController.h"
 #import "PayMayaSDK.h"
+#import "PMDActivityIndicatorView.h"
 #import "CardIO.h"
 
 @interface PMDCardInputViewController () <UIPickerViewDataSource, UIPickerViewDelegate, PayMayaPaymentsDelegate, CardIOPaymentViewControllerDelegate>
@@ -41,10 +42,22 @@
 @property (nonatomic, strong) UITextField *paymentTokenTextField;
 @property (nonatomic, strong) UIButton *duplicateTokenButton;
 @property (nonatomic, strong) NSDateFormatter *yearDateFormatter;
+@property (nonatomic, strong) PMDActivityIndicatorView *activityIndicatorView;
+
+@property (nonatomic, strong) NSDictionary *paymentInformation;
 
 @end
 
 @implementation PMDCardInputViewController
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil paymentInformation:(NSDictionary *)paymentInformation
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.paymentInformation = paymentInformation;
+    }
+    return self;
+}
 
 - (void)loadView
 {
@@ -138,14 +151,14 @@
     self.generateTokenButton.layer.borderWidth = 0.5f;
     self.generateTokenButton.clipsToBounds = YES;
     self.generateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.generateTokenButton setTitle:@"Generate Token" forState:UIControlStateNormal];
+    [self.generateTokenButton setTitle:@"Pay" forState:UIControlStateNormal];
     [self.generateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.generateTokenButton addTarget:self action:@selector(generateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewContentView addSubview:self.generateTokenButton];
     
     self.paymentTokenLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.paymentTokenLabel.translatesAutoresizingMaskIntoConstraints  = NO;
-    self.paymentTokenLabel.text = @"Payment Token";
+    self.paymentTokenLabel.text = @"Generated Token";
     self.paymentTokenLabel.hidden = YES;
     [self.scrollViewContentView addSubview:self.paymentTokenLabel];
     
@@ -229,12 +242,21 @@
 - (void)scanCardButtonClicked:(id)sender
 {
     CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+    scanViewController.hideCardIOLogo = YES;
     [self presentViewController:scanViewController animated:YES completion:nil];
 }
 
 - (void)generateTokenButtonClicked:(id)sender
 {
     [self.view endEditing:YES];
+    self.navigationItem.hidesBackButton = YES;
+    self.generateTokenButton.enabled = NO;
+    self.activityIndicatorView = [[PMDActivityIndicatorView alloc] initWithFrame:[[UIScreen mainScreen] bounds] label:@"Processing"];
+    self.activityIndicatorView.alpha = 0.0f;
+    [self.view addSubview:self.activityIndicatorView];
+    [UIView animateWithDuration:0.2f animations:^{
+        self.activityIndicatorView.alpha = 1.0f;
+    }];
     PMSDKCard *card = [[PMSDKCard alloc] init];
     card.number = self.cardNumberTextField.text;
     card.expiryMonth = self.expiryMonthTextField.text;
@@ -266,21 +288,48 @@
     if (result.status == PMSDKPaymentTokenStatusCreated) {
         paymentTokenStatus = @"Created";
     }
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Token"
-                                                                       message:[NSString stringWithFormat:@"ID: %@\nType: %@\nState: %@\nSource IP: %@\nCreated At: %@\nUpdated At: %@", result.paymentToken.identifier, result.paymentToken.type, paymentTokenStatus, result.paymentToken.sourceIP, result.paymentToken.createdAt, result.paymentToken.updatedAt]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        
         self.paymentTokenTextField.text = result.paymentToken.identifier;
         self.paymentTokenLabel.hidden = NO;
         self.paymentTokenTextField.hidden = NO;
         self.duplicateTokenButton.hidden = NO;
     });
+    
+    [self.apiManager executePaymentWithPaymentToken:result.paymentToken.identifier
+                                 paymentInformation:self.paymentInformation
+    successBlock:^(id response) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.navigationItem.hidesBackButton = NO;
+            self.generateTokenButton.enabled = YES;
+            [self.activityIndicatorView removeFromSuperview];
+            self.activityIndicatorView = nil;
+            
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Successful"
+                                                                                   message:nil
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                          handler:^(UIAlertAction * action) {}];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    } failureBlock:^(NSError *error) {
+        NSLog(@"Error: %@", error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Network Error"
+                                                                           message:nil
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            self.navigationItem.hidesBackButton = NO;
+            self.generateTokenButton.enabled = YES;
+            [self.activityIndicatorView removeFromSuperview];
+            self.activityIndicatorView = nil;
+        });
+    }];
 }
 
 - (void)createPaymentTokenDidFailWithError:(NSError *)error
@@ -377,7 +426,7 @@
 
 - (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)scanViewController {
     // The full card number is available as info.cardNumber, but don't log that!
-    NSLog(@"Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv);
+    NSLog(@"Received card info. Number: %@, expiry: %02lu/%lu, cvv: %@.", info.redactedCardNumber, (unsigned long)info.expiryMonth, (unsigned long)info.expiryYear, info.cvv);
     // Use the card info...
     self.cardNumberTextField.text = info.cardNumber;
     self.expiryMonthTextField.text = [NSString stringWithFormat:@"%lu", (unsigned long)info.expiryMonth];
