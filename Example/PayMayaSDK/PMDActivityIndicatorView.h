@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PMDActivityIndicatorView : NSObject
+@interface PMDActivityIndicatorView : UIView
+
+- (instancetype)initWithFrame:(CGRect)frame label:(NSString *)label;
 
 @end
