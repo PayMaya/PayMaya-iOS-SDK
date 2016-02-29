@@ -1,32 +1,39 @@
 //
-//  PMSDKAPIManager.m
+//  PMDAPIManager.m
 //  PayMayaSDK
 //
 //  Created by Elijah Cayabyab on 26/02/2016.
 //  Copyright © 2016 PayMaya Philippines, Inc. All rights reserved.
 //
 
-#import "PMSDKAPIManager.h"
+#import "PMDAPIManager.h"
 
-@implementation PMSDKAPIManager
+@interface PMDAPIManager ()
 
-- (void)setBaseUrl:(NSString *)baseUrl
-         clientKey:(NSString *)clientKey
-      clientSecret:(NSString *)clientSecret
+@property (nonatomic, strong) NSString *baseUrl;
+@property (nonatomic, strong) NSURLSession *session;
+
+@end
+
+@implementation PMDAPIManager
+
+- (instancetype)initWithBaseUrl:(NSString *)baseUrl accessToken:(NSString *)accessToken
 {
-    // Set authorization header
-    NSData *clientKeySecretData = [[NSString stringWithFormat:@"%@:%@", clientKey, clientSecret] dataUsingEncoding:NSUTF8StringEncoding];
-    [clientKeySecretData base64EncodedStringWithOptions:0];
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [config setHTTPAdditionalHeaders:@{@"Authorization" : [NSString stringWithFormat:@"Basic %@", [clientKeySecretData base64EncodedStringWithOptions:0]]}];
+    self = [super init];
+    if (self) {
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.timeoutIntervalForResource = 10.0f;
+        config.timeoutIntervalForRequest = 10.0f;
+        [config setHTTPAdditionalHeaders:@{@"Authorization" : [NSString stringWithFormat:@"Bearer %@", accessToken]}];
     
-    self.baseUrl = baseUrl;
-    self.session = [NSURLSession sessionWithConfiguration:config];
+        self.baseUrl = baseUrl;
+        self.session = [NSURLSession sessionWithConfiguration:config];
+    }
+    return self;
 }
 
-- (void)executePaymentWithPaymentToken:(PMSDKPaymentToken *)paymentToken
-                           totalAmount:(PMSDKItemAmount *)itemAmount
-                          buyerProfile:(PMSDKBuyerProfile *)buyerProfile
+- (void)executePaymentWithPaymentToken:(NSString *)paymentToken
+                           paymentInformation:(NSDictionary *)paymentInformation
                           successBlock:(void (^)(id))successBlock
                           failureBlock:(void (^)(NSError *))failureBlock
 {
@@ -37,7 +44,11 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     
-    NSMutableDictionary *postFieldsDictionary = nil;
+    NSDictionary *postFieldsDictionary = @{
+                                                  @"paymentToken" : paymentToken,
+                                                  @"totalAmount" : paymentInformation[@"totalAmount"],
+                                                  @"buyer" : paymentInformation[@"buyer"]
+                                                  };
     
     NSData *postData = [NSJSONSerialization dataWithJSONObject:postFieldsDictionary options:0 error:&error];
     [request setHTTPBody:postData];
@@ -48,7 +59,11 @@
             if (![responseDictionary isKindOfClass:[NSDictionary class]] || (![responseDictionary objectForKey:@"error"] && ![responseDictionary objectForKey:@"fault"])) {
                 successBlock(responseDictionary);
             } else {
-                NSError *error = [NSError errorWithDomain:@"com.backend.error.payments" code:0 userInfo:@{NSLocalizedDescriptionKey : [responseDictionary objectForKey:@"error"]}];
+                NSDictionary *apiErrorDictionary = [responseDictionary objectForKey:@"error"];
+                NSInteger apiErrorCode = [[apiErrorDictionary objectForKey:@"code"] integerValue];
+                NSString *apiErrorLocalizedDescription = [apiErrorDictionary objectForKey:@"message"];
+                NSError *error = [NSError errorWithDomain:@"com.backend.error.payments" code:apiErrorCode userInfo:@{NSLocalizedDescriptionKey : apiErrorLocalizedDescription,
+                        @"CheckoutAPIErrorDictionary" : apiErrorDictionary}];
                 failureBlock(error);
             }
         } else {

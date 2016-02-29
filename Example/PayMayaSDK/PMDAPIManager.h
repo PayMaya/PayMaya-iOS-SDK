@@ -1,5 +1,5 @@
 //
-//  PMSDKAPIManager.h
+//  PMDAPIManager.h
 //  PayMayaSDK
 //
 //  Created by Elijah Cayabyab on 26/02/2016.
@@ -7,22 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PMSDKPaymentToken.h"
-#import "PMSDKItemAmount.h"
-#import "PMSDKBuyerProfile.h"
 
-@interface PMSDKAPIManager : NSObject
+@interface PMDAPIManager : NSObject
 
-@property (nonatomic, strong) NSString *baseUrl;
-@property (nonatomic, strong) NSURLSession *session;
+- (instancetype)initWithBaseUrl:(NSString *)baseUrl accessToken:(NSString *)accessToken;
 
-- (void)setBaseUrl:(NSString *)baseUrl
-         clientKey:(NSString *)clientKey
-      clientSecret:(NSString *)clientSecret;
-
-- (void)executePaymentWithPaymentToken:(PMSDKPaymentToken *)paymentToken
-                                    totalAmount:(PMSDKItemAmount *)itemAmount
-                                    buyerProfile:(PMSDKBuyerProfile *)buyerProfile
+- (void)executePaymentWithPaymentToken:(NSString *)paymentToken
+                                paymentInformation:(NSDictionary *)paymentInformation
                                 successBlock:(void (^)(id))successBlock
                                    failureBlock:(void (^)(NSError *))failureBlock;
 
