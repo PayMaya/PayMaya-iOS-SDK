@@ -37,7 +37,7 @@
      ];
     [[PayMayaSDK sharedInstance] setPaymentsAPIKey:@"pk-sHQWci2P410ppwFQvsi7IQCpHsIjafy74jrhYb8qfxu" forEnvironment:PayMayaEnvironmentSandbox];
 
-    PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://192.168.225.105:1337" accessToken:@"WEW0y6rsTfClk5g5095ohCZyQNAcvAgqIPrDQG7F2JYOB2BIux5Vxe9p66Ztvm/8"];
+    PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://52.77.55.105" accessToken:@"3BI4dTaewiyfJGcc9Fzg+r2MM1qSc80LcRqxVpZTIoaRb2uIQ1SSRtfQWEsHeJud"];
     PMDShopViewController *shopViewController = [[PMDShopViewController alloc] initWithNibName:nil bundle:nil];
     shopViewController.title = @"PayMaya iOS SDK Demo";
     shopViewController.apiManager = apiManager;

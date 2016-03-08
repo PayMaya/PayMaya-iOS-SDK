@@ -22,8 +22,8 @@
     self = [super init];
     if (self) {
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        config.timeoutIntervalForResource = 10.0f;
-        config.timeoutIntervalForRequest = 10.0f;
+        config.timeoutIntervalForResource = 30.0f;
+        config.timeoutIntervalForRequest = 30.0f;
         [config setHTTPAdditionalHeaders:@{@"Authorization" : [NSString stringWithFormat:@"Bearer %@", accessToken]}];
     
         self.baseUrl = baseUrl;
