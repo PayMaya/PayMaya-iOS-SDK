@@ -316,8 +316,8 @@
     } failureBlock:^(NSError *error) {
         NSLog(@"Error: %@", error);
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Network Error"
-                                                                           message:nil
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Error"
+                                                                           message:error.userInfo[NSLocalizedDescriptionKey]
                                                                     preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                                   handler:^(UIAlertAction * action) {}];
@@ -334,7 +334,13 @@
 
 - (void)createPaymentTokenDidFailWithError:(NSError *)error
 {
-    NSLog(@"Error: %@", error);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.hidesBackButton = NO;
+        self.generateTokenButton.enabled = YES;
+        [self.activityIndicatorView removeFromSuperview];
+        self.activityIndicatorView = nil;
+        NSLog(@"Error: %@", error);
+    });
 }
 
 #pragma mark - UIPickerViewDataSource
