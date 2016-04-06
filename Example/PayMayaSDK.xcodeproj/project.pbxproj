@@ -22,6 +22,7 @@
 		0DA2F5891C180B5300932042 /* PMDCardInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2F5881C180B5300932042 /* PMDCardInputViewController.m */; };
 		0DB857941C800B4B0092D902 /* PMDAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB857931C800B4B0092D902 /* PMDAPIManager.m */; };
 		0DB857971C8030690092D902 /* PMDActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB857961C8030690092D902 /* PMDActivityIndicatorView.m */; };
+		0DC8029C1CB4D5E200B55137 /* PMDCardVaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC8029B1CB4D5E200B55137 /* PMDCardVaultViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -77,6 +78,8 @@
 		0DB857931C800B4B0092D902 /* PMDAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDAPIManager.m; sourceTree = "<group>"; };
 		0DB857951C8030690092D902 /* PMDActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDActivityIndicatorView.h; sourceTree = "<group>"; };
 		0DB857961C8030690092D902 /* PMDActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDActivityIndicatorView.m; sourceTree = "<group>"; };
+		0DC8029A1CB4D5E200B55137 /* PMDCardVaultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDCardVaultViewController.h; sourceTree = "<group>"; };
+		0DC8029B1CB4D5E200B55137 /* PMDCardVaultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDCardVaultViewController.m; sourceTree = "<group>"; };
 		3E7D0E4E2948F6CFC64EA29A /* PayMayaSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PayMayaSDK.podspec; path = ../PayMayaSDK.podspec; sourceTree = "<group>"; };
 		5E7F9A8780EAF77D35638D41 /* Pods_PayMayaSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayMayaSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* PayMaya SDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PayMaya SDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +138,7 @@
 			children = (
 				0D98E4351C463399003EFBCE /* PMDHomeViewController.h */,
 				0D98E4361C463399003EFBCE /* PMDHomeViewController.m */,
+				0DC802991CB4D5AC00B55137 /* Card Vault */,
 				0DE6C1D01C50CED9009D5D93 /* Checkout */,
 				0DE6C1D11C50CEEC009D5D93 /* Payments */,
 			);
@@ -190,6 +194,15 @@
 				0DB857931C800B4B0092D902 /* PMDAPIManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		0DC802991CB4D5AC00B55137 /* Card Vault */ = {
+			isa = PBXGroup;
+			children = (
+				0DC8029A1CB4D5E200B55137 /* PMDCardVaultViewController.h */,
+				0DC8029B1CB4D5E200B55137 /* PMDCardVaultViewController.m */,
+			);
+			name = "Card Vault";
 			sourceTree = "<group>";
 		};
 		0DE6C1D01C50CED9009D5D93 /* Checkout */ = {
@@ -531,6 +544,7 @@
 				0D30A7361BF2C6F9009A67DB /* PMDCartItemTableViewCell.m in Sources */,
 				0D30A7381BF2C6F9009A67DB /* PMDProduct.m in Sources */,
 				0D30A7391BF2C6F9009A67DB /* PMDShopTableViewCell.m in Sources */,
+				0DC8029C1CB4D5E200B55137 /* PMDCardVaultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

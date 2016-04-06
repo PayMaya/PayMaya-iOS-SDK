@@ -23,6 +23,7 @@
 #import "PMSDKAppDelegate.h"
 #import <PayMayaSDK/PayMayaSDK.h>
 #import "PMDShopViewController.h"
+#import "PMDCardVaultViewController.h"
 #import "PMDAPIManager.h"
 
 @implementation PMSDKAppDelegate
@@ -38,11 +39,24 @@
     [[PayMayaSDK sharedInstance] setPaymentsAPIKey:@"pk-N6TvoB4GP2kIgNz4OCchCTKYvY5kPQd2HDRSg8rPeQG" forEnvironment:PayMayaEnvironmentSandbox];
 
     PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://52.77.55.105" accessToken:@"3BI4dTaewiyfJGcc9Fzg+r2MM1qSc80LcRqxVpZTIoaRb2uIQ1SSRtfQWEsHeJud"];
+    
+    // Setup view controllers
     PMDShopViewController *shopViewController = [[PMDShopViewController alloc] initWithNibName:nil bundle:nil];
-    shopViewController.title = @"PayMaya iOS SDK Demo";
+    shopViewController.title = @"Shop";
+    shopViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Shop" image:[UIImage imageNamed:@"shop"] selectedImage:[UIImage imageNamed:@"shop-active"]];
     shopViewController.apiManager = apiManager;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:shopViewController];
-    self.window.rootViewController = navigationController;
+    UINavigationController *shopNavigationController = [[UINavigationController alloc] initWithRootViewController:shopViewController];
+    
+    PMDCardVaultViewController *cardVaultViewController = [[PMDCardVaultViewController alloc] initWithNibName:nil bundle:nil];
+    cardVaultViewController.title = @"Cards";
+    cardVaultViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Cards" image:[UIImage imageNamed:@"vault"] selectedImage:[UIImage imageNamed:@"vault-active"]];
+    cardVaultViewController.apiManager = apiManager;
+    UINavigationController *cardVaultNavigationController = [[UINavigationController alloc] initWithRootViewController:cardVaultViewController];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
+    tabBarController.viewControllers = @[shopNavigationController, cardVaultNavigationController];
+    
+    self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     
     return YES;
