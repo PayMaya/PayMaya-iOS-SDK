@@ -35,7 +35,7 @@
     // Setup PayMaya SDK
     [[PayMayaSDK sharedInstance] setCheckoutAPIKey:@"pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN" forEnvironment:PayMayaEnvironmentSandbox
      ];
-    [[PayMayaSDK sharedInstance] setPaymentsAPIKey:@"pk-sHQWci2P410ppwFQvsi7IQCpHsIjafy74jrhYb8qfxu" forEnvironment:PayMayaEnvironmentSandbox];
+    [[PayMayaSDK sharedInstance] setPaymentsAPIKey:@"pk-N6TvoB4GP2kIgNz4OCchCTKYvY5kPQd2HDRSg8rPeQG" forEnvironment:PayMayaEnvironmentSandbox];
 
     PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://52.77.55.105" accessToken:@"3BI4dTaewiyfJGcc9Fzg+r2MM1qSc80LcRqxVpZTIoaRb2uIQ1SSRtfQWEsHeJud"];
     PMDShopViewController *shopViewController = [[PMDShopViewController alloc] initWithNibName:nil bundle:nil];
