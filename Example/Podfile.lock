@@ -1,10 +1,13 @@
 PODS:
+  - CardIO (5.3.1)
   - PayMayaSDK (0.2.0)
 
 DEPENDENCIES:
+  - CardIO
   - PayMayaSDK
 
 SPEC CHECKSUMS:
+  CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
   PayMayaSDK: 5e4a621a0c9590ee1832c0efe6ddcd41360260c5
 
 COCOAPODS: 0.39.0

@@ -21,8 +21,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PMDAPIManager.h"
 
 @interface PMDCartViewController : UIViewController
+
+@property (nonatomic, strong) PMDAPIManager *apiManager;
 
 - (instancetype)initWithBoughtProductsArray:(NSMutableArray *)boughtProductsArray;
 

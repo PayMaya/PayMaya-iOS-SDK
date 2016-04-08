@@ -21,8 +21,10 @@
 //
 
 #import "PMDUserInformationViewController.h"
+#import "PMDCardInputViewController.h"
 #import "PMDProduct.h"
 #import "PayMayaSDK.h"
+#import "PMDUtilities.h"
 
 @interface PMDUserInformationViewController () <PayMayaCheckoutDelegate>
 
@@ -43,6 +45,7 @@
 @property (nonatomic, strong) UITextField *zipCodeTextField;
 @property (nonatomic, strong) UITextField *countryTextField;
 @property (nonatomic, strong) UIButton *checkoutButton;
+@property (nonatomic, strong) UIButton *paymentsButton;
 
 @property (nonatomic, strong) NSDictionary *cartInformation;
 
@@ -50,7 +53,7 @@
 
 @implementation PMDUserInformationViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil cartInformation:(id)cartInformation
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil cartInformation:(NSDictionary *)cartInformation
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -184,10 +187,21 @@
     self.checkoutButton.layer.borderWidth = 0.5f;
     self.checkoutButton.clipsToBounds = YES;
     self.checkoutButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.checkoutButton setTitle:@"Checkout" forState:UIControlStateNormal];
+    [self.checkoutButton setTitle:@"Pay via Checkout" forState:UIControlStateNormal];
     [self.checkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.checkoutButton addTarget:self action:@selector(checkoutButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewContentView addSubview:self.checkoutButton];
+    
+    self.paymentsButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    self.paymentsButton.enabled = YES;
+    self.paymentsButton.layer.cornerRadius = 3.0f;
+    self.paymentsButton.layer.borderWidth = 0.5f;
+    self.paymentsButton.clipsToBounds = YES;
+    self.paymentsButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.paymentsButton setTitle:@"Pay via Payments" forState:UIControlStateNormal];
+    [self.paymentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.paymentsButton addTarget:self action:@selector(paymentsButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollViewContentView addSubview:self.paymentsButton];
 
     [self setUpLayoutConstraints];
 }
@@ -211,7 +225,8 @@
                                                                    _stateTextField,
                                                                    _zipCodeTextField,
                                                                    _countryTextField,
-                                                                   _checkoutButton
+                                                                   _checkoutButton,
+                                                                   _paymentsButton
                                                                    );
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
@@ -221,10 +236,12 @@
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollViewContentView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_personalInformationLabel]-30-[_firstNameTextField]-[_middleNameTextField]-[_lastNameTextField]-30-[_contactInformationLabel]-30-[_phoneTextField]-[_emailTextField]-30-[_addressInformationLabel]-30-[_line1TextField]-[_line2TextField]-[_cityTextField]-[_stateTextField]-[_zipCodeTextField]-[_countryTextField]" options:(NSLayoutFormatAlignAllLeading | NSLayoutFormatAlignAllTrailing) metrics:nil views:viewsDictionary]];
-     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_countryTextField]-30-[_checkoutButton]-30-|" options:0 metrics:nil views:viewsDictionary]];
+     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_countryTextField]-30-[_checkoutButton]-[_paymentsButton]-30-|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_personalInformationLabel]-|" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_checkoutButton(150)]" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_checkoutButton(200)]" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.checkoutButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_paymentsButton(200)]" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentsButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
 }
 
 - (void)viewDidLoad
@@ -244,6 +261,8 @@
     [super viewWillDisappear:animated];
     [self unregisterForKeyboardNotifications];
 }
+
+#pragma mark - Checkout API
 
 - (void)checkoutButtonClicked:(id)sender
 {
@@ -307,6 +326,46 @@
     [[PayMayaSDK sharedInstance] checkout:checkoutInformation result:^(PMSDKCheckoutResult *result, NSError *error) {
         [self displayAlertViewWithCheckoutResult:result];
     }];
+}
+
+#pragma mark - Payments API
+
+- (void)paymentsButtonClicked:(id)sender
+{
+    NSDictionary *totalAmount = @{
+                                  @"currency" : @"PHP",
+                                  @"amount" : [[PMDUtilities currencyFormatter] numberFromString:[[PMDUtilities currencyFormatter] stringFromNumber:self.cartInformation[@"total"]]]
+                                  };
+    
+    NSDictionary *address = @{
+                              @"line1" : self.line1TextField.text,
+                              @"line2" : self.line2TextField.text,
+                              @"city" : self.cityTextField.text,
+                              @"state" : self.stateTextField.text,
+                              @"zipCode" : self.zipCodeTextField.text,
+                              @"countryCode" : self.countryTextField.text
+                              };
+    
+    NSDictionary *buyer = @{
+                            @"firstName" : self.firstNameTextField.text,
+                            @"middleName" : self.middleNameTextField.text,
+                            @"lastName" : self.lastNameTextField.text,
+                            @"contact" : @{
+                                    @"phone" : self.phoneTextField.text,
+                                    @"email" : self.emailTextField.text
+                                    },
+                            @"billingAddress" : address
+                            };
+    
+    NSDictionary *paymentInformation = @{
+                                         @"totalAmount" : totalAmount,
+                                         @"buyer" : buyer
+                                         };
+    
+    PMDCardInputViewController *cardInputViewController = [[PMDCardInputViewController alloc] initWithNibName:nil bundle:nil paymentInformation:paymentInformation];
+    cardInputViewController.title = @"Payments SDK Demo";
+    cardInputViewController.apiManager = self.apiManager;
+    [self.navigationController pushViewController:cardInputViewController animated:YES];
 }
 
 #pragma mark - Keyboard Handling Methods
