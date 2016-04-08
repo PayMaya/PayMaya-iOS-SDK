@@ -54,7 +54,7 @@
     UINavigationController *cardVaultNavigationController = [[UINavigationController alloc] initWithRootViewController:cardVaultViewController];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
-    tabBarController.viewControllers = @[shopNavigationController, cardVaultNavigationController];
+    tabBarController.viewControllers = @[shopNavigationController];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
