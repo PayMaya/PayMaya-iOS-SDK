@@ -266,66 +266,7 @@
 
 - (void)checkoutButtonClicked:(id)sender
 {
-    NSDictionary *totalAmount = @{
-                                  @"currency" : @"PHP",
-                                  @"value" : [self.cartInformation[@"total"] stringValue],
-                                  @"details" : @{
-                                          @"shippingFee" : [self.cartInformation[@"shippingFee"] stringValue],
-                                          @"tax" : [self.cartInformation[@"tax"] stringValue],
-                                          @"subtotal" : [self.cartInformation[@"subtotal"] stringValue]
-                                          }
-                                  };
-    
-    NSDictionary *address = @{
-                              @"line1" : self.line1TextField.text,
-                              @"line2" : self.line2TextField.text,
-                              @"city" : self.cityTextField.text,
-                              @"state" : self.stateTextField.text,
-                              @"zipCode" : self.zipCodeTextField.text,
-                              @"countryCode" : self.countryTextField.text
-                              };
-    
-    NSDictionary *buyer = @{
-                            @"firstName" : self.firstNameTextField.text,
-                            @"middleName" : self.middleNameTextField.text,
-                            @"lastName" : self.lastNameTextField.text,
-                            @"contact" : @{
-                                    @"phone" : self.phoneTextField.text,
-                                    @"email" : self.emailTextField.text
-                                    },
-                            @"shippingAddress" : address,
-                            @"billingAddress" : address
-                            };
-    
-    NSMutableArray *items = [[NSMutableArray alloc] init];
-    for (NSDictionary *productInfo in self.cartInformation[@"products"]) {
-        PMDProduct *product = (PMDProduct *)productInfo[@"product"];
-        NSDictionary *item = @{
-                               @"name" : product.name,
-                               @"code" : product.code,
-                               @"description" : product.itemDescription,
-                               @"quantity" : [productInfo[@"quantity"] stringValue],
-                               @"amount" : @{
-                                       @"value" : [product.amount stringValue]
-                                       },
-                               @"totalAmount" : @{
-                                       @"value" : [productInfo[@"totalAmount"] stringValue]
-                                       }
-                               };
-        [items addObject:item];
-    }
-    
-    NSDictionary *checkoutDictionary = @{
-                                         @"totalAmount" : totalAmount,
-                                         @"buyer" : buyer,
-                                         @"items" : items,
-                                         @"requestReferenceNumber" : @"123456789"
-                                         };
-    
-    PMSDKCheckoutInformation *checkoutInformation = [[PMSDKCheckoutInformation alloc] initWithDictionary:checkoutDictionary];
-    [[PayMayaSDK sharedInstance] checkout:checkoutInformation result:^(PMSDKCheckoutResult *result, NSError *error) {
-        [self displayAlertViewWithCheckoutResult:result];
-    }];
+    // testDrive
 }
 
 #pragma mark - Payments API
@@ -406,42 +347,6 @@
 
 #pragma mark - PayMayaCheckoutDelegate
 
-- (void)checkoutDidFinishWithResult:(PMSDKCheckoutResult *)result
-{
-    [self displayAlertViewWithCheckoutResult:result];
-}
-
-- (void)checkoutDidFailWithError:(NSError *)error
-{
-    NSLog(@"Error: %@", error);
-}
-
-- (void)displayAlertViewWithCheckoutResult:(PMSDKCheckoutResult *)result
-{
-    NSString *checkoutStatus;
-    
-    if (result.status == PMSDKCheckoutStatusUnknown) {
-        checkoutStatus = @"Status Unknown";
-    }
-    else if (result.status == PMSDKCheckoutStatusCanceled) {
-        checkoutStatus = @"Status Canceled";
-    }
-    else if (result.status == PMSDKCheckoutStatusFailed) {
-        checkoutStatus = @"Status Failed";
-    }
-    else if (result.status == PMSDKCheckoutStatusSuccess) {
-        checkoutStatus = @"Status Success";
-    }
-    
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Checkout Status"
-                                                                   message:checkoutStatus
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {}];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
-}
+// testDrive
 
 @end

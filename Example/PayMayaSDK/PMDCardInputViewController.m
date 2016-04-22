@@ -248,21 +248,7 @@
 
 - (void)generateTokenButtonClicked:(id)sender
 {
-    [self.view endEditing:YES];
-    self.navigationItem.hidesBackButton = YES;
-    self.generateTokenButton.enabled = NO;
-    self.activityIndicatorView = [[PMDActivityIndicatorView alloc] initWithFrame:[[UIScreen mainScreen] bounds] label:@"Processing"];
-    self.activityIndicatorView.alpha = 0.0f;
-    [self.view addSubview:self.activityIndicatorView];
-    [UIView animateWithDuration:0.2f animations:^{
-        self.activityIndicatorView.alpha = 1.0f;
-    }];
-    PMSDKCard *card = [[PMSDKCard alloc] init];
-    card.number = self.cardNumberTextField.text;
-    card.expiryMonth = self.expiryMonthTextField.text;
-    card.expiryYear = self.expiryYearTextField.text;
-    card.cvc = self.cvvTextField.text;
-    [[PayMayaSDK sharedInstance] createPaymentTokenFromCard:card delegate:self];
+    // testDrive
 }
 
 - (void)duplicateTokenButtonClicked:(id)sender
@@ -281,67 +267,7 @@
 
 #pragma mark - PayMayaPaymentsDelegate
 
-- (void)createPaymentTokenDidFinishWithResult:(PMSDKPaymentTokenResult *)result
-{
-    NSString *paymentTokenStatus;
-    
-    if (result.status == PMSDKPaymentTokenStatusCreated) {
-        paymentTokenStatus = @"Created";
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.paymentTokenTextField.text = result.paymentToken.identifier;
-        self.paymentTokenLabel.hidden = NO;
-        self.paymentTokenTextField.hidden = NO;
-        self.duplicateTokenButton.hidden = NO;
-    });
-    
-    [self.apiManager executePaymentWithPaymentToken:result.paymentToken.identifier
-                                 paymentInformation:self.paymentInformation
-    successBlock:^(id response) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.navigationItem.hidesBackButton = NO;
-            self.generateTokenButton.enabled = YES;
-            [self.activityIndicatorView removeFromSuperview];
-            self.activityIndicatorView = nil;
-            
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Successful"
-                                                                                   message:nil
-                                                                            preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                          handler:^(UIAlertAction * action) {}];
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        });
-    } failureBlock:^(NSError *error) {
-        NSLog(@"Error: %@", error);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Error"
-                                                                           message:error.userInfo[NSLocalizedDescriptionKey]
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {}];
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            self.navigationItem.hidesBackButton = NO;
-            self.generateTokenButton.enabled = YES;
-            [self.activityIndicatorView removeFromSuperview];
-            self.activityIndicatorView = nil;
-        });
-    }];
-}
-
-- (void)createPaymentTokenDidFailWithError:(NSError *)error
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.navigationItem.hidesBackButton = NO;
-        self.generateTokenButton.enabled = YES;
-        [self.activityIndicatorView removeFromSuperview];
-        self.activityIndicatorView = nil;
-        NSLog(@"Error: %@", error);
-    });
-}
+// testDrive
 
 #pragma mark - UIPickerViewDataSource
 
