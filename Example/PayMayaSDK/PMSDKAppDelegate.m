@@ -37,7 +37,7 @@
     
     // testDrive
     
-    PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://52.77.55.105" accessToken:@"3BI4dTaewiyfJGcc9Fzg+r2MM1qSc80LcRqxVpZTIoaRb2uIQ1SSRtfQWEsHeJud"];
+    PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"" accessToken:@""];
     
     // Setup view controllers
     PMDShopViewController *shopViewController = [[PMDShopViewController alloc] initWithNibName:nil bundle:nil];
