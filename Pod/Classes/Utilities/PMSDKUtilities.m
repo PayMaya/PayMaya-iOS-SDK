@@ -118,7 +118,7 @@
             baseURL = @"https://pg-sandbox.paymaya.com/checkout";
             break;
         case PayMayaEnvironmentProduction:
-            baseURL = @"https://checkout-api.paymaya.com";
+            baseURL = @"https://pg.paymaya.com/checkout";
             break;
     }
     return baseURL;
@@ -143,7 +143,7 @@
             baseURL = @"https://pg-sandbox.paymaya.com/payments";
             break;
         case PayMayaEnvironmentProduction:
-            baseURL = @"https://api.paymaya.com/payments";
+            baseURL = @"https://pg.paymaya.com/payments";
             break;
     }
     return baseURL;
