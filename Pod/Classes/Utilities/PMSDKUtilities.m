@@ -115,7 +115,7 @@
             break;
 #endif
         case PayMayaEnvironmentSandbox:
-            baseURL = @"https://api.paymaya.com/sandbox/checkout";
+            baseURL = @"https://pg-sandbox.paymaya.com/checkout";
             break;
         case PayMayaEnvironmentProduction:
             baseURL = @"https://checkout-api.paymaya.com";
@@ -140,7 +140,7 @@
             break;
 #endif
         case PayMayaEnvironmentSandbox:
-            baseURL = @"https://api.paymaya.com/sandbox/payments";
+            baseURL = @"https://pg-sandbox.paymaya.com/payments";
             break;
         case PayMayaEnvironmentProduction:
             baseURL = @"https://api.paymaya.com/payments";
