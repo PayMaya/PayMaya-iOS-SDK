@@ -212,7 +212,7 @@
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollViewContentView(==_scrollView)]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollViewContentView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]-|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cardNumberTextField]-|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_scanCardButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_generateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];

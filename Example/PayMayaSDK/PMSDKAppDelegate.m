@@ -52,9 +52,9 @@
     cardVaultViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Cards" image:[UIImage imageNamed:@"vault"] selectedImage:[UIImage imageNamed:@"vault-active"]];
     cardVaultViewController.apiManager = apiManager;
     UINavigationController *cardVaultNavigationController = [[UINavigationController alloc] initWithRootViewController:cardVaultViewController];
-    
+     
     UITabBarController *tabBarController = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
-    tabBarController.viewControllers = @[shopNavigationController];
+    tabBarController.viewControllers = @[shopNavigationController, cardVaultNavigationController];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
