@@ -12,9 +12,12 @@
 
 - (instancetype)initWithBaseUrl:(NSString *)baseUrl accessToken:(NSString *)accessToken;
 
+- (void)getCustomerSuccessBlock:(void (^)(id))successBlock
+                   failureBlock:(void (^)(NSError *))failureBlock;
+
 - (void)executePaymentWithPaymentToken:(NSString *)paymentToken
-                                paymentInformation:(NSDictionary *)paymentInformation
-                                successBlock:(void (^)(id))successBlock
-                                   failureBlock:(void (^)(NSError *))failureBlock;
+                    paymentInformation:(NSDictionary *)paymentInformation
+                          successBlock:(void (^)(id))successBlock
+                          failureBlock:(void (^)(NSError *))failureBlock;
 
 @end

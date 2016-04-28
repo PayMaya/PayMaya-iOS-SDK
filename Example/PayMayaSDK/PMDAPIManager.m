@@ -33,6 +33,40 @@
     return self;
 }
 
+- (void)getCustomerSuccessBlock:(void (^)(id))successBlock
+                   failureBlock:(void (^)(NSError *))failureBlock
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/customers", self.baseUrl]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    
+    NSURLSessionDataTask *postDataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            if (httpResponse.statusCode == 200) {
+                NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                if (![responseDictionary isKindOfClass:[NSDictionary class]] || (![responseDictionary objectForKey:@"error"] && ![responseDictionary objectForKey:@"fault"])) {
+                    successBlock(responseDictionary);
+                } else {
+                    NSDictionary *apiErrorDictionary = [responseDictionary objectForKey:@"error"];
+                    NSInteger apiErrorCode = [[apiErrorDictionary objectForKey:@"code"] integerValue];
+                    NSString *apiErrorLocalizedDescription = [apiErrorDictionary objectForKey:@"message"];
+                    NSError *error = [NSError errorWithDomain:@"com.backend.error.payments" code:apiErrorCode userInfo:@{NSLocalizedDescriptionKey : apiErrorLocalizedDescription, @"PaymentsAPIErrorDictionary" : apiErrorDictionary}];
+                    failureBlock(error);
+                }
+            } else {
+                NSString *apiErrorLocalizedDescription = [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode];
+                NSError *error = [NSError errorWithDomain:@"com.backend.error.payments" code:httpResponse.statusCode userInfo:@{NSLocalizedDescriptionKey : apiErrorLocalizedDescription}];
+                failureBlock(error);
+            }
+        } else {
+            failureBlock(error);
+        }
+    }];
+    
+    [postDataTask resume];
+}
+
 - (void)executePaymentWithPaymentToken:(NSString *)paymentToken
                            paymentInformation:(NSDictionary *)paymentInformation
                           successBlock:(void (^)(id))successBlock
@@ -67,7 +101,7 @@
                     NSInteger apiErrorCode = [[apiErrorDictionary objectForKey:@"code"] integerValue];
                     NSString *apiErrorLocalizedDescription = [apiErrorDictionary objectForKey:@"message"];
                     NSError *error = [NSError errorWithDomain:@"com.backend.error.payments" code:apiErrorCode userInfo:@{NSLocalizedDescriptionKey : apiErrorLocalizedDescription,
-                            @"CheckoutAPIErrorDictionary" : apiErrorDictionary}];
+                            @"PaymentsAPIErrorDictionary" : apiErrorDictionary}];
                     failureBlock(error);
                 }
             } else {
