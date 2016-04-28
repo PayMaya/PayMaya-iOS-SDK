@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *maskedPan;
 @property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString *verificationURL;
 
 @end

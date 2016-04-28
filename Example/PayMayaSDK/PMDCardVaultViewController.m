@@ -8,12 +8,16 @@
 
 #import "PMDCardVaultViewController.h"
 #import "PMDCardInputViewController.h"
+#import "PMDCard.h"
+#import "PMDCardTableViewCell.h"
 
 @interface PMDCardVaultViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSString *customerID;
 @property (nonatomic, strong) UILabel *noCardsLabel;
 @property (nonatomic, strong) UITableView *cardsTableView;
+
+@property (nonatomic, strong) NSArray *cardsArray;
 
 @end
 
@@ -33,7 +37,10 @@
     self.cardsTableView.dataSource = self;
     self.cardsTableView.delegate = self;
     self.cardsTableView.alpha = 0.0f;
-    [self.cardsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableViewCell"];
+    [self.cardsTableView registerClass:[PMDCardTableViewCell class] forCellReuseIdentifier:[PMDCardTableViewCell reuseIdentifier]];
+    self.cardsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.cardsTableView.rowHeight = UITableViewAutomaticDimension;
+    self.cardsTableView.estimatedRowHeight = 200.0;
     [self.view addSubview:self.cardsTableView];
     
     [self setupLayoutConstraints];
@@ -55,8 +62,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    PMDCard *card1 = [[PMDCard alloc] init];
+    card1.tokenIdentifier = @"crd_6LmZsA3V2Cypjp4242";
+    card1.type = @"master-card";
+    card1.maskedPan = @"1234";
+    card1.state = @"PREVERIFICATION";
+    
+    PMDCard *card2 = [[PMDCard alloc] init];
+    card2.tokenIdentifier = @"crd_6LmZsA3V2Cypjp4243";
+    card2.type = @"visa";
+    card2.maskedPan = @"2345";
+    card2.state = @"PREVERIFICATION";
+    
+    PMDCard *card3 = [[PMDCard alloc] init];
+    card3.tokenIdentifier = @"crd_6LmZsA3V2Cypjp4244";
+    card3.type = @"master-card";
+    card3.maskedPan = @"3456";
+    card3.state = @"VERIFIED";
+    
+    self.cardsArray = @[card1, card2, card3];
+    
     self.customerID = [[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"];
     
+    self.navigationController.navigationBar.translucent = NO;
     UIBarButtonItem *addCardBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didTapAddCardBarButtonItem:)];
     self.navigationItem.rightBarButtonItem = addCardBarButtonItem;
 }
@@ -69,6 +97,11 @@
     } failureBlock:^(NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    
+    if ([self.cardsArray count] > 0) {
+        self.cardsTableView.alpha = 1.0;
+    }
+    [self.cardsTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,14 +119,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
+    PMDCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[PMDCardTableViewCell reuseIdentifier] forIndexPath:indexPath];
+    PMDCard *card = self.cardsArray[indexPath.row];
+    [cell bindWithCard:card];
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [PMDCardTableViewCell height];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [self.cardsArray count];
 }
 
 @end

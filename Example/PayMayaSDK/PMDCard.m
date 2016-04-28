@@ -10,4 +10,16 @@
 
 @implementation PMDCard
 
+- (void)setVerificationURL:(NSString *)verificationURL
+{
+    NSString *key = [NSString stringWithFormat:@"%@_VERIFICATION_URL", _tokenIdentifier];
+    [[NSUserDefaults standardUserDefaults] setObject:verificationURL forKey:key];
+}
+
+- (NSString *)verificationURL
+{
+    NSString *key = [NSString stringWithFormat:@"%@_VERIFICATION_URL", _tokenIdentifier];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:key];
+}
+
 @end
