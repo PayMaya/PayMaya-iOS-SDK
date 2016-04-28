@@ -46,6 +46,7 @@
 @property (nonatomic, strong) UITextField *countryTextField;
 @property (nonatomic, strong) UIButton *checkoutButton;
 @property (nonatomic, strong) UIButton *paymentsButton;
+@property (nonatomic, strong) UIButton *cardVaultButton;
 
 @property (nonatomic, strong) NSDictionary *cartInformation;
 
@@ -202,6 +203,17 @@
     [self.paymentsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.paymentsButton addTarget:self action:@selector(paymentsButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewContentView addSubview:self.paymentsButton];
+    
+    self.cardVaultButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    self.cardVaultButton.enabled = YES;
+    self.cardVaultButton.layer.cornerRadius = 3.0f;
+    self.cardVaultButton.layer.borderWidth = 0.5f;
+    self.cardVaultButton.clipsToBounds = YES;
+    self.cardVaultButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.cardVaultButton setTitle:@"Pay via Card Vault" forState:UIControlStateNormal];
+    [self.cardVaultButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.cardVaultButton addTarget:self action:@selector(cardVaultButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollViewContentView addSubview:self.cardVaultButton];
 
     [self setUpLayoutConstraints];
 }
@@ -226,7 +238,8 @@
                                                                    _zipCodeTextField,
                                                                    _countryTextField,
                                                                    _checkoutButton,
-                                                                   _paymentsButton
+                                                                   _paymentsButton,
+                                                                   _cardVaultButton
                                                                    );
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
@@ -236,12 +249,14 @@
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollViewContentView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_personalInformationLabel]-30-[_firstNameTextField]-[_middleNameTextField]-[_lastNameTextField]-30-[_contactInformationLabel]-30-[_phoneTextField]-[_emailTextField]-30-[_addressInformationLabel]-30-[_line1TextField]-[_line2TextField]-[_cityTextField]-[_stateTextField]-[_zipCodeTextField]-[_countryTextField]" options:(NSLayoutFormatAlignAllLeading | NSLayoutFormatAlignAllTrailing) metrics:nil views:viewsDictionary]];
-     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_countryTextField]-30-[_checkoutButton]-[_paymentsButton]-30-|" options:0 metrics:nil views:viewsDictionary]];
+     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_countryTextField]-30-[_checkoutButton]-[_paymentsButton]-[_cardVaultButton]-30-|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_personalInformationLabel]-|" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_checkoutButton(200)]" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.checkoutButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_paymentsButton(200)]" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentsButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_cardVaultButton(200)]" options:NSLayoutFormatAlignAllTrailing metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cardVaultButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
 }
 
 - (void)viewDidLoad
@@ -362,10 +377,17 @@
                                          @"buyer" : buyer
                                          };
     
-    PMDCardInputViewController *cardInputViewController = [[PMDCardInputViewController alloc] initWithNibName:nil bundle:nil paymentInformation:paymentInformation];
+    PMDCardInputViewController *cardInputViewController = [[PMDCardInputViewController alloc] initWithNibName:nil bundle:nil state:PMDCardInputViewControllerStatePayments paymentInformation:paymentInformation];
     cardInputViewController.title = @"Payments SDK Demo";
     cardInputViewController.apiManager = self.apiManager;
     [self.navigationController pushViewController:cardInputViewController animated:YES];
+}
+
+#pragma mark - Card Vault
+
+- (void)cardVaultButtonClicked:(id)sender
+{
+
 }
 
 #pragma mark - Keyboard Handling Methods
