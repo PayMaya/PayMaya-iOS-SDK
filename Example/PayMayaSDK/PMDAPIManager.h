@@ -19,6 +19,11 @@
                      successBlock:(void (^)(id))successBlock
                      failureBlock:(void (^)(NSError *))failureBlock;
 
+- (void)vaultCardWithPaymentTokenID:(NSString *)paymentTokenID
+                         customerID:(NSString *)customerID
+                       successBlock:(void (^)(id))successBlock
+                       failureBlock:(void (^)(NSError *))failureBlock;
+
 - (void)executePaymentWithPaymentToken:(NSString *)paymentToken
                     paymentInformation:(NSDictionary *)paymentInformation
                           successBlock:(void (^)(id))successBlock
