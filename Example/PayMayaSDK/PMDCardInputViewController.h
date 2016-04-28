@@ -23,10 +23,15 @@
 #import <UIKit/UIKit.h>
 #import "PMDAPIManager.h"
 
+typedef NS_ENUM(NSInteger, PMDCardInputViewControllerState) {
+    PMDCardInputViewControllerStatePayments,
+    PMDCardInputViewControllerStateCardVault
+};
+
 @interface PMDCardInputViewController : UIViewController
 
 @property (nonatomic, strong) PMDAPIManager *apiManager;
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil paymentInformation:(NSDictionary *)paymentInformation;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil state:(PMDCardInputViewControllerState)state paymentInformation:(NSDictionary *)paymentInformation;
 
 @end

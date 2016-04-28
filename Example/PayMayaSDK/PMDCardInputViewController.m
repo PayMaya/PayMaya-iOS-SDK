@@ -44,16 +44,18 @@
 @property (nonatomic, strong) NSDateFormatter *yearDateFormatter;
 @property (nonatomic, strong) PMDActivityIndicatorView *activityIndicatorView;
 
+@property (nonatomic) PMDCardInputViewControllerState state;
 @property (nonatomic, strong) NSDictionary *paymentInformation;
 
 @end
 
 @implementation PMDCardInputViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil paymentInformation:(NSDictionary *)paymentInformation
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil state:(PMDCardInputViewControllerState)state paymentInformation:(NSDictionary *)paymentInformation
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.state = state;
         self.paymentInformation = paymentInformation;
     }
     return self;
@@ -145,41 +147,46 @@
     [self.scanCardButton addTarget:self action:@selector(scanCardButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewContentView addSubview:self.scanCardButton];
     
-    self.generateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    self.generateTokenButton.enabled = YES;
-    self.generateTokenButton.layer.cornerRadius = 3.0f;
-    self.generateTokenButton.layer.borderWidth = 0.5f;
-    self.generateTokenButton.clipsToBounds = YES;
-    self.generateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.generateTokenButton setTitle:@"Pay" forState:UIControlStateNormal];
-    [self.generateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.generateTokenButton addTarget:self action:@selector(generateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollViewContentView addSubview:self.generateTokenButton];
-    
-    self.paymentTokenLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.paymentTokenLabel.translatesAutoresizingMaskIntoConstraints  = NO;
-    self.paymentTokenLabel.text = @"Generated Token";
-    self.paymentTokenLabel.hidden = YES;
-    [self.scrollViewContentView addSubview:self.paymentTokenLabel];
-    
-    self.paymentTokenTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.paymentTokenTextField.translatesAutoresizingMaskIntoConstraints = NO;
-    self.paymentTokenTextField.borderStyle = UITextBorderStyleLine;
-    self.paymentTokenTextField.layer.borderWidth = 1;
-    self.paymentTokenTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.paymentTokenTextField.hidden = YES;
-    [self.scrollViewContentView addSubview:self.paymentTokenTextField];
-    
-    self.duplicateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    self.duplicateTokenButton.hidden= YES;
-    self.duplicateTokenButton.layer.cornerRadius = 3.0f;
-    self.duplicateTokenButton.layer.borderWidth = 0.5f;
-    self.duplicateTokenButton.clipsToBounds = YES;
-    self.duplicateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.duplicateTokenButton setTitle:@"Copy" forState:UIControlStateNormal];
-    [self.duplicateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.duplicateTokenButton addTarget:self action:@selector(duplicateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollViewContentView addSubview:self.duplicateTokenButton];
+    if (self.state == PMDCardInputViewControllerStatePayments) {
+        self.generateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        self.generateTokenButton.enabled = YES;
+        self.generateTokenButton.layer.cornerRadius = 3.0f;
+        self.generateTokenButton.layer.borderWidth = 0.5f;
+        self.generateTokenButton.clipsToBounds = YES;
+        self.generateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.generateTokenButton setTitle:@"Pay" forState:UIControlStateNormal];
+        [self.generateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.generateTokenButton addTarget:self action:@selector(generateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.scrollViewContentView addSubview:self.generateTokenButton];
+        
+        self.paymentTokenLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.paymentTokenLabel.translatesAutoresizingMaskIntoConstraints  = NO;
+        self.paymentTokenLabel.text = @"Generated Token";
+        self.paymentTokenLabel.hidden = YES;
+        [self.scrollViewContentView addSubview:self.paymentTokenLabel];
+        
+        self.paymentTokenTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+        self.paymentTokenTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        self.paymentTokenTextField.borderStyle = UITextBorderStyleLine;
+        self.paymentTokenTextField.layer.borderWidth = 1;
+        self.paymentTokenTextField.layer.borderColor = [[UIColor grayColor] CGColor];
+        self.paymentTokenTextField.hidden = YES;
+        [self.scrollViewContentView addSubview:self.paymentTokenTextField];
+        
+        self.duplicateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        self.duplicateTokenButton.hidden= YES;
+        self.duplicateTokenButton.layer.cornerRadius = 3.0f;
+        self.duplicateTokenButton.layer.borderWidth = 0.5f;
+        self.duplicateTokenButton.clipsToBounds = YES;
+        self.duplicateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.duplicateTokenButton setTitle:@"Copy" forState:UIControlStateNormal];
+        [self.duplicateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.duplicateTokenButton addTarget:self action:@selector(duplicateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.scrollViewContentView addSubview:self.duplicateTokenButton];
+    }
+    else if (self.state == PMDCardInputViewControllerStateCardVault) {
+        
+    }
     
     self.cardNumberTextField.text = @"5123456789012346";
     self.expiryMonthTextField.text = @"05";
@@ -191,7 +198,7 @@
 
 - (void)setUpLayoutConstraints
 {
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(
+    NSMutableDictionary *viewsDictionary = [NSDictionaryOfVariableBindings(
                                                                    _scrollView,
                                                                    _scrollViewContentView,
                                                                    _cardImageView,
@@ -199,12 +206,18 @@
                                                                    _expiryMonthTextField,
                                                                    _expiryYearTextField,
                                                                    _cvvTextField,
-                                                                   _scanCardButton,
-                                                                   _generateTokenButton,
-                                                                   _paymentTokenLabel,
-                                                                   _paymentTokenTextField,
-                                                                   _duplicateTokenButton
-                                                                   );
+                                                                   _scanCardButton
+                                                                   ) mutableCopy];
+    
+    if (self.state == PMDCardInputViewControllerStatePayments) {
+        [viewsDictionary addEntriesFromDictionary:NSDictionaryOfVariableBindings(_generateTokenButton,
+                                                                                 _paymentTokenLabel,
+                                                                                 _paymentTokenTextField,
+                                                                                 _duplicateTokenButton)];
+    }
+    else if (self.state == PMDCardInputViewControllerStateCardVault) {
+        
+    }
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
@@ -212,18 +225,23 @@
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollViewContentView(==_scrollView)]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollViewContentView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]-|" options:0 metrics:nil views:viewsDictionary]];
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cardNumberTextField]-|" options:0 metrics:nil views:viewsDictionary]];
+    
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_scanCardButton(200)]" options:0 metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_generateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_expiryMonthTextField(_cvvTextField)]-[_expiryYearTextField(_cvvTextField)]-[_cvvTextField(_cvvTextField)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_paymentTokenTextField]-|" options:0 metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_duplicateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentTokenLabel attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cardImageView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.scanCardButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
-    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.generateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
-    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.duplicateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    
+    if (self.state == PMDCardInputViewControllerStatePayments) {
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_scanCardButton]-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_generateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_paymentTokenTextField]-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_duplicateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.generateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+        [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.duplicateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+        [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentTokenLabel attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
