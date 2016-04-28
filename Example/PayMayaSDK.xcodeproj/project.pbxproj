@@ -17,6 +17,7 @@
 		0D30A73B1BF2C6F9009A67DB /* PMDUserInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D30A7321BF2C6F9009A67DB /* PMDUserInformationViewController.m */; };
 		0D30A73C1BF2C6F9009A67DB /* PMDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D30A7341BF2C6F9009A67DB /* PMDUtilities.m */; };
 		0D30A73F1BF2C703009A67DB /* PMDAddToCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D30A73E1BF2C703009A67DB /* PMDAddToCartViewController.m */; };
+		0D59D6CE1CD2B76700E98059 /* PMDCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D59D6CD1CD2B76700E98059 /* PMDCard.m */; };
 		0D98E4371C463399003EFBCE /* PMDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E4361C463399003EFBCE /* PMDHomeViewController.m */; };
 		0D98E43B1C46413F003EFBCE /* UIColor+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E43A1C46413E003EFBCE /* UIColor+Conversion.m */; };
 		0DA2F5891C180B5300932042 /* PMDCardInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2F5881C180B5300932042 /* PMDCardInputViewController.m */; };
@@ -68,6 +69,8 @@
 		0D30A7341BF2C6F9009A67DB /* PMDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDUtilities.m; sourceTree = "<group>"; };
 		0D30A73D1BF2C703009A67DB /* PMDAddToCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDAddToCartViewController.h; sourceTree = "<group>"; };
 		0D30A73E1BF2C703009A67DB /* PMDAddToCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDAddToCartViewController.m; sourceTree = "<group>"; };
+		0D59D6CC1CD2B76700E98059 /* PMDCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDCard.h; sourceTree = "<group>"; };
+		0D59D6CD1CD2B76700E98059 /* PMDCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDCard.m; sourceTree = "<group>"; };
 		0D98E4351C463399003EFBCE /* PMDHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDHomeViewController.h; sourceTree = "<group>"; };
 		0D98E4361C463399003EFBCE /* PMDHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDHomeViewController.m; sourceTree = "<group>"; };
 		0D98E4391C46413E003EFBCE /* UIColor+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Conversion.h"; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 			children = (
 				0D30A72B1BF2C6F9009A67DB /* PMDProduct.h */,
 				0D30A72C1BF2C6F9009A67DB /* PMDProduct.m */,
+				0D59D6CC1CD2B76700E98059 /* PMDCard.h */,
+				0D59D6CD1CD2B76700E98059 /* PMDCard.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* PMSDKAppDelegate.m in Sources */,
+				0D59D6CE1CD2B76700E98059 /* PMDCard.m in Sources */,
 				0D98E4371C463399003EFBCE /* PMDHomeViewController.m in Sources */,
 				0D30A73F1BF2C703009A67DB /* PMDAddToCartViewController.m in Sources */,
 				0D30A7351BF2C6F9009A67DB /* PMDCartTableHeaderView.m in Sources */,
