@@ -368,7 +368,11 @@
 {
     [self.apiManager vaultCardWithPaymentTokenID:paymentToken.identifier
                                       customerID:self.customerID
-    successBlock:^(id response) {
+    successBlock:^(NSDictionary *response) {
+        NSString *key = [NSString stringWithFormat:@"%@_VERIFICATION_URL", response[@"cardTokenId"]];
+        [[NSUserDefaults standardUserDefaults] setObject:response[@"verificationUrl"] forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
            self.navigationItem.hidesBackButton = NO;
            self.generateTokenButton.enabled = YES;
@@ -376,10 +380,11 @@
            self.activityIndicatorView = nil;
            
            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Card Vault Successful"
-                                                                          message:@"Card is successfully vaulted. Please verify card to seamlessly use it in opun payment."
+                                                                          message:@"Card is successfully vaulted. Please verify card use it for payment."
                                                                    preferredStyle:UIAlertControllerStyleAlert];
-           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                 handler:^(UIAlertAction * action) {}];
+           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+               
+           }];
            [alert addAction:defaultAction];
            [self presentViewController:alert animated:YES completion:nil];
        });
