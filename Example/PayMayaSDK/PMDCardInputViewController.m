@@ -41,20 +41,25 @@
 @property (nonatomic, strong) UILabel *paymentTokenLabel;
 @property (nonatomic, strong) UITextField *paymentTokenTextField;
 @property (nonatomic, strong) UIButton *duplicateTokenButton;
+
 @property (nonatomic, strong) NSDateFormatter *yearDateFormatter;
 @property (nonatomic, strong) PMDActivityIndicatorView *activityIndicatorView;
 
+@property (nonatomic) PMDCardInputViewControllerState state;
+@property (nonatomic, strong) NSString *customerID;
 @property (nonatomic, strong) NSDictionary *paymentInformation;
 
 @end
 
 @implementation PMDCardInputViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil paymentInformation:(NSDictionary *)paymentInformation
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil state:(PMDCardInputViewControllerState)state paymentInformation:(NSDictionary *)paymentInformation
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.state = state;
         self.paymentInformation = paymentInformation;
+        self.customerID = [[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"];
     }
     return self;
 }
@@ -145,41 +150,45 @@
     [self.scanCardButton addTarget:self action:@selector(scanCardButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewContentView addSubview:self.scanCardButton];
     
+    NSString *generateTokenButtonTitle = (self.state == PMDCardInputViewControllerStatePayments) ? @"Pay" : @"Vault Card";
+    
     self.generateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
     self.generateTokenButton.enabled = YES;
     self.generateTokenButton.layer.cornerRadius = 3.0f;
     self.generateTokenButton.layer.borderWidth = 0.5f;
     self.generateTokenButton.clipsToBounds = YES;
     self.generateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.generateTokenButton setTitle:@"Pay" forState:UIControlStateNormal];
+    [self.generateTokenButton setTitle:generateTokenButtonTitle forState:UIControlStateNormal];
     [self.generateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.generateTokenButton addTarget:self action:@selector(generateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewContentView addSubview:self.generateTokenButton];
     
-    self.paymentTokenLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.paymentTokenLabel.translatesAutoresizingMaskIntoConstraints  = NO;
-    self.paymentTokenLabel.text = @"Generated Token";
-    self.paymentTokenLabel.hidden = YES;
-    [self.scrollViewContentView addSubview:self.paymentTokenLabel];
-    
-    self.paymentTokenTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.paymentTokenTextField.translatesAutoresizingMaskIntoConstraints = NO;
-    self.paymentTokenTextField.borderStyle = UITextBorderStyleLine;
-    self.paymentTokenTextField.layer.borderWidth = 1;
-    self.paymentTokenTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.paymentTokenTextField.hidden = YES;
-    [self.scrollViewContentView addSubview:self.paymentTokenTextField];
-    
-    self.duplicateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
-    self.duplicateTokenButton.hidden= YES;
-    self.duplicateTokenButton.layer.cornerRadius = 3.0f;
-    self.duplicateTokenButton.layer.borderWidth = 0.5f;
-    self.duplicateTokenButton.clipsToBounds = YES;
-    self.duplicateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.duplicateTokenButton setTitle:@"Copy" forState:UIControlStateNormal];
-    [self.duplicateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.duplicateTokenButton addTarget:self action:@selector(duplicateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollViewContentView addSubview:self.duplicateTokenButton];
+    if (self.state == PMDCardInputViewControllerStatePayments) {
+        self.paymentTokenLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.paymentTokenLabel.translatesAutoresizingMaskIntoConstraints  = NO;
+        self.paymentTokenLabel.text = @"Generated Token";
+        self.paymentTokenLabel.hidden = YES;
+        [self.scrollViewContentView addSubview:self.paymentTokenLabel];
+        
+        self.paymentTokenTextField = [[UITextField alloc] initWithFrame:CGRectZero];
+        self.paymentTokenTextField.translatesAutoresizingMaskIntoConstraints = NO;
+        self.paymentTokenTextField.borderStyle = UITextBorderStyleLine;
+        self.paymentTokenTextField.layer.borderWidth = 1;
+        self.paymentTokenTextField.layer.borderColor = [[UIColor grayColor] CGColor];
+        self.paymentTokenTextField.hidden = YES;
+        [self.scrollViewContentView addSubview:self.paymentTokenTextField];
+        
+        self.duplicateTokenButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        self.duplicateTokenButton.hidden= YES;
+        self.duplicateTokenButton.layer.cornerRadius = 3.0f;
+        self.duplicateTokenButton.layer.borderWidth = 0.5f;
+        self.duplicateTokenButton.clipsToBounds = YES;
+        self.duplicateTokenButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.duplicateTokenButton setTitle:@"Copy" forState:UIControlStateNormal];
+        [self.duplicateTokenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.duplicateTokenButton addTarget:self action:@selector(duplicateTokenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.scrollViewContentView addSubview:self.duplicateTokenButton];
+    }
     
     self.cardNumberTextField.text = @"5123456789012346";
     self.expiryMonthTextField.text = @"05";
@@ -191,7 +200,7 @@
 
 - (void)setUpLayoutConstraints
 {
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(
+    NSMutableDictionary *viewsDictionary = [NSDictionaryOfVariableBindings(
                                                                    _scrollView,
                                                                    _scrollViewContentView,
                                                                    _cardImageView,
@@ -200,11 +209,14 @@
                                                                    _expiryYearTextField,
                                                                    _cvvTextField,
                                                                    _scanCardButton,
-                                                                   _generateTokenButton,
-                                                                   _paymentTokenLabel,
-                                                                   _paymentTokenTextField,
-                                                                   _duplicateTokenButton
-                                                                   );
+                                                                   _generateTokenButton
+                                                                   ) mutableCopy];
+    
+    if (self.state == PMDCardInputViewControllerStatePayments) {
+        [viewsDictionary addEntriesFromDictionary:NSDictionaryOfVariableBindings(_paymentTokenLabel,
+                                                                                 _paymentTokenTextField,
+                                                                                 _duplicateTokenButton)];
+    }
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
@@ -212,18 +224,28 @@
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollViewContentView(==_scrollView)]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollViewContentView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]-[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]|" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cardNumberTextField]-|" options:0 metrics:nil views:viewsDictionary]];
+    
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_scanCardButton(200)]" options:0 metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_generateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_expiryMonthTextField(_cvvTextField)]-[_expiryYearTextField(_cvvTextField)]-[_cvvTextField(_cvvTextField)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_paymentTokenTextField]-|" options:0 metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_duplicateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
-    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentTokenLabel attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cardImageView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.scanCardButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    
+    [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_generateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
     [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.generateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
-    [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.duplicateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    
+    if (self.state == PMDCardInputViewControllerStatePayments) {
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]-[_generateTokenButton]" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_generateTokenButton]-30-[_paymentTokenLabel]-[_paymentTokenTextField]-[_duplicateTokenButton]-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_paymentTokenTextField]-|" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_duplicateTokenButton(200)]" options:0 metrics:nil views:viewsDictionary]];
+        [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.duplicateTokenButton attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+        [self.scrollViewContentView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollViewContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.paymentTokenLabel attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0.0f]];
+    }
+    else
+    {
+        [self.scrollViewContentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_cardImageView]-30-[_cardNumberTextField]-[_expiryMonthTextField]-30-[_scanCardButton]-[_generateTokenButton]-|" options:0 metrics:nil views:viewsDictionary]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -289,47 +311,100 @@
         paymentTokenStatus = @"Created";
     }
     
+    if (self.state == PMDCardInputViewControllerStatePayments) {
+        [self executePaymentWithPaymentToken:result.paymentToken];
+    }
+    else if (self.state == PMDCardInputViewControllerStateCardVault) {
+        [self vaultCardWithPaymentToken:result.paymentToken];
+    }
+}
+
+- (void)executePaymentWithPaymentToken:(PMSDKPaymentToken *)paymentToken
+{
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.paymentTokenTextField.text = result.paymentToken.identifier;
+        self.paymentTokenTextField.text = paymentToken.identifier;
         self.paymentTokenLabel.hidden = NO;
         self.paymentTokenTextField.hidden = NO;
         self.duplicateTokenButton.hidden = NO;
     });
     
-    [self.apiManager executePaymentWithPaymentToken:result.paymentToken.identifier
+    [self.apiManager executePaymentWithPaymentToken:paymentToken.identifier
                                  paymentInformation:self.paymentInformation
-    successBlock:^(id response) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.navigationItem.hidesBackButton = NO;
-            self.generateTokenButton.enabled = YES;
-            [self.activityIndicatorView removeFromSuperview];
-            self.activityIndicatorView = nil;
-            
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Successful"
-                                                                                   message:nil
-                                                                            preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                          handler:^(UIAlertAction * action) {}];
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        });
+                                       successBlock:^(id response) {
+       dispatch_async(dispatch_get_main_queue(), ^{
+           self.navigationItem.hidesBackButton = NO;
+           self.generateTokenButton.enabled = YES;
+           [self.activityIndicatorView removeFromSuperview];
+           self.activityIndicatorView = nil;
+           
+           UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Successful"
+                                                                          message:nil
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action) {}];
+           [alert addAction:defaultAction];
+           [self presentViewController:alert animated:YES completion:nil];
+       });
     } failureBlock:^(NSError *error) {
-        NSLog(@"Error: %@", error);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Error"
-                                                                           message:error.userInfo[NSLocalizedDescriptionKey]
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {}];
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            self.navigationItem.hidesBackButton = NO;
-            self.generateTokenButton.enabled = YES;
-            [self.activityIndicatorView removeFromSuperview];
-            self.activityIndicatorView = nil;
-        });
+       NSLog(@"Error: %@", error);
+       dispatch_async(dispatch_get_main_queue(), ^{
+           UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Error"
+                                                                          message:error.userInfo[NSLocalizedDescriptionKey]
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action) {}];
+           [alert addAction:defaultAction];
+           [self presentViewController:alert animated:YES completion:nil];
+           
+           self.navigationItem.hidesBackButton = NO;
+           self.generateTokenButton.enabled = YES;
+           [self.activityIndicatorView removeFromSuperview];
+           self.activityIndicatorView = nil;
+       });
     }];
+}
+
+- (void)vaultCardWithPaymentToken:(PMSDKPaymentToken *)paymentToken
+{
+    [self.apiManager vaultCardWithPaymentTokenID:paymentToken.identifier
+                                      customerID:self.customerID
+    successBlock:^(NSDictionary *response) {
+        NSString *key = [NSString stringWithFormat:@"%@_VERIFICATION_URL", response[@"cardTokenId"]];
+        [[NSUserDefaults standardUserDefaults] setObject:response[@"verificationUrl"] forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           self.navigationItem.hidesBackButton = NO;
+           self.generateTokenButton.enabled = YES;
+           [self.activityIndicatorView removeFromSuperview];
+           self.activityIndicatorView = nil;
+           
+           UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Card Vault Successful"
+                                                                          message:@"Card is successfully vaulted. Please verify card use it for payment."
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+               
+           }];
+           [alert addAction:defaultAction];
+           [self presentViewController:alert animated:YES completion:nil];
+       });
+   } failureBlock:^(NSError *error) {
+       NSLog(@"Error: %@", error);
+       dispatch_async(dispatch_get_main_queue(), ^{
+           UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Card Vault Error"
+                                                                          message:error.userInfo[NSLocalizedDescriptionKey]
+                                                                   preferredStyle:UIAlertControllerStyleAlert];
+           UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action) {}];
+           [alert addAction:defaultAction];
+           [self presentViewController:alert animated:YES completion:nil];
+           
+           self.navigationItem.hidesBackButton = NO;
+           self.generateTokenButton.enabled = YES;
+           [self.activityIndicatorView removeFromSuperview];
+           self.activityIndicatorView = nil;
+       });
+   }];
 }
 
 - (void)createPaymentTokenDidFailWithError:(NSError *)error

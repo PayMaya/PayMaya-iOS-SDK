@@ -40,6 +40,16 @@
 
     PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://52.77.55.105" accessToken:@"3BI4dTaewiyfJGcc9Fzg+r2MM1qSc80LcRqxVpZTIoaRb2uIQ1SSRtfQWEsHeJud"];
     
+    // Get customer ID
+    if (![[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"]) {
+        [apiManager getCustomerSuccessBlock:^(id response) {
+            [[NSUserDefaults standardUserDefaults] setObject:response[@"id"] forKey:@"PayMayaSDKCustomerID"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        } failureBlock:^(NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+    
     // Setup view controllers
     PMDShopViewController *shopViewController = [[PMDShopViewController alloc] initWithNibName:nil bundle:nil];
     shopViewController.title = @"Shop";
@@ -52,9 +62,10 @@
     cardVaultViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Cards" image:[UIImage imageNamed:@"vault"] selectedImage:[UIImage imageNamed:@"vault-active"]];
     cardVaultViewController.apiManager = apiManager;
     UINavigationController *cardVaultNavigationController = [[UINavigationController alloc] initWithRootViewController:cardVaultViewController];
-    
+     
     UITabBarController *tabBarController = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
-    tabBarController.viewControllers = @[shopNavigationController];
+    [tabBarController.tabBar setTranslucent:NO];
+    tabBarController.viewControllers = @[shopNavigationController, cardVaultNavigationController];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];

@@ -126,7 +126,7 @@
 
 + (NSString *)reuseIdentifier
 {
-    return @"PMShopTableViewCell";
+    return @"PMDShopTableViewCell";
 }
 
 + (BOOL)requiresConstraintBasedLayout

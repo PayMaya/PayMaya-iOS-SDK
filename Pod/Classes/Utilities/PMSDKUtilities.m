@@ -115,10 +115,10 @@
             break;
 #endif
         case PayMayaEnvironmentSandbox:
-            baseURL = @"https://api.paymaya.com/sandbox/checkout";
+            baseURL = @"https://pg-sandbox.paymaya.com/checkout";
             break;
         case PayMayaEnvironmentProduction:
-            baseURL = @"https://checkout-api.paymaya.com";
+            baseURL = @"https://pg.paymaya.com/checkout";
             break;
     }
     return baseURL;
@@ -140,10 +140,10 @@
             break;
 #endif
         case PayMayaEnvironmentSandbox:
-            baseURL = @"https://api.paymaya.com/sandbox/payments";
+            baseURL = @"https://pg-sandbox.paymaya.com/payments";
             break;
         case PayMayaEnvironmentProduction:
-            baseURL = @"https://api.paymaya.com/payments";
+            baseURL = @"https://pg.paymaya.com/payments";
             break;
     }
     return baseURL;

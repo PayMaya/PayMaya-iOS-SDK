@@ -17,6 +17,9 @@
 		0D30A73B1BF2C6F9009A67DB /* PMDUserInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D30A7321BF2C6F9009A67DB /* PMDUserInformationViewController.m */; };
 		0D30A73C1BF2C6F9009A67DB /* PMDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D30A7341BF2C6F9009A67DB /* PMDUtilities.m */; };
 		0D30A73F1BF2C703009A67DB /* PMDAddToCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D30A73E1BF2C703009A67DB /* PMDAddToCartViewController.m */; };
+		0D59D6CE1CD2B76700E98059 /* PMDCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D59D6CD1CD2B76700E98059 /* PMDCard.m */; };
+		0D59D6D11CD2BE5400E98059 /* PMDCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D59D6D01CD2BE5400E98059 /* PMDCardTableViewCell.m */; };
+		0D59D6D41CD2D64500E98059 /* PMDVerifyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D59D6D31CD2D64500E98059 /* PMDVerifyCardViewController.m */; };
 		0D98E4371C463399003EFBCE /* PMDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E4361C463399003EFBCE /* PMDHomeViewController.m */; };
 		0D98E43B1C46413F003EFBCE /* UIColor+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D98E43A1C46413E003EFBCE /* UIColor+Conversion.m */; };
 		0DA2F5891C180B5300932042 /* PMDCardInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA2F5881C180B5300932042 /* PMDCardInputViewController.m */; };
@@ -68,6 +71,12 @@
 		0D30A7341BF2C6F9009A67DB /* PMDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDUtilities.m; sourceTree = "<group>"; };
 		0D30A73D1BF2C703009A67DB /* PMDAddToCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDAddToCartViewController.h; sourceTree = "<group>"; };
 		0D30A73E1BF2C703009A67DB /* PMDAddToCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDAddToCartViewController.m; sourceTree = "<group>"; };
+		0D59D6CC1CD2B76700E98059 /* PMDCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDCard.h; sourceTree = "<group>"; };
+		0D59D6CD1CD2B76700E98059 /* PMDCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDCard.m; sourceTree = "<group>"; };
+		0D59D6CF1CD2BE5400E98059 /* PMDCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDCardTableViewCell.h; sourceTree = "<group>"; };
+		0D59D6D01CD2BE5400E98059 /* PMDCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDCardTableViewCell.m; sourceTree = "<group>"; };
+		0D59D6D21CD2D64500E98059 /* PMDVerifyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDVerifyCardViewController.h; sourceTree = "<group>"; };
+		0D59D6D31CD2D64500E98059 /* PMDVerifyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDVerifyCardViewController.m; sourceTree = "<group>"; };
 		0D98E4351C463399003EFBCE /* PMDHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDHomeViewController.h; sourceTree = "<group>"; };
 		0D98E4361C463399003EFBCE /* PMDHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDHomeViewController.m; sourceTree = "<group>"; };
 		0D98E4391C46413E003EFBCE /* UIColor+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Conversion.h"; sourceTree = "<group>"; };
@@ -156,6 +165,8 @@
 				0D30A7251BF2C6F9009A67DB /* PMDCartTableHeaderView.m */,
 				0D30A72D1BF2C6F9009A67DB /* PMDShopTableViewCell.h */,
 				0D30A72E1BF2C6F9009A67DB /* PMDShopTableViewCell.m */,
+				0D59D6CF1CD2BE5400E98059 /* PMDCardTableViewCell.h */,
+				0D59D6D01CD2BE5400E98059 /* PMDCardTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -165,6 +176,8 @@
 			children = (
 				0D30A72B1BF2C6F9009A67DB /* PMDProduct.h */,
 				0D30A72C1BF2C6F9009A67DB /* PMDProduct.m */,
+				0D59D6CC1CD2B76700E98059 /* PMDCard.h */,
+				0D59D6CD1CD2B76700E98059 /* PMDCard.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -201,6 +214,8 @@
 			children = (
 				0DC8029A1CB4D5E200B55137 /* PMDCardVaultViewController.h */,
 				0DC8029B1CB4D5E200B55137 /* PMDCardVaultViewController.m */,
+				0D59D6D21CD2D64500E98059 /* PMDVerifyCardViewController.h */,
+				0D59D6D31CD2D64500E98059 /* PMDVerifyCardViewController.m */,
 			);
 			name = "Card Vault";
 			sourceTree = "<group>";
@@ -529,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* PMSDKAppDelegate.m in Sources */,
+				0D59D6CE1CD2B76700E98059 /* PMDCard.m in Sources */,
 				0D98E4371C463399003EFBCE /* PMDHomeViewController.m in Sources */,
 				0D30A73F1BF2C703009A67DB /* PMDAddToCartViewController.m in Sources */,
 				0D30A7351BF2C6F9009A67DB /* PMDCartTableHeaderView.m in Sources */,
@@ -542,6 +558,8 @@
 				0DB857971C8030690092D902 /* PMDActivityIndicatorView.m in Sources */,
 				0D30A73C1BF2C6F9009A67DB /* PMDUtilities.m in Sources */,
 				0D30A7361BF2C6F9009A67DB /* PMDCartItemTableViewCell.m in Sources */,
+				0D59D6D41CD2D64500E98059 /* PMDVerifyCardViewController.m in Sources */,
+				0D59D6D11CD2BE5400E98059 /* PMDCardTableViewCell.m in Sources */,
 				0D30A7381BF2C6F9009A67DB /* PMDProduct.m in Sources */,
 				0D30A7391BF2C6F9009A67DB /* PMDShopTableViewCell.m in Sources */,
 				0DC8029C1CB4D5E200B55137 /* PMDCardVaultViewController.m in Sources */,
@@ -673,6 +691,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "PayMaya SDK";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -692,6 +711,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "PayMaya SDK";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
