@@ -1,6 +1,6 @@
 //
-//  PMSDKCheckoutViewController.m
-//  PayMayaSDK
+//  PMSDKVerifyCardViewController.m
+//  PayMayaSDKDemo
 //
 //  Copyright (c) 2016 PayMaya Philippines, Inc.
 //
