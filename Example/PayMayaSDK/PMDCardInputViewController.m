@@ -23,9 +23,10 @@
 #import "PMDCardInputViewController.h"
 #import "PayMayaSDK.h"
 #import "PMDActivityIndicatorView.h"
+#import "PMDVerifyCardViewController.h"
 #import "CardIO.h"
 
-@interface PMDCardInputViewController () <UIPickerViewDataSource, UIPickerViewDelegate, PayMayaPaymentsDelegate, CardIOPaymentViewControllerDelegate>
+@interface PMDCardInputViewController () <UIPickerViewDataSource, UIPickerViewDelegate, PayMayaPaymentsDelegate, PMDVerifyCardViewControllerDelegate,  CardIOPaymentViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *scrollViewContentView;
@@ -370,29 +371,36 @@
 
 - (void)vaultCardWithPaymentToken:(PMSDKPaymentToken *)paymentToken
 {
+    __weak typeof(self)weakSelf = self;
     [self.apiManager vaultCardWithPaymentTokenID:paymentToken.identifier
                                       customerID:self.customerID
     successBlock:^(NSDictionary *response) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         NSString *key = [NSString stringWithFormat:@"%@_VERIFICATION_URL", response[@"cardTokenId"]];
         [[NSUserDefaults standardUserDefaults] setObject:response[@"verificationUrl"] forKey:key];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           self.navigationItem.hidesBackButton = NO;
-           self.generateTokenButton.enabled = YES;
-           self.activityIndicatorView.alpha = 0.0f;
+           strongSelf.navigationItem.hidesBackButton = NO;
+           strongSelf.generateTokenButton.enabled = YES;
+           strongSelf.activityIndicatorView.alpha = 0.0f;
            
            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Card Vault Successful"
                                                                           message:@"Card is successfully vaulted. Please verify card use it for payment."
                                                                    preferredStyle:UIAlertControllerStyleAlert];
            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-               
+               PMDVerifyCardViewController *verifyCardViewController = [[PMDVerifyCardViewController alloc] initWithCheckoutURL:response[@"verificationUrl"] redirectUrl:self.apiManager.baseUrl];
+               verifyCardViewController.title = @"Verify Card";
+               verifyCardViewController.delegate = strongSelf;
+               UINavigationController *verifyCardNavigationController = [[UINavigationController alloc] initWithRootViewController:verifyCardViewController];
+               [strongSelf presentViewController:verifyCardNavigationController animated:YES completion:nil];
            }];
            [alert addAction:defaultAction];
-           [self presentViewController:alert animated:YES completion:nil];
+           [strongSelf presentViewController:alert animated:YES completion:nil];
        });
    } failureBlock:^(NSError *error) {
        NSLog(@"Error: %@", error);
+       __strong typeof(weakSelf)strongSelf = weakSelf;
        dispatch_async(dispatch_get_main_queue(), ^{
            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Card Vault Error"
                                                                           message:error.userInfo[NSLocalizedDescriptionKey]
@@ -400,11 +408,11 @@
            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * action) {}];
            [alert addAction:defaultAction];
-           [self presentViewController:alert animated:YES completion:nil];
+           [strongSelf presentViewController:alert animated:YES completion:nil];
            
-           self.navigationItem.hidesBackButton = NO;
-           self.generateTokenButton.enabled = YES;
-           self.activityIndicatorView.alpha = 0.0f;
+           strongSelf.navigationItem.hidesBackButton = NO;
+           strongSelf.generateTokenButton.enabled = YES;
+           strongSelf.activityIndicatorView.alpha = 0.0f;
        });
    }];
 }
@@ -496,6 +504,13 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.scrollView.contentInset.top, 0.0, 0.0, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+#pragma mark - PMDVerifyCardViewControllerDelegate
+
+- (void)verifyCardViewControllerDidFinishCardVerification:(PMDVerifyCardViewController *)verifyCardViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Card IO delegates

@@ -175,12 +175,12 @@
 {
     PMDCard *card = self.cardsArray[indexPath.row];
     
-    if ([card.state isEqualToString:@"PREVERIFICATION"]) {
-        PMDVerifyCardViewController *verifyCardViewController = [[PMDVerifyCardViewController alloc] initWithCheckoutURL:card.verificationURL redirectUrl:self.apiManager.baseUrl];
-        verifyCardViewController.title = @"Verify Card";
-        UINavigationController *verifyCardNavigationController = [[UINavigationController alloc] initWithRootViewController:verifyCardViewController];
-        [self presentViewController:verifyCardNavigationController animated:YES completion:nil];
-    }
+//    if ([card.state isEqualToString:@"PREVERIFICATION"]) {
+//        PMDVerifyCardViewController *verifyCardViewController = [[PMDVerifyCardViewController alloc] initWithCheckoutURL:card.verificationURL redirectUrl:self.apiManager.baseUrl];
+//        verifyCardViewController.title = @"Verify Card";
+//        UINavigationController *verifyCardNavigationController = [[UINavigationController alloc] initWithRootViewController:verifyCardViewController];
+//        [self presentViewController:verifyCardNavigationController animated:YES completion:nil];
+//    }
 }
 
 @end

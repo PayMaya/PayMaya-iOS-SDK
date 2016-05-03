@@ -22,8 +22,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PMDVerifyCardViewControllerDelegate;
+
 @interface PMDVerifyCardViewController : UIViewController
 
+@property (nonatomic, assign) id <PMDVerifyCardViewControllerDelegate> delegate;
+
 - (instancetype)initWithCheckoutURL:(NSString *)checkoutURL redirectUrl:(NSString *)redirectURL;
+
+@end
+
+@protocol PMDVerifyCardViewControllerDelegate <NSObject>
+
+- (void)verifyCardViewControllerDidFinishCardVerification:(PMDVerifyCardViewController *)verifyCardViewController;
 
 @end

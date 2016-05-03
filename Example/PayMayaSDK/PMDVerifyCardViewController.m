@@ -74,7 +74,10 @@
     NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:request.URL resolvingAgainstBaseURL:NO];
     urlComponents.query = nil;
     if ([[urlComponents string] containsString:self.checkoutRedirectURL]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        if ([self.delegate respondsToSelector:@selector(verifyCardViewControllerDidFinishCardVerification:)]) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.delegate verifyCardViewControllerDidFinishCardVerification:self];
+        }
         return NO;
     } else {
         return YES;
