@@ -82,6 +82,11 @@
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.scrollView];
     
+    self.activityIndicatorView = [[PMDActivityIndicatorView alloc] initWithFrame:CGRectZero label:@"Processing"];
+    self.activityIndicatorView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.activityIndicatorView.alpha = 0.0f;
+    [self.view addSubview:self.activityIndicatorView];
+    
     self.scrollViewContentView = [[UIView alloc] init];
     self.scrollViewContentView.backgroundColor = [UIColor clearColor];
     self.scrollViewContentView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -201,6 +206,7 @@
 - (void)setUpLayoutConstraints
 {
     NSMutableDictionary *viewsDictionary = [NSDictionaryOfVariableBindings(
+                                                                   _activityIndicatorView,
                                                                    _scrollView,
                                                                    _scrollViewContentView,
                                                                    _cardImageView,
@@ -217,6 +223,9 @@
                                                                                  _paymentTokenTextField,
                                                                                  _duplicateTokenButton)];
     }
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_activityIndicatorView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_activityIndicatorView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:viewsDictionary]];
@@ -273,9 +282,6 @@
     [self.view endEditing:YES];
     self.navigationItem.hidesBackButton = YES;
     self.generateTokenButton.enabled = NO;
-    self.activityIndicatorView = [[PMDActivityIndicatorView alloc] initWithFrame:[[UIScreen mainScreen] bounds] label:@"Processing"];
-    self.activityIndicatorView.alpha = 0.0f;
-    [self.view addSubview:self.activityIndicatorView];
     [UIView animateWithDuration:0.2f animations:^{
         self.activityIndicatorView.alpha = 1.0f;
     }];
@@ -334,8 +340,7 @@
        dispatch_async(dispatch_get_main_queue(), ^{
            self.navigationItem.hidesBackButton = NO;
            self.generateTokenButton.enabled = YES;
-           [self.activityIndicatorView removeFromSuperview];
-           self.activityIndicatorView = nil;
+           self.activityIndicatorView.alpha = 0.0f;
            
            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Successful"
                                                                           message:nil
@@ -358,8 +363,7 @@
            
            self.navigationItem.hidesBackButton = NO;
            self.generateTokenButton.enabled = YES;
-           [self.activityIndicatorView removeFromSuperview];
-           self.activityIndicatorView = nil;
+           self.activityIndicatorView.alpha = 0.0f;
        });
     }];
 }
@@ -376,8 +380,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
            self.navigationItem.hidesBackButton = NO;
            self.generateTokenButton.enabled = YES;
-           [self.activityIndicatorView removeFromSuperview];
-           self.activityIndicatorView = nil;
+           self.activityIndicatorView.alpha = 0.0f;
            
            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Card Vault Successful"
                                                                           message:@"Card is successfully vaulted. Please verify card use it for payment."
@@ -401,8 +404,7 @@
            
            self.navigationItem.hidesBackButton = NO;
            self.generateTokenButton.enabled = YES;
-           [self.activityIndicatorView removeFromSuperview];
-           self.activityIndicatorView = nil;
+           self.activityIndicatorView.alpha = 0.0f;
        });
    }];
 }
@@ -412,8 +414,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.navigationItem.hidesBackButton = NO;
         self.generateTokenButton.enabled = YES;
-        [self.activityIndicatorView removeFromSuperview];
-        self.activityIndicatorView = nil;
+        self.activityIndicatorView.alpha = 0.0f;
         NSLog(@"Error: %@", error);
     });
 }

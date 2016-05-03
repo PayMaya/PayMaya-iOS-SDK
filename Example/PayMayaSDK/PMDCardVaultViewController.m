@@ -25,14 +25,14 @@
 #import "PMDCard.h"
 #import "PMDCardTableViewCell.h"
 #import "PMDVerifyCardViewController.h"
-#import "PMSDKLoadingView.h"
+#import "PMDActivityIndicatorView.h"
 
 @interface PMDCardVaultViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSString *customerID;
 @property (nonatomic, strong) UILabel *noCardsLabel;
 @property (nonatomic, strong) UITableView *cardsTableView;
-@property (nonatomic, strong) PMSDKLoadingView *loadingView;
+@property (nonatomic, strong) PMDActivityIndicatorView *loadingView;
 
 @property (nonatomic, strong) NSMutableArray *cardsArray;
 
@@ -43,11 +43,6 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    self.loadingView = [[PMSDKLoadingView alloc] initWithFrame:CGRectZero];
-    self.loadingView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.loadingView.alpha = 0.0f;
-    [self.view addSubview:self.loadingView];
     
     self.noCardsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.noCardsLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -65,6 +60,11 @@
     self.cardsTableView.rowHeight = UITableViewAutomaticDimension;
     self.cardsTableView.estimatedRowHeight = 200.0;
     [self.view addSubview:self.cardsTableView];
+    
+    self.loadingView = [[PMDActivityIndicatorView alloc] initWithFrame:CGRectZero label:@"Loading"];
+    self.loadingView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadingView.alpha = 0.0f;
+    [self.view addSubview:self.loadingView];
     
     [self setupLayoutConstraints];
 }
@@ -176,7 +176,7 @@
     PMDCard *card = self.cardsArray[indexPath.row];
     
     if ([card.state isEqualToString:@"PREVERIFICATION"]) {
-        PMDVerifyCardViewController *verifyCardViewController = [[PMDVerifyCardViewController alloc] initWithCheckoutURL:card.verificationURL redirectUrl:@""];
+        PMDVerifyCardViewController *verifyCardViewController = [[PMDVerifyCardViewController alloc] initWithCheckoutURL:card.verificationURL redirectUrl:self.apiManager.baseUrl];
         verifyCardViewController.title = @"Verify Card";
         UINavigationController *verifyCardNavigationController = [[UINavigationController alloc] initWithRootViewController:verifyCardViewController];
         [self presentViewController:verifyCardNavigationController animated:YES completion:nil];
