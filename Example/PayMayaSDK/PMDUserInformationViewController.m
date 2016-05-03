@@ -22,6 +22,7 @@
 
 #import "PMDUserInformationViewController.h"
 #import "PMDCardInputViewController.h"
+#import "PMDCardVaultViewController.h"
 #import "PMDProduct.h"
 #import "PayMayaSDK.h"
 #import "PMDUtilities.h"
@@ -387,7 +388,17 @@
 
 - (void)cardVaultButtonClicked:(id)sender
 {
-
+    NSDictionary *totalAmount = @{
+                                  @"currency" : @"PHP",
+                                  @"amount" : [[PMDUtilities currencyFormatter] numberFromString:[[PMDUtilities currencyFormatter] stringFromNumber:self.cartInformation[@"total"]]]
+                                  };
+    
+    PMDCardVaultViewController *cardVaultViewController = [[PMDCardVaultViewController alloc] initWithNibName:nil bundle:nil];
+    cardVaultViewController.title = @"Cards";
+    cardVaultViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Cards" image:[UIImage imageNamed:@"vault"] selectedImage:[UIImage imageNamed:@"vault-active"]];
+    cardVaultViewController.apiManager = self.apiManager;
+    cardVaultViewController.totalAmount = totalAmount;
+    [self.navigationController pushViewController:cardVaultViewController animated:YES];
 }
 
 #pragma mark - Keyboard Handling Methods
