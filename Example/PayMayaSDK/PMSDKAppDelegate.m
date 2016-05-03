@@ -25,6 +25,8 @@
 #import "PMDShopViewController.h"
 #import "PMDCardVaultViewController.h"
 #import "PMDAPIManager.h"
+#import "PMDCustomer.h"
+#import "NSObject+KVCParsing.h"
 
 @implementation PMSDKAppDelegate
 
@@ -41,9 +43,14 @@
     PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://52.77.55.105" accessToken:@"3BI4dTaewiyfJGcc9Fzg+r2MM1qSc80LcRqxVpZTIoaRb2uIQ1SSRtfQWEsHeJud"];
     
     // Get customer ID
-    if (![[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"]) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"PayMayaSDKCustomerID"]) {
         [apiManager getCustomerSuccessBlock:^(id response) {
-            [[NSUserDefaults standardUserDefaults] setObject:response[@"id"] forKey:@"PayMayaSDKCustomerID"];
+            PMDCustomer *customer = [[PMDCustomer alloc] init];
+            customer.identifier = response[@"id"];
+            [customer parseValuesForKeysWithDictionary:response];
+            
+            NSData *customerData = [NSKeyedArchiver archivedDataWithRootObject:customer];
+            [[NSUserDefaults standardUserDefaults] setObject:customerData forKey:@"PayMayaSDKCustomer"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         } failureBlock:^(NSError *error) {
             NSLog(@"Error: %@", error);
@@ -59,6 +66,7 @@
     
     PMDCardVaultViewController *cardVaultViewController = [[PMDCardVaultViewController alloc] initWithNibName:nil bundle:nil];
     cardVaultViewController.title = @"Cards";
+    cardVaultViewController.state = PMDCardVaultViewControllerStateDefault;
     cardVaultViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Cards" image:[UIImage imageNamed:@"vault"] selectedImage:[UIImage imageNamed:@"vault-active"]];
     cardVaultViewController.apiManager = apiManager;
     UINavigationController *cardVaultNavigationController = [[UINavigationController alloc] initWithRootViewController:cardVaultViewController];

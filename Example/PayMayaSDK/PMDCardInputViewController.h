@@ -1,6 +1,6 @@
 //
 //  PMDCardInputViewController.h
-//  PayMayaSDK
+//  PayMayaSDKDemo
 //
 //  Copyright (c) 2016 PayMaya Philippines, Inc.
 //

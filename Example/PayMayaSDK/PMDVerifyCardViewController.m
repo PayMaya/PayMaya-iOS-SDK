@@ -1,6 +1,6 @@
 //
-//  PMSDKCheckoutViewController.m
-//  PayMayaSDK
+//  PMSDKVerifyCardViewController.m
+//  PayMayaSDKDemo
 //
 //  Copyright (c) 2016 PayMaya Philippines, Inc.
 //
@@ -23,15 +23,12 @@
 #import "PMDVerifyCardViewController.h"
 #import "PMSDKLoadingView.h"
 
-static NSString *checkoutPaymentSuccess = @"PAYMENT_SUCCESS";
-static NSString *checkoutPaymentFailure = @"PAYMENT_FAILURE";
-
 @interface PMDVerifyCardViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *checkoutWebView;
 @property (nonatomic, strong) PMSDKLoadingView *checkoutLoadingView;
 @property (nonatomic, strong) NSString *checkoutURL;
-@property (nonatomic, strong) NSError* checkoutError;
+@property (nonatomic, strong) NSString *checkoutRedirectURL;
 
 @end
 
@@ -43,6 +40,7 @@ static NSString *checkoutPaymentFailure = @"PAYMENT_FAILURE";
     if (!self) return nil;
     
     self.checkoutURL = checkoutURL;
+    self.checkoutRedirectURL = redirectURL;
     
     return self;
 }
@@ -75,8 +73,11 @@ static NSString *checkoutPaymentFailure = @"PAYMENT_FAILURE";
 {
     NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:request.URL resolvingAgainstBaseURL:NO];
     urlComponents.query = nil;
-    if ([[urlComponents string] containsString:@"http://52.77.55.105/"]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+    if ([[urlComponents string] containsString:self.checkoutRedirectURL]) {
+        if ([self.delegate respondsToSelector:@selector(verifyCardViewControllerDidFinishCardVerification:)]) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.delegate verifyCardViewControllerDidFinishCardVerification:self];
+        }
         return NO;
     } else {
         return YES;

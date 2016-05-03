@@ -10,6 +10,8 @@
 
 @interface PMDAPIManager : NSObject
 
+@property (nonatomic, strong, readonly) NSString *baseUrl;
+
 - (instancetype)initWithBaseUrl:(NSString *)baseUrl accessToken:(NSString *)accessToken;
 
 - (void)getCustomerSuccessBlock:(void (^)(id))successBlock
@@ -23,6 +25,12 @@
                          customerID:(NSString *)customerID
                        successBlock:(void (^)(id))successBlock
                        failureBlock:(void (^)(NSError *))failureBlock;
+
+- (void)executePaymentWithCustomerID:(NSString *)customerID
+                              cardID:(NSString *)cardID
+                         totalAmount:(NSDictionary *)totalAmount
+                        successBlock:(void (^)(id))successBlock
+                        failureBlock:(void (^)(NSError *))failureBlock;
 
 - (void)executePaymentWithPaymentToken:(NSString *)paymentToken
                     paymentInformation:(NSDictionary *)paymentInformation

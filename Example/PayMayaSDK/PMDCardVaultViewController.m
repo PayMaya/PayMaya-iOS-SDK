@@ -1,9 +1,23 @@
 //
-//  PMDCardVaultViewController.m
-//  PayMayaSDK
+//  PMSDKCardVaultViewController.m
+//  PayMayaSDKDemo
 //
-//  Created by Elijah Cayabyab on 06/04/2016.
-//  Copyright © 2016 PayMaya Philippines, Inc. All rights reserved.
+//  Copyright (c) 2016 PayMaya Philippines, Inc.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+//  associated documentation files (the "Software"), to deal in the Software without restriction,
+//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
+//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all copies or
+//  substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+//  NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
 #import "PMDCardVaultViewController.h"
@@ -11,14 +25,15 @@
 #import "PMDCard.h"
 #import "PMDCardTableViewCell.h"
 #import "PMDVerifyCardViewController.h"
-#import "PMSDKLoadingView.h"
+#import "PMDActivityIndicatorView.h"
+#import "PMDCustomer.h"
 
 @interface PMDCardVaultViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSString *customerID;
 @property (nonatomic, strong) UILabel *noCardsLabel;
 @property (nonatomic, strong) UITableView *cardsTableView;
-@property (nonatomic, strong) PMSDKLoadingView *checkoutLoadingView;
+@property (nonatomic, strong) PMDActivityIndicatorView *loadingView;
 
 @property (nonatomic, strong) NSMutableArray *cardsArray;
 
@@ -29,6 +44,7 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.noCardsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.noCardsLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -47,12 +63,20 @@
     self.cardsTableView.estimatedRowHeight = 200.0;
     [self.view addSubview:self.cardsTableView];
     
+    self.loadingView = [[PMDActivityIndicatorView alloc] initWithFrame:CGRectZero label:@"Loading"];
+    self.loadingView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadingView.alpha = 0.0f;
+    [self.view addSubview:self.loadingView];
+    
     [self setupLayoutConstraints];
 }
 
 - (void)setupLayoutConstraints
 {
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_noCardsLabel, _cardsTableView);
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_loadingView, _noCardsLabel, _cardsTableView);
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_loadingView]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_loadingView]|" options:0 metrics:nil views:viewsDictionary]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cardsTableView]|" options:0 metrics:nil views:viewsDictionary]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cardsTableView]|" options:0 metrics:nil views:viewsDictionary]];
@@ -66,31 +90,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    PMDCard *card1 = [[PMDCard alloc] init];
-//    card1.tokenIdentifier = @"crd_6LmZsA3V2Cypjp4242";
-//    card1.type = @"master-card";
-//    card1.maskedPan = @"1234";
-//    card1.state = @"PREVERIFICATION";
-//    
-//    PMDCard *card2 = [[PMDCard alloc] init];
-//    card2.tokenIdentifier = @"crd_6LmZsA3V2Cypjp4243";
-//    card2.type = @"visa";
-//    card2.maskedPan = @"2345";
-//    card2.state = @"PREVERIFICATION";
-//    
-//    PMDCard *card3 = [[PMDCard alloc] init];
-//    card3.tokenIdentifier = @"crd_6LmZsA3V2Cypjp4244";
-//    card3.type = @"master-card";
-//    card3.maskedPan = @"3456";
-//    card3.state = @"VERIFIED";
-//    
-//    self.cardsArray = @[card1, card2, card3];
-    
-    self.customerID = [[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"];
+    NSData *customerData = [[NSUserDefaults standardUserDefaults] objectForKey:@"PayMayaSDKCustomer"];
+    PMDCustomer *customer = [NSKeyedUnarchiver unarchiveObjectWithData:customerData];
+    self.customerID = customer.identifier;
     
     self.navigationController.navigationBar.translucent = NO;
-    UIBarButtonItem *addCardBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didTapAddCardBarButtonItem:)];
-    self.navigationItem.rightBarButtonItem = addCardBarButtonItem;
+    if (self.state == PMDCardVaultViewControllerStateDefault) {
+        UIBarButtonItem *addCardBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didTapAddCardBarButtonItem:)];
+        self.navigationItem.rightBarButtonItem = addCardBarButtonItem;
+    }
     
     [self refreshCards];
 }
@@ -102,51 +110,45 @@
 }
 
 - (void)refreshCards
-{   // fix retain cycle
-    if (!self.checkoutLoadingView) {
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        self.checkoutLoadingView = [[PMSDKLoadingView alloc] initWithFrame:CGRectMake(screenBounds.origin.x, screenBounds.origin.y - 60, screenBounds.size.width, screenBounds.size.height)];
-        [self.view addSubview:self.checkoutLoadingView];
-    }
+{
+    self.loadingView.alpha = 1.0f;
+    __weak typeof(self)weakSelf = self;
     [self.apiManager getCardListWithCustomerID:self.customerID successBlock:^(NSDictionary *response) {
-        self.cardsArray = nil;
-        self.cardsArray = [@[] mutableCopy];
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        strongSelf.cardsArray = nil;
+        strongSelf.cardsArray = [@[] mutableCopy];
         for (NSDictionary *cardInfo in response) {
-            PMDCard *card = [[PMDCard alloc] init];
-            card.tokenIdentifier = cardInfo[@"cardTokenId"];
-            card.type = cardInfo[@"cardType"];
-            card.maskedPan = cardInfo[@"maskedPan"];
-            card.state = cardInfo[@"state"];
-            [self.cardsArray addObject:card];
+            if (![cardInfo[@"state"] isEqualToString:@"PREVERIFICATION"]) {
+                PMDCard *card = [[PMDCard alloc] init];
+                card.tokenIdentifier = cardInfo[@"cardTokenId"];
+                card.type = cardInfo[@"cardType"];
+                card.maskedPan = cardInfo[@"maskedPan"];
+                card.state = cardInfo[@"state"];
+                [strongSelf.cardsArray addObject:card];
+            }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                if ([self.cardsArray count] > 0) {
-                    self.cardsTableView.alpha = 1.0f;
-                    self.noCardsLabel.alpha = 0.0f;
+                if ([strongSelf.cardsArray count] > 0) {
+                    strongSelf.cardsTableView.alpha = 1.0f;
+                    strongSelf.noCardsLabel.alpha = 0.0f;
                 }
                 else {
-                    self.cardsTableView.alpha = 0.0f;
-                    self.noCardsLabel.alpha = 1.0f;
+                    strongSelf.cardsTableView.alpha = 0.0f;
+                    strongSelf.noCardsLabel.alpha = 1.0f;
                 }
-                [self.checkoutLoadingView removeFromSuperview];
-                self.checkoutLoadingView = nil;
-                [self.cardsTableView reloadData];
+                strongSelf.loadingView.alpha = 0.0f;
+                [strongSelf.cardsTableView reloadData];
             });
         }
     } failureBlock:^(NSError *error) {
         NSLog(@"Error: %@", error);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.checkoutLoadingView removeFromSuperview];
-            self.checkoutLoadingView = nil;
-            self.cardsTableView.alpha = 0.0f;
-            self.noCardsLabel.alpha = 1.0f;
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            strongSelf.loadingView.alpha = 0.0f;
+            strongSelf.cardsTableView.alpha = 0.0f;
+            strongSelf.noCardsLabel.alpha = 1.0f;
         });
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)didTapAddCardBarButtonItem:(id)sender
@@ -180,13 +182,34 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PMDCard *card = self.cardsArray[indexPath.row];
-    NSLog(@"%@", card.verificationURL);
     
     if ([card.state isEqualToString:@"PREVERIFICATION"]) {
-        PMDVerifyCardViewController *verifyCardViewController = [[PMDVerifyCardViewController alloc] initWithCheckoutURL:card.verificationURL redirectUrl:@""];
+        PMDVerifyCardViewController *verifyCardViewController = [[PMDVerifyCardViewController alloc] initWithCheckoutURL:card.verificationURL redirectUrl:self.apiManager.baseUrl];
         verifyCardViewController.title = @"Verify Card";
         UINavigationController *verifyCardNavigationController = [[UINavigationController alloc] initWithRootViewController:verifyCardViewController];
         [self presentViewController:verifyCardNavigationController animated:YES completion:nil];
+    }
+    
+    if (self.state == PMDCardVaultViewControllerStatePayments) {
+        self.loadingView.alpha = 1.0f;
+        self.navigationItem.hidesBackButton = YES;
+        __weak typeof(self)weakSelf = self;
+        [self.apiManager executePaymentWithCustomerID:self.customerID cardID:card.tokenIdentifier totalAmount:self.totalAmount successBlock:^(id response) {
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationItem.hidesBackButton = NO;
+                if ([strongSelf.paymentsDelegate respondsToSelector:@selector(cardVaultViewControllerDidFinishPayment:)]) {
+                    [strongSelf.paymentsDelegate cardVaultViewControllerDidFinishPayment:strongSelf];
+                }
+            });
+        } failureBlock:^(NSError *error) {
+            NSLog(@"Error: %@", error);
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationItem.hidesBackButton = NO;
+                strongSelf.loadingView.alpha = 0.0f;
+            });
+        }];
     }
 }
 

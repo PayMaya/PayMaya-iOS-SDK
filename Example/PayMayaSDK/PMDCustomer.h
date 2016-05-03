@@ -1,5 +1,5 @@
 //
-//  PMDCard.h
+//  PMDCustomer.h
 //  PayMayaSDKDemo
 //
 //  Copyright (c) 2016 PayMaya Philippines, Inc.
@@ -21,13 +21,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PayMayaSDK.h"
 
-@interface PMDCard : NSObject
+@interface PMDCustomer : PMSDKBuyerProfile <NSCoding>
 
-@property (nonatomic, strong) NSString *tokenIdentifier;
-@property (nonatomic, strong) NSString *type;
-@property (nonatomic, strong) NSString *maskedPan;
-@property (nonatomic, strong) NSString *state;
-@property (nonatomic, strong) NSString *verificationURL;
+@property (nonatomic, strong) NSString *identifier;
 
 @end
