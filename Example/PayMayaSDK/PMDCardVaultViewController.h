@@ -26,5 +26,6 @@
 @interface PMDCardVaultViewController : UIViewController
 
 @property (nonatomic, strong) PMDAPIManager *apiManager;
+@property (nonatomic, strong) NSDictionary *totalAmount;
 
 @end
