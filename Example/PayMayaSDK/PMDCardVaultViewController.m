@@ -26,6 +26,7 @@
 #import "PMDCardTableViewCell.h"
 #import "PMDVerifyCardViewController.h"
 #import "PMDActivityIndicatorView.h"
+#import "PMDCustomer.h"
 
 @interface PMDCardVaultViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -89,7 +90,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.customerID = [[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"];
+    NSData *customerData = [[NSUserDefaults standardUserDefaults] objectForKey:@"PayMayaSDKCustomer"];
+    PMDCustomer *customer = [NSKeyedUnarchiver unarchiveObjectWithData:customerData];
+    self.customerID = customer.identifier;
     
     self.navigationController.navigationBar.translucent = NO;
     if (self.state == PMDCardVaultViewControllerStateDefault) {

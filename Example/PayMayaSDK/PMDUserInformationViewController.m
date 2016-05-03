@@ -24,6 +24,7 @@
 #import "PMDCardInputViewController.h"
 #import "PMDCardVaultViewController.h"
 #import "PMDProduct.h"
+#import "PMDCustomer.h"
 #import "PayMayaSDK.h"
 #import "PMDUtilities.h"
 
@@ -50,6 +51,7 @@
 @property (nonatomic, strong) UIButton *cardVaultButton;
 
 @property (nonatomic, strong) NSDictionary *cartInformation;
+@property (nonatomic, strong) PMDCustomer *customer;
 
 @end
 
@@ -60,6 +62,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.cartInformation = cartInformation;
+        NSData *customerData = [[NSUserDefaults standardUserDefaults] objectForKey:@"PayMayaSDKCustomer"];
+        self.customer = [NSKeyedUnarchiver unarchiveObjectWithData:customerData];
     }
     return self;
 }
@@ -90,7 +94,7 @@
     self.firstNameTextField.borderStyle = UITextBorderStyleLine;
     self.firstNameTextField.layer.borderWidth = 1;
     self.firstNameTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.firstNameTextField.text = @"Elijah Joshua";
+    self.firstNameTextField.text = self.customer.firstName;
     [self.scrollViewContentView addSubview:self.firstNameTextField];
     
     self.middleNameTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -98,7 +102,7 @@
     self.middleNameTextField.borderStyle = UITextBorderStyleLine;
     self.middleNameTextField.layer.borderWidth = 1;
     self.middleNameTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.middleNameTextField.text = @"Barboza";
+    self.middleNameTextField.text = self.customer.middleName;
     [self.scrollViewContentView addSubview:self.middleNameTextField];
     
     self.lastNameTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -106,7 +110,7 @@
     self.lastNameTextField.borderStyle = UITextBorderStyleLine;
     self.lastNameTextField.layer.borderWidth = 1;
     self.lastNameTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.lastNameTextField.text = @"Cayabyab";
+    self.lastNameTextField.text = self.customer.lastName;
     [self.scrollViewContentView addSubview:self.lastNameTextField];
     
     self.contactInformationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -119,7 +123,7 @@
     self.phoneTextField.borderStyle = UITextBorderStyleLine;
     self.phoneTextField.layer.borderWidth = 1;
     self.phoneTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.phoneTextField.text = @"+639284457524";
+    self.phoneTextField.text = self.customer.contacts.phone;
     [self.scrollViewContentView addSubview:self.phoneTextField];
     
     self.emailTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -127,7 +131,7 @@
     self.emailTextField.borderStyle = UITextBorderStyleLine;
     self.emailTextField.layer.borderWidth = 1;
     self.emailTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.emailTextField.text = @"ebcayabyab@voyagerinnovation.com";
+    self.emailTextField.text = self.customer.contacts.email;
     [self.scrollViewContentView addSubview:self.emailTextField];
 
     self.addressInformationLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -140,7 +144,7 @@
     self.line1TextField.borderStyle = UITextBorderStyleLine;
     self.line1TextField.layer.borderWidth = 1;
     self.line1TextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.line1TextField.text = @"12F, 23 ADB Avenue, Anson's Building";
+    self.line1TextField.text = self.customer.billingAddress.primaryAddressLine;
     [self.scrollViewContentView addSubview:self.line1TextField];
     
     self.line2TextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -148,7 +152,7 @@
     self.line2TextField.borderStyle = UITextBorderStyleLine;
     self.line2TextField.layer.borderWidth = 1;
     self.line2TextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.line2TextField.text = @"Ortigas Center";
+    self.line2TextField.text = self.customer.billingAddress.secondaryAddressLine;
     [self.scrollViewContentView addSubview:self.line2TextField];
     
     self.cityTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -156,7 +160,7 @@
     self.cityTextField.borderStyle = UITextBorderStyleLine;
     self.cityTextField.layer.borderWidth = 1;
     self.cityTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.cityTextField.text = @"Pasig City";
+    self.cityTextField.text = self.customer.billingAddress.city;
     [self.scrollViewContentView addSubview:self.cityTextField];
     
     self.stateTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -164,7 +168,7 @@
     self.stateTextField.borderStyle = UITextBorderStyleLine;
     self.stateTextField.layer.borderWidth = 1;
     self.stateTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.stateTextField.text = @"Metro Manila";
+    self.stateTextField.text = self.customer.billingAddress.state;
     [self.scrollViewContentView addSubview:self.stateTextField];
     
     self.zipCodeTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -172,7 +176,7 @@
     self.zipCodeTextField.borderStyle = UITextBorderStyleLine;
     self.zipCodeTextField.layer.borderWidth = 1;
     self.zipCodeTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.zipCodeTextField.text = @"1605";
+    self.zipCodeTextField.text = self.customer.billingAddress.zipCode;
     [self.scrollViewContentView addSubview:self.zipCodeTextField];
     
     self.countryTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -180,7 +184,7 @@
     self.countryTextField.borderStyle = UITextBorderStyleLine;
     self.countryTextField.layer.borderWidth = 1;
     self.countryTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.countryTextField.text = @"PH";
+    self.countryTextField.text = self.customer.billingAddress.countryCode;
     [self.scrollViewContentView addSubview:self.countryTextField];
     
     self.checkoutButton = [[UIButton alloc] initWithFrame:CGRectZero];

@@ -24,6 +24,7 @@
 #import "PayMayaSDK.h"
 #import "PMDActivityIndicatorView.h"
 #import "PMDVerifyCardViewController.h"
+#import "PMDCustomer.h"
 #import "CardIO.h"
 
 @interface PMDCardInputViewController () <UIPickerViewDataSource, UIPickerViewDelegate, PayMayaPaymentsDelegate, PMDVerifyCardViewControllerDelegate,  CardIOPaymentViewControllerDelegate>
@@ -60,7 +61,9 @@
     if (self) {
         self.state = state;
         self.paymentInformation = paymentInformation;
-        self.customerID = [[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"];
+        NSData *customerData = [[NSUserDefaults standardUserDefaults] objectForKey:@"PayMayaSDKCustomer"];
+        PMDCustomer *customer = [NSKeyedUnarchiver unarchiveObjectWithData:customerData];
+        self.customerID = customer.identifier;
     }
     return self;
 }
