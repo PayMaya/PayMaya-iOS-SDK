@@ -43,6 +43,7 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.noCardsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.noCardsLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -91,8 +92,10 @@
     self.customerID = [[NSUserDefaults standardUserDefaults] stringForKey:@"PayMayaSDKCustomerID"];
     
     self.navigationController.navigationBar.translucent = NO;
-    UIBarButtonItem *addCardBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didTapAddCardBarButtonItem:)];
-    self.navigationItem.rightBarButtonItem = addCardBarButtonItem;
+    if (self.state == PMDCardVaultViewControllerStateDefault) {
+        UIBarButtonItem *addCardBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didTapAddCardBarButtonItem:)];
+        self.navigationItem.rightBarButtonItem = addCardBarButtonItem;
+    }
     
     [self refreshCards];
 }
@@ -182,10 +185,28 @@
         verifyCardViewController.title = @"Verify Card";
         UINavigationController *verifyCardNavigationController = [[UINavigationController alloc] initWithRootViewController:verifyCardViewController];
         [self presentViewController:verifyCardNavigationController animated:YES completion:nil];
-    } else {
-        if (self.totalAmount) {
-            // execute payments
-        }
+    }
+    
+    if (self.state == PMDCardVaultViewControllerStatePayments) {
+        self.loadingView.alpha = 1.0f;
+        self.navigationItem.hidesBackButton = YES;
+        __weak typeof(self)weakSelf = self;
+        [self.apiManager executePaymentWithCustomerID:self.customerID cardID:card.tokenIdentifier totalAmount:self.totalAmount successBlock:^(id response) {
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationItem.hidesBackButton = NO;
+                if ([strongSelf.paymentsDelegate respondsToSelector:@selector(cardVaultViewControllerDidFinishPayment:)]) {
+                    [strongSelf.paymentsDelegate cardVaultViewControllerDidFinishPayment:strongSelf];
+                }
+            });
+        } failureBlock:^(NSError *error) {
+            NSLog(@"Error: %@", error);
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationItem.hidesBackButton = NO;
+                strongSelf.loadingView.alpha = 0.0f;
+            });
+        }];
     }
 }
 

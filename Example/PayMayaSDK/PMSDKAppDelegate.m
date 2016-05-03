@@ -59,6 +59,7 @@
     
     PMDCardVaultViewController *cardVaultViewController = [[PMDCardVaultViewController alloc] initWithNibName:nil bundle:nil];
     cardVaultViewController.title = @"Cards";
+    cardVaultViewController.state = PMDCardVaultViewControllerStateDefault;
     cardVaultViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Cards" image:[UIImage imageNamed:@"vault"] selectedImage:[UIImage imageNamed:@"vault-active"]];
     cardVaultViewController.apiManager = apiManager;
     UINavigationController *cardVaultNavigationController = [[UINavigationController alloc] initWithRootViewController:cardVaultViewController];

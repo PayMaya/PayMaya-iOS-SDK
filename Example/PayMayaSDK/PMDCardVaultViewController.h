@@ -23,9 +23,24 @@
 #import <UIKit/UIKit.h>
 #import "PMDAPIManager.h"
 
+@protocol PMDCardVaultViewControllerDelegate;
+
+typedef NS_ENUM(NSInteger, PMDCardVaultViewControllerState) {
+    PMDCardVaultViewControllerStateDefault,
+    PMDCardVaultViewControllerStatePayments
+};
+
 @interface PMDCardVaultViewController : UIViewController
 
 @property (nonatomic, strong) PMDAPIManager *apiManager;
 @property (nonatomic, strong) NSDictionary *totalAmount;
+@property (nonatomic) PMDCardVaultViewControllerState state;
+@property (nonatomic, weak) id <PMDCardVaultViewControllerDelegate> paymentsDelegate;
+
+@end
+
+@protocol PMDCardVaultViewControllerDelegate <NSObject>
+
+- (void)cardVaultViewControllerDidFinishPayment:(PMDCardVaultViewController *)cardVaultViewController;
 
 @end

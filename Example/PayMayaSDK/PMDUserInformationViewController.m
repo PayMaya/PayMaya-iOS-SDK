@@ -27,7 +27,7 @@
 #import "PayMayaSDK.h"
 #import "PMDUtilities.h"
 
-@interface PMDUserInformationViewController () <PayMayaCheckoutDelegate>
+@interface PMDUserInformationViewController () <PayMayaCheckoutDelegate, PMDCardVaultViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *scrollViewContentView;
@@ -395,8 +395,10 @@
     
     PMDCardVaultViewController *cardVaultViewController = [[PMDCardVaultViewController alloc] initWithNibName:nil bundle:nil];
     cardVaultViewController.title = @"Cards";
+    cardVaultViewController.state = PMDCardVaultViewControllerStatePayments;
     cardVaultViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Cards" image:[UIImage imageNamed:@"vault"] selectedImage:[UIImage imageNamed:@"vault-active"]];
     cardVaultViewController.apiManager = self.apiManager;
+    cardVaultViewController.paymentsDelegate = self;
     cardVaultViewController.totalAmount = totalAmount;
     [self.navigationController pushViewController:cardVaultViewController animated:YES];
 }
@@ -473,6 +475,20 @@
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {}];
     
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - PMDCardVaultViewControllerDelegate
+
+- (void)cardVaultViewControllerDidFinishPayment:(PMDCardVaultViewController *)cardVaultViewController
+{
+    [cardVaultViewController.navigationController popViewControllerAnimated:YES];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Payment Successful"
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
