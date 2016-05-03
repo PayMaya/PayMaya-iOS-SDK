@@ -10,7 +10,6 @@
 
 @interface PMDAPIManager ()
 
-@property (nonatomic, strong) NSString *baseUrl;
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSString *accessToken;
 
@@ -27,7 +26,7 @@
         config.timeoutIntervalForRequest = 30.0f;
         
         self.accessToken = accessToken;
-        self.baseUrl = baseUrl;
+        _baseUrl = baseUrl;
         self.session = [NSURLSession sessionWithConfiguration:config];
     }
     return self;

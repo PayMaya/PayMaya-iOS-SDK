@@ -10,6 +10,8 @@
 
 @interface PMDAPIManager : NSObject
 
+@property (nonatomic, strong, readonly) NSString *baseUrl;
+
 - (instancetype)initWithBaseUrl:(NSString *)baseUrl accessToken:(NSString *)accessToken;
 
 - (void)getCustomerSuccessBlock:(void (^)(id))successBlock
