@@ -118,7 +118,7 @@
         strongSelf.cardsArray = nil;
         strongSelf.cardsArray = [@[] mutableCopy];
         for (NSDictionary *cardInfo in response) {
-            if (![cardInfo[@"state"] isEqualToString:@"PREVERIFICATION"]) {
+            if ([cardInfo[@"state"] isEqualToString:@"VERIFIED"]) {
                 PMDCard *card = [[PMDCard alloc] init];
                 card.tokenIdentifier = cardInfo[@"cardTokenId"];
                 card.type = cardInfo[@"cardType"];

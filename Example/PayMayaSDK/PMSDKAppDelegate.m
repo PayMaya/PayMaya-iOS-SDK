@@ -43,7 +43,7 @@
     PMDAPIManager *apiManager = [[PMDAPIManager alloc] initWithBaseUrl:@"http://52.77.55.105" accessToken:@"3BI4dTaewiyfJGcc9Fzg+r2MM1qSc80LcRqxVpZTIoaRb2uIQ1SSRtfQWEsHeJud"];
     
     // Get customer ID
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"PayMayaSDKCustomerID"]) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"PayMayaSDKCustomer"]) {
         [apiManager getCustomerSuccessBlock:^(id response) {
             PMDCustomer *customer = [[PMDCustomer alloc] init];
             customer.identifier = response[@"id"];
