@@ -36,7 +36,7 @@
     self.firstName = [decoder decodeObjectForKey:@"firstName"];
     self.middleName = [decoder decodeObjectForKey:@"middleName"];
     self.lastName = [decoder decodeObjectForKey:@"lastName"];
-    self.contacts = [decoder decodeObjectForKey:@"contacts"];
+    self.contact = [decoder decodeObjectForKey:@"contact"];
     self.shippingAddress = [decoder decodeObjectForKey:@"shippingAddress"];
     self.billingAddress = [decoder decodeObjectForKey:@"billingAddress"];
     
@@ -48,7 +48,7 @@
     [encoder encodeObject:self.firstName forKey:@"firstName"];
     [encoder encodeObject:self.middleName forKey:@"middleName"];
     [encoder encodeObject:self.lastName forKey:@"lastName"];
-    [encoder encodeObject:self.contacts forKey:@"contacts"];
+    [encoder encodeObject:self.contact forKey:@"contact"];
     [encoder encodeObject:self.shippingAddress forKey:@"shippingAddress"];
     [encoder encodeObject:self.billingAddress forKey:@"billingAddress"];
 }

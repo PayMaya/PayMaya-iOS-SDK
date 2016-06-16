@@ -32,18 +32,18 @@
     return @{@"firstName": @"firstName",
              @"middleName": @"middleName",
              @"lastName": @"lastName",
-             @"contact": @"contacts",
+             @"contact": @"contact",
              @"shippingAddress": @"shippingAddress",
              @"billingAddress": @"billingAddress"};
     
 }
 
-- (BOOL)validateContacts:(id *)ioValue error:(NSError * __autoreleasing *)outError
+- (BOOL)validateContact:(id *)ioValue error:(NSError * __autoreleasing *)outError
 {
     if ([*ioValue isKindOfClass:[NSDictionary class]]) {
-        PMSDKContact *contacts = [[PMSDKContact alloc] init];
-        [contacts parseValuesForKeysWithDictionary:*ioValue];
-        *ioValue = contacts;
+        PMSDKContact *contact = [[PMSDKContact alloc] init];
+        [contact parseValuesForKeysWithDictionary:*ioValue];
+        *ioValue = contact;
     }
     return YES;
 }

@@ -123,7 +123,7 @@
     self.phoneTextField.borderStyle = UITextBorderStyleLine;
     self.phoneTextField.layer.borderWidth = 1;
     self.phoneTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.phoneTextField.text = self.customer.contacts.phone;
+    self.phoneTextField.text = self.customer.contact.phone;
     [self.scrollViewContentView addSubview:self.phoneTextField];
     
     self.emailTextField = [[UITextField alloc] initWithFrame:CGRectZero];
@@ -131,7 +131,7 @@
     self.emailTextField.borderStyle = UITextBorderStyleLine;
     self.emailTextField.layer.borderWidth = 1;
     self.emailTextField.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.emailTextField.text = self.customer.contacts.email;
+    self.emailTextField.text = self.customer.contact.email;
     [self.scrollViewContentView addSubview:self.emailTextField];
 
     self.addressInformationLabel = [[UILabel alloc] initWithFrame:CGRectZero];

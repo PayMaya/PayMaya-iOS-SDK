@@ -43,9 +43,9 @@
 @property (nonatomic, strong) NSString *lastName;
 
 /**
- List of buyer's contact information. The array must consist of PMSDKContact objects. Optional.
+ Buyer's contact information. Phone number and/or email address. Optional.
  */
-@property (nonatomic, strong) PMSDKContact *contacts;
+@property (nonatomic, strong) PMSDKContact *contact;
 
 /**
  Shipping address to be used for the transaction. Optional.
