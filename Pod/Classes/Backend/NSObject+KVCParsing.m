@@ -37,6 +37,7 @@
     if (mappedKey) {
         key = mappedKey;
     }
+    else return;
     
     NSError *error = nil;
     BOOL validated = [self validateValue:&value forKey:mappedKey error:&error];

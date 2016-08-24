@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "PayMayaSDK"
-  s.version          = "0.3.2"
+  s.version          = "0.3.3"
   s.summary          = "Easily enable your iOS app to accept credit and debit card payments"
 
   s.description      = <<-DESC
