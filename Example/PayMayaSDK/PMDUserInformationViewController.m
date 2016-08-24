@@ -25,7 +25,6 @@
 #import "PMDCardVaultViewController.h"
 #import "PMDProduct.h"
 #import "PMDCustomer.h"
-#import "PayMayaSDK.h"
 #import "PMDUtilities.h"
 
 @interface PMDUserInformationViewController () <PayMayaCheckoutDelegate, PMDCardVaultViewControllerDelegate>

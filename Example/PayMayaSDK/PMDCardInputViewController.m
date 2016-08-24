@@ -21,7 +21,6 @@
 //
 
 #import "PMDCardInputViewController.h"
-#import "PayMayaSDK.h"
 #import "PMDActivityIndicatorView.h"
 #import "PMDVerifyCardViewController.h"
 #import "PMDCustomer.h"

@@ -21,7 +21,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PayMayaSDK.h"
+#import "PMSDKContact+NSCoding.h"
+#import "PMSDKAddress+NSCoding.h"
 
 @interface PMDCustomer : PMSDKBuyerProfile <NSCoding>
 
