@@ -21,7 +21,7 @@
 //
 
 #import "PMSDKAppDelegate.h"
-#import <PayMayaSDK/PayMayaSDK.h>
+#import "PayMayaSDK.h"
 #import "PMDShopViewController.h"
 #import "PMDCardVaultViewController.h"
 #import "PMDAPIManager.h"
