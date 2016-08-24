@@ -1,6 +1,0 @@
-framework module Pods_PayMayaSDK_Tests {
-  umbrella header "Pods-PayMayaSDK_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

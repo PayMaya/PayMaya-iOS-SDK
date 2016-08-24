@@ -1,1 +1,0 @@
-../../../PayMayaSDK/Pod/Classes/PayMayaSDK.h
