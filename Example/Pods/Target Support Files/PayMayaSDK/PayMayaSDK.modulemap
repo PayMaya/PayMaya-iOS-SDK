@@ -1,6 +1,0 @@
-framework module PayMayaSDK {
-  umbrella header "PayMayaSDK-umbrella.h"
-
-  export *
-  module * { export * }
-}
