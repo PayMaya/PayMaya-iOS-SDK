@@ -2,7 +2,7 @@
 use_frameworks!
 platform :ios, '7.0'
 
-target 'PayMayaSDK_Example', :exclusive => true do
+target 'PayMayaSDK_Example' do
 	pod 'PayMayaSDK'
 	pod 'CardIO'
 end
