@@ -92,7 +92,7 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
     [self.checkoutAPIManager initiateCheckoutWithCheckoutInformation:self.checkoutInformation successBlock:^(id response) {
         __strong typeof(self) strongSelf = weakSelf;
         strongSelf.checkoutId = [response objectForKey:@"checkoutId"];
-        NSString *url = [NSString stringWithFormat:@"%@%@", [response objectForKey:@"redirectUrl"], @"?in_app=true"];
+        NSString *url = [NSString stringWithFormat:@"%@%@", [response objectForKey:@"redirectUrl"], @"&in_app=true"];
         [strongSelf.checkoutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url copy]]]];
     } failureBlock:^(NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
