@@ -90,11 +90,17 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
     self.checkoutResult = [PMSDKCheckoutResult new];
     __weak typeof(self) weakSelf = self;
     [self.checkoutAPIManager initiateCheckoutWithCheckoutInformation:self.checkoutInformation successBlock:^(id response) {
+#if DEBUG
+        NSLog(@"[PayMaya SDK] Checkout Response: %@", response);
+#endif
         __strong typeof(self) strongSelf = weakSelf;
         strongSelf.checkoutId = [response objectForKey:@"checkoutId"];
         NSString *url = [NSString stringWithFormat:@"%@%@", [response objectForKey:@"redirectUrl"], @"&in_app=true"];
         [strongSelf.checkoutWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url copy]]]];
     } failureBlock:^(NSError *error) {
+#if DEBUG
+        NSLog(@"[PayMaya SDK] Error while initiating checkout: %@", error);
+#endif
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         self.checkoutError = error;
         [self handleCheckoutResult];
