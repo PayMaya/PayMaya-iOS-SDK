@@ -44,6 +44,10 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
 @property (nonatomic, strong) PMSDKCheckoutResult *checkoutResult;
 @property (nonatomic, strong, readwrite) NSString* checkoutId;
 @property (nonatomic, strong) NSError* checkoutError;
+@property (nonatomic) BOOL resultDisplayed;
+
+- (PayMayaEnvironment)statusForPage:(UIWebView *)webView;
+- (NSString *)urlStringWithoutQuery:(NSURL *)url;
 
 @end
 
@@ -60,6 +64,7 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
     self.checkoutWebView.scrollView.bounces = NO;
     self.checkoutWebViewController.view = self.checkoutWebView;
     self = [super initWithRootViewController:self.checkoutWebViewController];
+    self.resultDisplayed = NO;
     
     return self;
 }
@@ -132,23 +137,7 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:request.URL resolvingAgainstBaseURL:NO];
-    urlComponents.query = nil;
-    if ([[urlComponents string] isEqualToString:[PMSDKUtilities checkoutResultUrl]]) {
-        NSDictionary* queryDictionary = [PMSDKUtilities dictionaryFromQueryString:request.URL.query];
-        self.checkoutResult.checkoutId = self.checkoutId;
-        if ([[queryDictionary valueForKey:@"paymentStatus"] isEqualToString:checkoutPaymentSuccess]) {
-            self.checkoutResult.status = PMSDKCheckoutStatusSuccess;
-        }
-        else if ([[queryDictionary valueForKey:@"paymentStatus"] isEqualToString:checkoutPaymentFailure]) {
-            self.checkoutResult.status = PMSDKCheckoutStatusFailed;
-        }
-        else {
-            NSLog(@"WARNING ! Unknown checkout status with ID(%@), result was not found in params!", self.checkoutId);
-            self.checkoutResult.status = PMSDKCheckoutStatusUnknown;
-        }
-        return YES;
-    } else if ([[urlComponents string] isEqualToString:[PMSDKUtilities checkoutResultRedirectUrl]]) {
+    if (self.resultDisplayed) {
         [self handleCheckoutResult];
         return NO;
     } else {
@@ -158,8 +147,38 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSString *urlString = [self urlStringWithoutQuery:webView.request.URL];
+    if ([urlString isEqualToString:[PMSDKUtilities checkoutResultUrl]]) {
+        self.resultDisplayed = YES;
+        self.checkoutResult.status = [self statusForPage:webView];
+    }
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.checkoutLoadingView removeFromSuperview];
 }
+
+- (NSString *)urlStringWithoutQuery:(NSURL *)url
+{
+    NSString *strippedString = [url absoluteString];
+    NSUInteger queryLength = [[url query] length];
+    return queryLength
+        ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)]
+        : strippedString;
+}
+
+- (PayMayaEnvironment)statusForPage:(UIWebView *)webView
+{
+    NSString *javascript = @"e = document.getElementsByClassName('title')[0]; e ? e.innerText : '';";
+    NSString *title = [webView stringByEvaluatingJavaScriptFromString:javascript];
+
+    if ([title isEqualToString:@"Payment Confirmation Successful"]) {
+        return PMSDKCheckoutStatusSuccess;
+    } else if ([title isEqualToString:@"Payment Failed"]) {
+        return PMSDKCheckoutStatusFailed;
+    }
+    NSLog(@"[PayMaya SDK] WARNING ! Unknown checkout status with ID(%@), result was not found in params!", self.checkoutId);
+    return PMSDKCheckoutStatusUnknown;
+}
+
 
 @end
