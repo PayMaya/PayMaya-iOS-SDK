@@ -47,7 +47,6 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
 @property (nonatomic) BOOL resultDisplayed;
 
 - (PayMayaEnvironment)statusForPage:(UIWebView *)webView;
-- (NSString *)urlStringWithoutQuery:(NSURL *)url;
 
 @end
 
@@ -147,23 +146,13 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSString *urlString = [self urlStringWithoutQuery:webView.request.URL];
-    if ([urlString isEqualToString:[PMSDKUtilities checkoutResultUrl]]) {
+    if ([PMSDKUtilities isResultPage:webView.request.URL]) {
         self.resultDisplayed = YES;
         self.checkoutResult.status = [self statusForPage:webView];
     }
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.checkoutLoadingView removeFromSuperview];
-}
-
-- (NSString *)urlStringWithoutQuery:(NSURL *)url
-{
-    NSString *strippedString = [url absoluteString];
-    NSUInteger queryLength = [[url query] length];
-    return queryLength
-        ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)]
-        : strippedString;
 }
 
 - (PayMayaEnvironment)statusForPage:(UIWebView *)webView

@@ -33,8 +33,6 @@
 + (NSString *)queryStringFromDictionary:(NSDictionary*)dictionary;
 + (NSString *)checkoutBaseURLForEnvironment:(PayMayaEnvironment)environment;
 + (NSString *)paymentsBaseURLForEnvironment:(PayMayaEnvironment)environment;
-+ (NSString *)checkoutResultUrl;
-+ (NSString *)checkoutResultRedirectUrl;
 + (NSString *)sha1:(NSString *)input;
-
++ (BOOL)isResultPage:(NSURL *)url;
 @end

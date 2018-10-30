@@ -23,6 +23,14 @@
 #import "PMSDKUtilities.h"
 #import <CommonCrypto/CommonDigest.h>
 
+@interface PMSDKUtilities()
+
++ (NSString *)checkoutResultUrl;
++ (NSString *)paymentResultUrl;
++ (NSString *)urlStringWithoutQuery:(NSURL *)url;
+
+@end
+
 @implementation PMSDKUtilities
 
 + (NSNumberFormatter *)currencyFormatter
@@ -175,30 +183,34 @@
     return url;
 }
 
-+ (NSString *)checkoutResultRedirectUrl
++ (NSString *)paymentResultUrl
 {
-    NSString* url = nil;
     PayMayaEnvironment environment = [[PayMayaSDK sharedInstance] environment];
     switch (environment) {
-#if DEBUG
-        case PayMayaEnvironmentDebug:
-            url = @"https://paymaya.com/";
-            break;
-        case PayMayaEnvironmentTest:
-            url = @"https://paymaya.com/";
-            break;
-        case PayMayaEnvironmentStaging:
-            url = @"https://paymaya.com/";
-            break;
-#endif
         case PayMayaEnvironmentSandbox:
-            url = @"https://paymaya.com/";
-            break;
+            return @"https://payments-web-sandbox.paymaya.com/checkout/result";
         case PayMayaEnvironmentProduction:
-            url = @"https://paymaya.com/";
-            break;
+            return @"https://payments.paymaya.com/checkout/result";
+        default:
+            return nil;
     }
-    return url;
+}
+
++ (BOOL)isResultPage:(NSURL *)url
+{
+    NSString *urlString = [PMSDKUtilities urlStringWithoutQuery:url];
+    BOOL isCheckoutResult = [urlString isEqualToString:[PMSDKUtilities checkoutResultUrl]];
+    BOOL isPaymentsWebResult = [urlString isEqualToString:[PMSDKUtilities paymentResultUrl]];
+    return isCheckoutResult || isPaymentsWebResult;
+}
+
++ (NSString *)urlStringWithoutQuery:(NSURL *)url
+{
+    NSString *strippedString = [url absoluteString];
+    NSUInteger queryLength = [[url query] length];
+    return queryLength
+        ? [strippedString substringToIndex:[strippedString length] - (queryLength + 1)]
+        : strippedString;
 }
 
 + (NSString*)sha1:(NSString *)input
