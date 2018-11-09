@@ -137,6 +137,7 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     if (self.resultDisplayed) {
+        self.checkoutResult.checkoutId = self.checkoutId;
         [self handleCheckoutResult];
         return NO;
     } else {
