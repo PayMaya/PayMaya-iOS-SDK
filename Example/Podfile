@@ -3,6 +3,6 @@ use_frameworks!
 platform :ios, '7.0'
 
 target 'PayMayaSDK_Example' do
-	pod 'PayMayaSDK'
+  pod 'PayMayaSDK', :path => '../'
 	pod 'CardIO'
 end
