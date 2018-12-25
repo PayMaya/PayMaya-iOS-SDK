@@ -27,26 +27,26 @@
 /**
  Discount amount for the transaction. Value should only be numeric. Optional.
  */
-@property (nonatomic, strong) NSNumber *discount;
+@property (nonatomic, strong) NSNumber * _Nullable discount;
 
 /**
  Service charge amount for the transaction. Value should only be numeric. Optional.
  */
-@property (nonatomic, strong) NSNumber *serviceCharge;
+@property (nonatomic, strong) NSNumber * _Nullable serviceCharge;
 
 /**
  Shipping fee amount for the transaction. Value should only be numeric. Optional.
  */
-@property (nonatomic, strong) NSNumber *shippingFee;
+@property (nonatomic, strong) NSNumber * _Nullable shippingFee;
 
 /**
  Tax amount for the transaction. Optional.
  */
-@property (nonatomic, strong) NSNumber *tax;
+@property (nonatomic, strong) NSNumber * _Nullable tax;
 
 /**
  Sum of amounts for all items in the transaction. Optional.
  */
-@property (nonatomic, strong) NSNumber *subtotal;
+@property (nonatomic, strong) NSNumber * _Nullable subtotal;
 
 @end

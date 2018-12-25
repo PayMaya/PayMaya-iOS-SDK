@@ -29,6 +29,27 @@
 
 @implementation PMSDKCheckoutInformation
 
+- (instancetype _Nullable)initWithTotalAmount:(PMSDKItemAmount * _Nonnull)totalAmount
+                                        buyer:(PMSDKBuyerProfile * _Nonnull)buyer
+                                        items:(NSArray<PMSDKCheckoutItem *> * _Nonnull)items
+                       requestReferenceNumber:(NSString * _Nonnull)requestReferenceNumber {
+    self = [super init];
+    if (nil != self) {
+        if ([totalAmount.value doubleValue] <= 0.0) {
+            return nil;
+        }
+        self.totalAmount = totalAmount;
+        self.buyer = buyer;
+        if (items == nil || items.count == 0) {
+            return nil;
+        }
+        self.items = items;
+        self.requestReferenceNumber = requestReferenceNumber;
+    }
+    
+    return self;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     self = [super init];
@@ -48,39 +69,39 @@
              @"metadata": @"metadata"};
 }
 
-- (BOOL)validateTotalAmount:(id *)ioValue error:(NSError * __autoreleasing *)outError
-{
-    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
-        PMSDKItemAmount *totalAmount = [[PMSDKItemAmount alloc] init];
-        [totalAmount parseValuesForKeysWithDictionary:*ioValue];
-        *ioValue = totalAmount;
-    }
-    return YES;
-}
+//- (BOOL)validateTotalAmount:(id *)ioValue error:(NSError * __autoreleasing *)outError
+//{
+//    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
+//        PMSDKItemAmount *totalAmount = [[PMSDKItemAmount alloc] init];
+//        [totalAmount parseValuesForKeysWithDictionary:*ioValue];
+//        *ioValue = totalAmount;
+//    }
+//    return YES;
+//}
 
-- (BOOL)validateBuyer:(id *)ioValue error:(NSError * __autoreleasing *)outError
-{
-    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
-        PMSDKBuyerProfile *buyer = [[PMSDKBuyerProfile alloc] init];
-        [buyer parseValuesForKeysWithDictionary:*ioValue];
-        *ioValue = buyer;
-    }
-    return YES;
-}
+//- (BOOL)validateBuyer:(id *)ioValue error:(NSError * __autoreleasing *)outError
+//{
+//    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
+//        PMSDKBuyerProfile *buyer = [[PMSDKBuyerProfile alloc] init];
+//        [buyer parseValuesForKeysWithDictionary:*ioValue];
+//        *ioValue = buyer;
+//    }
+//    return YES;
+//}
 
-- (BOOL)validateItems:(id *)ioValue error:(NSError * __autoreleasing *)outError
-{
-    if ([*ioValue isKindOfClass:[NSArray class]]) {
-        NSMutableArray *itemsArray = [[NSMutableArray alloc] init];
-        for (NSDictionary *item in *ioValue) {
-            PMSDKCheckoutItem *checkoutItem = [[PMSDKCheckoutItem alloc] init];
-            [checkoutItem parseValuesForKeysWithDictionary:item];
-            [itemsArray addObject:checkoutItem];
-        }
-        *ioValue = itemsArray;
-    }
-    return YES;
-}
+//- (BOOL)validateItems:(id *)ioValue error:(NSError * __autoreleasing *)outError
+//{
+//    if ([*ioValue isKindOfClass:[NSArray class]]) {
+//        NSMutableArray *itemsArray = [[NSMutableArray alloc] init];
+//        for (NSDictionary *item in *ioValue) {
+//            PMSDKCheckoutItem *checkoutItem = [[PMSDKCheckoutItem alloc] init];
+//            [checkoutItem parseValuesForKeysWithDictionary:item];
+//            [itemsArray addObject:checkoutItem];
+//        }
+//        *ioValue = itemsArray;
+//    }
+//    return YES;
+//}
 
 - (BOOL)validateRedirectUrl:(id *)ioValue error:(NSError * __autoreleasing *)outError
 {

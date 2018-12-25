@@ -25,6 +25,27 @@
 
 @implementation PMSDKAddress
 
+- (instancetype _Nullable)initWithPrimaryAddressLine:(NSString * _Nonnull)primaryAddressLine
+                                                city:(NSString * _Nonnull)city
+                                               state:(NSString * _Nonnull)state
+                                             zipCode:(NSString * _Nonnull)zipCode
+                                         countryCode:(NSString * _Nonnull)countryCode {
+    self = [super init];
+    if (nil != self) {
+        self.primaryAddressLine = primaryAddressLine;
+        self.city = city;
+        self.state = state;
+        self.zipCode = zipCode;
+        if ([[NSLocale ISOCountryCodes] containsObject:countryCode]) {
+            self.countryCode = countryCode;
+        } else {
+            return nil;
+        }
+    }
+    
+    return self;
+}
+
 - (NSDictionary *)mappingForKVCParsing
 {
     return @{@"line1": @"primaryAddressLine",

@@ -29,31 +29,46 @@
 /**
 Specifies the item name. Required.
  */
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString * _Nonnull name;
 
 /**
  Specifies the merchant assigned SKU code. Optional.
  */
-@property (nonatomic, strong) NSString *code;
+@property (nonatomic, strong) NSString * _Nullable code;
 
 /**
  Specifies the item description. Optional.
  */
-@property (nonatomic, strong) NSString *itemDescription;
+@property (nonatomic, strong) NSString * _Nullable itemDescription;
 
 /**
  Specifies the number of bought items. Value should only be numeric. Required.
  */
-@property (nonatomic, strong) NSNumber *quantity;
+@property (nonatomic, strong) NSNumber * _Nonnull quantity;
 
 /**
  Specifies the price amount per item. Optional.
  */
-@property (nonatomic, strong) PMSDKItemAmount *amount;
+@property (nonatomic, strong) PMSDKItemAmount * _Nullable amount;
 
 /**
  Specifies the total price amount for all the bought items. Required.
  */
-@property (nonatomic, strong) PMSDKItemAmount *totalAmount;
+@property (nonatomic, strong) PMSDKItemAmount * _Nonnull totalAmount;
+
+// Disable default initializer
+- (instancetype  _Nonnull)init NS_UNAVAILABLE;
+
+/**
+ Creates an amount item object
+
+ @param name Item name
+ @param quantity Quanty of this item
+ @param totalAmount Total amount value
+ @return PMSDKItemAmount object
+ */
+- (instancetype _Nonnull)initWithName:(NSString * _Nonnull)name
+                    quantity:(NSNumber * _Nonnull)quantity
+                 totalAmount:(PMSDKItemAmount * _Nonnull)totalAmount;
 
 @end

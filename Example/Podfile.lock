@@ -1,0 +1,23 @@
+PODS:
+  - CardIO (5.4.1)
+  - PayMayaSDK (0.3.9)
+
+DEPENDENCIES:
+  - CardIO
+  - PayMayaSDK (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CardIO
+
+EXTERNAL SOURCES:
+  PayMayaSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
+  PayMayaSDK: 25aca0b27f9b770da4004c554f7fce7d801c380e
+
+PODFILE CHECKSUM: 80ffa706ad0965710a91d0afdb0c81d2b1cecbf0
+
+COCOAPODS: 1.6.0.beta.2

@@ -27,6 +27,22 @@
 
 @implementation PMSDKItemAmount
 
+- (instancetype _Nullable)initWithCurrency:(NSString * _Nonnull)currency
+                                     value:(NSNumber * _Nonnull)value {
+    self = [super init];
+    
+    if (nil != self) {
+        if ([[NSLocale ISOCurrencyCodes] containsObject:currency]) {
+            self.currency = currency;
+            self.value = value;
+        } else {
+            return nil;
+        }
+    }
+    
+    return self;
+}
+
 - (NSDictionary *)mappingForKVCParsing
 {
     return @{@"currency": @"currency",

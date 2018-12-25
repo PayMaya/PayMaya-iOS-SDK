@@ -24,13 +24,24 @@
 
 @implementation PMSDKCheckoutResult
 
-- (instancetype)init
-{
+- (instancetype _Nonnull)init {
     self = [super init];
-    if (self) {
-        self.checkoutId = nil;
+    if (nil != self) {
         self.status = PMSDKCheckoutStatusUnknown;
+        self.checkoutId = nil;
     }
+    
+    return self;
+}
+
+- (instancetype _Nonnull)initWithStatus:(PMSDKCheckoutStatus)status
+                             checkoutId:(NSString * _Nullable)checkoutId {
+    self = [super init];
+    if (nil != self) {
+        self.status = status;
+        self.checkoutId = checkoutId;
+    }
+    
     return self;
 }
 
