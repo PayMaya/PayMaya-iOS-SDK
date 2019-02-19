@@ -27,6 +27,17 @@
 
 @implementation PMSDKBuyerProfile
 
+- (instancetype _Nonnull)initWithFirstName:(NSString * _Nonnull)firstName
+                                  lastName:(NSString * _Nonnull)lastName {
+    self = [super init];
+    if (nil != self) {
+        self.firstName = firstName;
+        self.lastName = lastName;
+    }
+    
+    return self;
+}
+
 - (NSDictionary *)mappingForKVCParsing
 {
     return @{@"firstName": @"firstName",
@@ -48,24 +59,24 @@
     return YES;
 }
 
-- (BOOL)validateShippingAddress:(id *)ioValue error:(NSError * __autoreleasing *)outError
-{
-    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
-        PMSDKAddress *shippingAddress = [[PMSDKAddress alloc] init];
-        [shippingAddress parseValuesForKeysWithDictionary:*ioValue];
-        *ioValue = shippingAddress;
-    }
-    return YES;
-}
+//- (BOOL)validateShippingAddress:(id *)ioValue error:(NSError * __autoreleasing *)outError
+//{
+//    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
+//        PMSDKAddress *shippingAddress = [[PMSDKAddress alloc] init];
+//        [shippingAddress parseValuesForKeysWithDictionary:*ioValue];
+//        *ioValue = shippingAddress;
+//    }
+//    return YES;
+//}
 
-- (BOOL)validateBillingAddress:(id *)ioValue error:(NSError * __autoreleasing *)outError
-{
-    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
-        PMSDKAddress *billingAddress = [[PMSDKAddress alloc] init];
-        [billingAddress parseValuesForKeysWithDictionary:*ioValue];
-        *ioValue = billingAddress;
-    }
-    return YES;
-}
+//- (BOOL)validateBillingAddress:(id *)ioValue error:(NSError * __autoreleasing *)outError
+//{
+//    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
+//        PMSDKAddress *billingAddress = [[PMSDKAddress alloc] init];
+//        [billingAddress parseValuesForKeysWithDictionary:*ioValue];
+//        *ioValue = billingAddress;
+//    }
+//    return YES;
+//}
 
 @end

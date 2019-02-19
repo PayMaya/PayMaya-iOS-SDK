@@ -30,31 +30,41 @@
 /**
  Specifies the buyer's first name. Required.
  */
-@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString * _Nonnull firstName;
 
 /**
  Specifies the buyer's middle name. Optional.
  */
-@property (nonatomic, strong) NSString *middleName;
+@property (nonatomic, strong) NSString * _Nullable middleName;
 
 /**
  Specifies the buyer's last name. Required.
  */
-@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString * _Nonnull lastName;
 
 /**
  Buyer's contact information. Phone number and/or email address. Optional.
  */
-@property (nonatomic, strong) PMSDKContact *contact;
+@property (nonatomic, strong) PMSDKContact * _Nullable contact;
 
 /**
  Shipping address to be used for the transaction. Optional.
  */
-@property (nonatomic, strong) PMSDKAddress *shippingAddress;
+@property (nonatomic, strong) PMSDKAddress * _Nullable shippingAddress;
 
 /**
  Billing address to be used for the transaction. Optional.
  */
-@property (nonatomic, strong) PMSDKAddress *billingAddress;
+@property (nonatomic, strong) PMSDKAddress * _Nullable billingAddress;
+
+/**
+ Creates a new buyer profile object
+
+ @param firstName First name of buyer
+ @param lastName Last name of buyer
+ @return Buyer profile
+ */
+- (instancetype _Nonnull)initWithFirstName:(NSString * _Nonnull)firstName
+                                  lastName:(NSString * _Nonnull)lastName;
 
 @end

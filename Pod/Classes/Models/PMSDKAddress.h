@@ -27,31 +27,50 @@
 /**
  Specifies the primary address line. Required.
  */
-@property (nonatomic, strong) NSString *primaryAddressLine;
+@property (nonatomic, strong) NSString * _Nonnull primaryAddressLine;
 
 /**
  Specifies the secondary address line. Optional.
  */
-@property (nonatomic, strong) NSString *secondaryAddressLine;
+@property (nonatomic, strong) NSString * _Nullable secondaryAddressLine;
 
 /**
  Specifies the city. Required.
  */
-@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString * _Nonnull city;
 
 /**
  Specifies the state or province. Required. 
  */
-@property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString * _Nonnull state;
 
 /**
  Specifies the postal or zip code. Value should only be numeric. Required.
  */
-@property (nonatomic, strong) NSString *zipCode;
+@property (nonatomic, strong) NSString * _Nonnull zipCode;
 
 /**
  Specifies the country code as defined in the ISO 3166-1 alpha-2 currency code standard (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Value should only be uppercase letters. Maximum of 2 characters. Required.
  */
-@property (nonatomic, strong) NSString *countryCode;
+@property (nonatomic, strong) NSString * _Nonnull countryCode;
+
+// Disable default initializer
+- (instancetype _Nullable )init NS_UNAVAILABLE;
+
+/**
+ Initialize PayMaya address object. Return `nil` if country code is invalid.
+
+ @param primaryAddressLine Primary address line
+ @param city City
+ @param state State
+ @param zipCode ZIP code
+ @param countryCode Country code
+ @return PMSDKAddress instance
+ */
+- (instancetype _Nullable)initWithPrimaryAddressLine:(NSString * _Nonnull)primaryAddressLine
+                                                city:(NSString * _Nonnull)city
+                                               state:(NSString * _Nonnull)state
+                                             zipCode:(NSString * _Nonnull)zipCode
+                                         countryCode:(NSString * _Nonnull)countryCode;
 
 @end

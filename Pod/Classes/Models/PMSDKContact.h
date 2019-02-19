@@ -27,11 +27,11 @@
 /**
  Contact phone. Optional.
  */
-@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString * _Nullable phone;
 
 /**
  Contact email. Optional.
  */
-@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString * _Nullable email;
 
 @end

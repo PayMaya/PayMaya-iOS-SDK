@@ -27,6 +27,19 @@
 
 @implementation PMSDKCheckoutItem
 
+- (instancetype _Nonnull)initWithName:(NSString * _Nonnull)name
+                             quantity:(NSNumber * _Nonnull)quantity
+                          totalAmount:(PMSDKItemAmount * _Nonnull)totalAmount {
+    self = [super init];
+    if (nil != self) {
+        self.name = name;
+        self.quantity = quantity;
+        self.totalAmount = totalAmount;
+    }
+    
+    return self;
+}
+
 - (NSDictionary *)mappingForKVCParsing
 {
     return @{@"name": @"name",
@@ -43,24 +56,24 @@
     return YES;
 }
 
-- (BOOL)validateAmount:(id *)ioValue error:(NSError * __autoreleasing *)outError
-{
-    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
-        PMSDKItemAmount *amount = [[PMSDKItemAmount alloc] init];
-        [amount parseValuesForKeysWithDictionary:*ioValue];
-        *ioValue = amount;
-    }
-    return YES;
-}
+//- (BOOL)validateAmount:(id *)ioValue error:(NSError * __autoreleasing *)outError
+//{
+//    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
+//        PMSDKItemAmount *amount = [[PMSDKItemAmount alloc] init];
+//        [amount parseValuesForKeysWithDictionary:*ioValue];
+//        *ioValue = amount;
+//    }
+//    return YES;
+//}
 
-- (BOOL)validateTotalAmount:(id *)ioValue error:(NSError * __autoreleasing *)outError
-{
-    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
-        PMSDKItemAmount *totalAmount = [[PMSDKItemAmount alloc] init];
-        [totalAmount parseValuesForKeysWithDictionary:*ioValue];
-        *ioValue = totalAmount;
-    }
-    return YES;
-}
+//- (BOOL)validateTotalAmount:(id *)ioValue error:(NSError * __autoreleasing *)outError
+//{
+//    if ([*ioValue isKindOfClass:[NSDictionary class]]) {
+//        PMSDKItemAmount *totalAmount = [[PMSDKItemAmount alloc] init];
+//        [totalAmount parseValuesForKeysWithDictionary:*ioValue];
+//        *ioValue = totalAmount;
+//    }
+//    return YES;
+//}
 
 @end

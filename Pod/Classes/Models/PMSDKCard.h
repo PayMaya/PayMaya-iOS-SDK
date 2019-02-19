@@ -22,36 +22,84 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, ExpiryMonthType) {
+    ExpiryMonthJanuary,
+    ExpiryMonthFebruary,
+    ExpiryMonthMarch,
+    ExpiryMonthApril,
+    ExpiryMonthMay,
+    ExpiryMonthJune,
+    ExpiryMonthJuly,
+    ExpiryMonthAugust,
+    ExpiryMonthSeptember,
+    ExpiryMonthOctober,
+    ExpiryMonthNovember,
+    ExpiryMonthDecember
+};
+
+extern NSString * const ExpiryMonthType_toString[];
+
 @interface PMSDKCard : NSObject
 
 /**
  Primary Account Number (PAN) of customer's card. Required.
  */
-@property (nonatomic, strong) NSString *number;
+@property (nonatomic, strong) NSString * _Nonnull number;
 
 /**
  Expiry month of customer's card. Required.
  */
-@property (nonatomic, strong) NSString *expiryMonth;
+@property (nonatomic, strong) NSString * _Nonnull expiryMonth;
 
 /**
  Expiry year of customer's card. Required.
  */
-@property (nonatomic, strong) NSString *expiryYear;
+@property (nonatomic, strong) NSString * _Nonnull expiryYear;
 
 /**
  CVV of customer's card. Required.
  */
-@property (nonatomic, strong) NSString *cvc;
+@property (nonatomic, strong) NSString * _Nonnull cvc;
+
+// Disable default initializer
+- (instancetype _Nonnull)init NS_UNAVAILABLE;
+
+/**
+ Creates a new card object
+
+ @param cardNumber Card number (eg. 5123456789012346)
+ @param expiryMonth Expiry month (eg January = 01 so on)
+ @param expiryYear Expiry year (eg. 2022)
+ @param cvc CVC
+ @return Card object
+ */
+- (instancetype _Nonnull)initWithCardNumber:(NSString * _Nonnull)cardNumber
+                                expiryMonth:(ExpiryMonthType)expiryMonth
+                                 expiryYear:(int)expiryYear
+                                        cvc:(NSString * _Nonnull)cvc;
+
+/**
+ Creates a new card object. Prefer using the typed initializer above.
+ 
+ @param cardNumber Card number (eg. 5123456789012346)
+ @param expiryMonth Expiry month (eg January = 01 so on)
+ @param expiryYear Expiry year (eg. 2022)
+ @param cvc CVC
+ @return Card object
+ */
+- (instancetype _Nonnull)initWithStringCardNumber:(NSString * _Nonnull)cardNumber
+                                      expiryMonth:(NSString * _Nonnull)expiryMonth
+                                       expiryYear:(NSString * _Nonnull)expiryYear
+                                              cvc:(NSString * _Nonnull)cvc;
 
 /**
  Allows initialization of card object from dictionary
  */
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype _Nonnull)initWithDictionary:(NSDictionary *)dictionary;
 
 /** 
  The generated idempotent key will be the same for each unique card information
  */
-- (NSString *)idempotentKey;
+- (NSString * _Nonnull)idempotentKey;
 
 @end

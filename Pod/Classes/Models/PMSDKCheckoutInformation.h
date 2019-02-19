@@ -22,6 +22,7 @@
 
 @class PMSDKItemAmount;
 @class PMSDKBuyerProfile;
+@class PMSDKCheckoutItem;
 @class PMSDKCheckoutRedirectURL;
 
 #import <Foundation/Foundation.h>
@@ -31,36 +32,54 @@
 /**
  Total amount details for the transaction. Required.
  */
-@property (nonatomic, strong) PMSDKItemAmount *totalAmount;
+@property (nonatomic, strong) PMSDKItemAmount * _Nonnull totalAmount;
 
 /**
  Customer profile information. Required.
  */
-@property (nonatomic, strong) PMSDKBuyerProfile *buyer;
+@property (nonatomic, strong) PMSDKBuyerProfile * _Nonnull buyer;
 
 /**
  List of bought items for the transaction. The array must consist of PMSDKCheckoutItem objects. Required.
  */
-@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong) NSArray<PMSDKCheckoutItem *> * _Nonnull items;
 
 /**
  A unique identifier to a transaction for tracking purposes. Required.
  */
-@property (nonatomic, strong) NSString *requestReferenceNumber;
+@property (nonatomic, strong) NSString * _Nonnull requestReferenceNumber;
 
 /**
  List of redirect URLs depending on checkout completion status. Optional.
  */
-@property (nonatomic, strong) PMSDKCheckoutRedirectURL *redirectUrl;
+@property (nonatomic, strong) PMSDKCheckoutRedirectURL * _Nullable redirectUrl;
 
 /**
  Merchant provided additional cart information. Optional.
  */
-@property (nonatomic, strong) NSDictionary *metadata;
+@property (nonatomic, strong) NSDictionary * _Nullable metadata;
+
+// Disable default initialzer
+- (instancetype _Nonnull)init NS_UNAVAILABLE;
+
+/**
+ Create checkout information details. Total amount value should be positive and purchased items
+ should not be empty.
+
+ @param totalAmount Total amount
+ @param buyer Buyer profile
+ @param items Purchased items.
+ @param requestReferenceNumber Request reference number
+ @return Checkout information details
+ */
+- (instancetype _Nullable)initWithTotalAmount:(PMSDKItemAmount * _Nonnull)totalAmount
+                                        buyer:(PMSDKBuyerProfile * _Nonnull)buyer
+                                        items:(NSArray<PMSDKCheckoutItem *> * _Nonnull)items
+                       requestReferenceNumber:(NSString * _Nonnull)requestReferenceNumber;
 
 /**
  Allows initialization of checkout information object from dictionary
  */
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype _Nonnull)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

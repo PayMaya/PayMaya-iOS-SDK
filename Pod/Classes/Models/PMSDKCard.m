@@ -24,7 +24,52 @@
 #import "NSObject+KVCParsing.h"
 #import "PMSDKUtilities.h"
 
+NSString * const ExpiryMonthType_toString[] = {
+    [ExpiryMonthJanuary] = @"01",
+    [ExpiryMonthFebruary] = @"02",
+    [ExpiryMonthMarch] = @"03",
+    [ExpiryMonthApril] = @"04",
+    [ExpiryMonthMay] = @"05",
+    [ExpiryMonthJune] = @"06",
+    [ExpiryMonthJuly] = @"07",
+    [ExpiryMonthAugust] = @"08",
+    [ExpiryMonthSeptember] = @"09",
+    [ExpiryMonthOctober] = @"10",
+    [ExpiryMonthNovember] = @"11",
+    [ExpiryMonthDecember] = @"12",
+};
+
 @implementation PMSDKCard
+
+- (instancetype _Nonnull)initWithCardNumber:(NSString * _Nonnull)cardNumber
+                                expiryMonth:(ExpiryMonthType)expiryMonth
+                                 expiryYear:(int)expiryYear
+                                        cvc:(NSString * _Nonnull)cvc {
+    self = [super init];
+    if (nil != self) {
+        self.number = cardNumber;
+        self.expiryMonth = ExpiryMonthType_toString[expiryMonth];
+        self.expiryYear = [@(expiryYear) stringValue];
+        self.cvc = cvc;
+    }
+    
+    return self;
+}
+
+- (instancetype _Nonnull)initWithStringCardNumber:(NSString * _Nonnull)cardNumber
+                                      expiryMonth:(NSString * _Nonnull)expiryMonth
+                                       expiryYear:(NSString * _Nonnull)expiryYear
+                                              cvc:(NSString * _Nonnull)cvc {
+    self = [super init];
+    if (nil != self) {
+        self.number = cardNumber;
+        self.expiryMonth = expiryMonth;
+        self.expiryYear = expiryYear;
+        self.cvc = cvc;
+    }
+    
+    return self;
+}
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {

@@ -288,11 +288,14 @@
     [UIView animateWithDuration:0.2f animations:^{
         self.activityIndicatorView.alpha = 1.0f;
     }];
-    PMSDKCard *card = [[PMSDKCard alloc] init];
-    card.number = self.cardNumberTextField.text;
-    card.expiryMonth = self.expiryMonthTextField.text;
-    card.expiryYear = self.expiryYearTextField.text;
-    card.cvc = self.cvvTextField.text;
+    NSString *cardNumber = self.cardNumberTextField.text;
+    NSString *expiryMonth = self.expiryMonthTextField.text;
+    NSString *expiryYear = self.expiryYearTextField.text;
+    NSString *cvc = self.cvvTextField.text;
+    PMSDKCard *card = [[PMSDKCard alloc] initWithStringCardNumber:cardNumber
+                                                      expiryMonth:expiryMonth
+                                                       expiryYear:expiryYear
+                                                              cvc:cvc];
     [[PayMayaSDK sharedInstance] createPaymentTokenFromCard:card delegate:self];
 }
 

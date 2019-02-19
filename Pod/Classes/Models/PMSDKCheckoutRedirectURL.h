@@ -27,16 +27,16 @@
 /**
  Redirect URL for successful checkout completion. Optional.
  */
-@property (nonatomic, strong) NSString *successRedirectURL;
+@property (nonatomic, strong) NSString * _Nullable successRedirectURL;
 
 /**
  Redirect URL for failure checkout completion. Optional.
  */
-@property (nonatomic, strong) NSString *failureRedirectURL;
+@property (nonatomic, strong) NSString * _Nullable failureRedirectURL;
 
 /**
  Redirect URL for canceled checkout completion. Optional.
  */
-@property (nonatomic, strong) NSString *cancelRedirectURL;
+@property (nonatomic, strong) NSString * _Nullable cancelRedirectURL;
 
 @end

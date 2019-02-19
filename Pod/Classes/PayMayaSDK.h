@@ -99,7 +99,7 @@ PayMaya SDK singleton.
  Method to initialize the PayMaya Checkout SDK with the user's API key and environment.
  Refer to PayMayaEnvironment for the different environments that can be used.
  
- @param APIKey The public-facing API key given to you for the specified environment
+ @param apiKey The public-facing API key given to you for the specified environment
  @param environment The environment to be used by the Checkout SDK application
  */
 - (void)setCheckoutAPIKey:(NSString *)apiKey forEnvironment:(PayMayaEnvironment)environment;
@@ -108,7 +108,7 @@ PayMaya SDK singleton.
  Method to initialize the PayMaya Payments SDK with the user's API key and environment.
  Refer to PayMayaEnvironment for the different environments that can be used.
  
- @param APIKey The public-facing API key given to you for the specified environment
+ @param apiKey The public-facing API key given to you for the specified environment
  @param environment The environment to be used by the Payments SDK application
  */
 - (void)setPaymentsAPIKey:(NSString *)apiKey forEnvironment:(PayMayaEnvironment)environment;
@@ -118,18 +118,24 @@ PayMaya SDK singleton.
 /**
  This method will present a view controller where the customer can complete the whole checkout process. The delegate methods as defined in the PayMayaCheckoutDelegate protocol allows an object to receive information regarding the success or failure of a checkout transaction.
  
+ @param viewController UIViewContoller where PMSDKCheckoutViewController will be presented
  @param checkoutInfo The checkout information details to be processed
- @param result The delegate for checkout completion
+ @param delegate The delegate for checkout completion
  */
-- (void)checkout:(PMSDKCheckoutInformation *)checkoutInfo delegate:(id <PayMayaCheckoutDelegate>)delegate;
+- (void)presentCheckoutIn:(UIViewController *)viewController
+             checkoutInfo:(PMSDKCheckoutInformation *)checkoutInfo
+                 delegate:(id <PayMayaCheckoutDelegate>)delegate;
 
 /**
  This method will present a view controller where the customer can complete the whole checkout process. The completion block will be called upon checkout completion.
  
+ @param viewController UIViewContoller where PMSDKCheckoutViewController will be presented
  @param checkoutInfo The checkout information details to be processed
  @param result A block that will be called upon checkout completion
  */
-- (void)checkout:(PMSDKCheckoutInformation*)checkoutInfo result:(PayMayaCheckoutResultBlock)result;
+- (void)presentCheckoutIn:(UIViewController *)viewController
+             checkoutInfo:(PMSDKCheckoutInformation *)checkoutInfo
+                   result:(PayMayaCheckoutResultBlock)result;
 
 #pragma mark - Payments APIs
 
@@ -137,7 +143,7 @@ PayMaya SDK singleton.
  This method allows you to generate a payment token given a customer's credit card information. This payment token should then be passed to your servers for payment execution. The delegate methods as defined in the PayMayaPaymentsDelegate protocol allows an object to receive information regarding the success or failure of payment token generation.
  
  @param card Customer's card information (i.e. card number, expiry month, expiry year, cvv)
- @param result The delegate for payment token generation completion
+ @param delegate The delegate for payment token generation completion
  */
 - (void)createPaymentTokenFromCard:(PMSDKCard *)card delegate:(id <PayMayaPaymentsDelegate>)delegate;
 

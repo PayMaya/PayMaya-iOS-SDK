@@ -73,18 +73,22 @@
 }
 
 #pragma mark - Checkout APIs
-- (void)checkout:(PMSDKCheckoutInformation *)checkoutInfo delegate:(id <PayMayaCheckoutDelegate>)delegate
+- (void)presentCheckoutIn:(UIViewController *)viewController
+             checkoutInfo:(PMSDKCheckoutInformation *)checkoutInfo
+                 delegate:(id <PayMayaCheckoutDelegate>)delegate
 {
     self.checkoutHandler = [[PMSDKCheckoutHandler alloc] initWithCheckoutInformation:checkoutInfo delegate:delegate];
     self.checkoutHandler.checkoutAPIManager = self.checkoutAPIManager;
-    [self.checkoutHandler presentCheckoutViewController];
+    [self.checkoutHandler presentCheckoutIn:viewController];
 }
 
-- (void)checkout:(PMSDKCheckoutInformation *)checkoutInfo result:(PayMayaCheckoutResultBlock)result
+- (void)presentCheckoutIn:(UIViewController *)viewController
+                 checkoutInfo:(PMSDKCheckoutInformation *)checkoutInfo
+                   result:(PayMayaCheckoutResultBlock)result
 {
     self.checkoutHandler = [[PMSDKCheckoutHandler alloc] initWithCheckoutInformation:checkoutInfo result:result];
     self.checkoutHandler.checkoutAPIManager = self.checkoutAPIManager;
-    [self.checkoutHandler presentCheckoutViewController];
+    [self.checkoutHandler presentCheckoutIn:viewController];
 }
 
 #pragma mark - Payments APIs

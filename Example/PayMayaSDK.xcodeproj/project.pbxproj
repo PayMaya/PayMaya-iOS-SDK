@@ -40,7 +40,18 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6A59E0D621D174260028890D /* PMSDKCardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E0D521D174260028890D /* PMSDKCardTest.m */; };
+		6A59E0D921D1758D0028890D /* PMSDKAddressTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E0D821D1758D0028890D /* PMSDKAddressTest.m */; };
+		6A59E0DB21D179650028890D /* PMSDKBuyerProfileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E0DA21D179650028890D /* PMSDKBuyerProfileTest.m */; };
+		6A59E0DD21D1C8160028890D /* PMSDKItemAmountTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E0DC21D1C8160028890D /* PMSDKItemAmountTest.m */; };
+		6A59E0DF21D1CFF10028890D /* PMSDKCheckoutItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E0DE21D1CFF10028890D /* PMSDKCheckoutItemTest.m */; };
+		6A59E0E121D1D50E0028890D /* PMSDKCheckoutInformationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59E0E021D1D50E0028890D /* PMSDKCheckoutInformationTest.m */; };
+		6AA9671221D1FE60003404EF /* PMSDKCheckoutRedirectURLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9671121D1FE60003404EF /* PMSDKCheckoutRedirectURLTest.m */; };
+		6AA9671421D2004C003404EF /* PMSDKCheckoutResultTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9671321D2004C003404EF /* PMSDKCheckoutResultTest.m */; };
+		6AA9671621D201FD003404EF /* PMSDKContactTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9671521D201FD003404EF /* PMSDKContactTest.m */; };
+		6AA9671821D202A1003404EF /* PMSDKItemAmountDetailsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9671721D202A1003404EF /* PMSDKItemAmountDetailsTest.m */; };
 		BCD02E3385A3DED226226294 /* Pods_PayMayaSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8A6C0EE9AB43C19702F3920 /* Pods_PayMayaSDK_Example.framework */; };
+		C29DB9A8212F63C528CBA045 /* Pods_PayMayaSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7F9A8780EAF77D35638D41 /* Pods_PayMayaSDK_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		062B6CE64FAEE224DB1C31F9 /* Pods-PayMayaSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayMayaSDK_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PayMayaSDK_Tests/Pods-PayMayaSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		0D30A7231BF2C5E1009A67DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D30A7251BF2C6F9009A67DB /* PMDCartTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDCartTableHeaderView.m; sourceTree = "<group>"; };
 		0D30A7261BF2C6F9009A67DB /* PMDCartItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDCartItemTableViewCell.h; sourceTree = "<group>"; };
@@ -115,6 +127,17 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		6A59E0D521D174260028890D /* PMSDKCardTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKCardTest.m; sourceTree = "<group>"; };
+		6A59E0D821D1758D0028890D /* PMSDKAddressTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKAddressTest.m; sourceTree = "<group>"; };
+		6A59E0DA21D179650028890D /* PMSDKBuyerProfileTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKBuyerProfileTest.m; sourceTree = "<group>"; };
+		6A59E0DC21D1C8160028890D /* PMSDKItemAmountTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKItemAmountTest.m; sourceTree = "<group>"; };
+		6A59E0DE21D1CFF10028890D /* PMSDKCheckoutItemTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKCheckoutItemTest.m; sourceTree = "<group>"; };
+		6A59E0E021D1D50E0028890D /* PMSDKCheckoutInformationTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKCheckoutInformationTest.m; sourceTree = "<group>"; };
+		6AA9671121D1FE60003404EF /* PMSDKCheckoutRedirectURLTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKCheckoutRedirectURLTest.m; sourceTree = "<group>"; };
+		6AA9671321D2004C003404EF /* PMSDKCheckoutResultTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKCheckoutResultTest.m; sourceTree = "<group>"; };
+		6AA9671521D201FD003404EF /* PMSDKContactTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKContactTest.m; sourceTree = "<group>"; };
+		6AA9671721D202A1003404EF /* PMSDKItemAmountDetailsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMSDKItemAmountDetailsTest.m; sourceTree = "<group>"; };
+		A20353FA9A4CA3E4E8F33433 /* Pods-PayMayaSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayMayaSDK_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PayMayaSDK_Tests/Pods-PayMayaSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A8A6C0EE9AB43C19702F3920 /* Pods_PayMayaSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PayMayaSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0DA35C0C615671F64C994C /* Pods-PayMayaSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PayMayaSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PayMayaSDK_Example/Pods-PayMayaSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B55501E2262227E48294FBCF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -141,6 +164,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
+				C29DB9A8212F63C528CBA045 /* Pods_PayMayaSDK_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +345,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				6A59E0D721D174400028890D /* Models */,
 				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -347,11 +372,30 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		6A59E0D721D174400028890D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6A59E0D821D1758D0028890D /* PMSDKAddressTest.m */,
+				6A59E0DA21D179650028890D /* PMSDKBuyerProfileTest.m */,
+				6A59E0D521D174260028890D /* PMSDKCardTest.m */,
+				6A59E0E021D1D50E0028890D /* PMSDKCheckoutInformationTest.m */,
+				6A59E0DE21D1CFF10028890D /* PMSDKCheckoutItemTest.m */,
+				6A59E0DC21D1C8160028890D /* PMSDKItemAmountTest.m */,
+				6AA9671121D1FE60003404EF /* PMSDKCheckoutRedirectURLTest.m */,
+				6AA9671321D2004C003404EF /* PMSDKCheckoutResultTest.m */,
+				6AA9671521D201FD003404EF /* PMSDKContactTest.m */,
+				6AA9671721D202A1003404EF /* PMSDKItemAmountDetailsTest.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A5E177F9A9FB6D0B0D1893C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				F52E7633C79709B8A608DAC7 /* Pods-PayMayaSDK_Example.debug.xcconfig */,
 				AF0DA35C0C615671F64C994C /* Pods-PayMayaSDK_Example.release.xcconfig */,
+				062B6CE64FAEE224DB1C31F9 /* Pods-PayMayaSDK_Tests.debug.xcconfig */,
+				A20353FA9A4CA3E4E8F33433 /* Pods-PayMayaSDK_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -368,7 +412,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				9AFF4D3C61FD6CCF30C62E9C /* [CP] Embed Pods Frameworks */,
-				D39257E4618C89F4CE833678 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -383,9 +426,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "PayMayaSDK_Tests" */;
 			buildPhases = (
+				B251F67370EC9A9632800E39 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
+				BD8DDE8A77133826E2A76E2C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -458,13 +503,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PayMayaSDK_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9AFF4D3C61FD6CCF30C62E9C /* [CP] Embed Pods Frameworks */ = {
@@ -473,28 +521,60 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PayMayaSDK_Example/Pods-PayMayaSDK_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PayMayaSDK/PayMayaSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PayMayaSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PayMayaSDK_Example/Pods-PayMayaSDK_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PayMayaSDK_Example/Pods-PayMayaSDK_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D39257E4618C89F4CE833678 /* [CP] Copy Pods Resources */ = {
+		B251F67370EC9A9632800E39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PayMayaSDK_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PayMayaSDK_Example/Pods-PayMayaSDK_Example-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD8DDE8A77133826E2A76E2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PayMayaSDK_Tests/Pods-PayMayaSDK_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PayMayaSDK/PayMayaSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PayMayaSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PayMayaSDK_Tests/Pods-PayMayaSDK_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -534,7 +614,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A59E0DF21D1CFF10028890D /* PMSDKCheckoutItemTest.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				6A59E0E121D1D50E0028890D /* PMSDKCheckoutInformationTest.m in Sources */,
+				6AA9671221D1FE60003404EF /* PMSDKCheckoutRedirectURLTest.m in Sources */,
+				6AA9671821D202A1003404EF /* PMSDKItemAmountDetailsTest.m in Sources */,
+				6A59E0DB21D179650028890D /* PMSDKBuyerProfileTest.m in Sources */,
+				6A59E0DD21D1C8160028890D /* PMSDKItemAmountTest.m in Sources */,
+				6AA9671421D2004C003404EF /* PMSDKCheckoutResultTest.m in Sources */,
+				6A59E0D621D174260028890D /* PMSDKCardTest.m in Sources */,
+				6AA9671621D201FD003404EF /* PMSDKContactTest.m in Sources */,
+				6A59E0D921D1758D0028890D /* PMSDKAddressTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +773,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 062B6CE64FAEE224DB1C31F9 /* Pods-PayMayaSDK_Tests.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
@@ -699,6 +790,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A20353FA9A4CA3E4E8F33433 /* Pods-PayMayaSDK_Tests.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";

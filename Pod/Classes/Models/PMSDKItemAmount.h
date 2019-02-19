@@ -27,18 +27,32 @@
 @interface PMSDKItemAmount : NSObject
 
 /**
- Specifies the currency as defined in the ISO standard currency code (http://en.wikipedia.org/wiki/ISO_4217). Value should only be uppercase letters. Required.
+ Specifies the currency as defined in the ISO standard currency code (http://en.wikipedia.org/wiki/ISO_4217).
+ Value should only be uppercase letters. Required.
  */
-@property (nonatomic, strong) NSString *currency;
+@property (nonatomic, strong) NSString * _Nonnull currency;
 
 /**
  Specifies the price amount. Value should be numeric. Required.
  */
-@property (nonatomic, strong) NSNumber *value;
+@property (nonatomic, strong) NSNumber * _Nonnull value;
 
 /**
  Specifies the amount breakdown. Optional.
  */
-@property (nonatomic, strong) PMSDKItemAmountDetails *details;
+@property (nonatomic, strong) PMSDKItemAmountDetails * _Nullable details;
+
+// Disable default initialzer
+- (instancetype _Nonnull)init NS_UNAVAILABLE;
+
+/**
+ Creates amount details for item. Returns `nil` if currency is invalid
+
+ @param currency Currency code (eg. PHP)
+ @param value Value of this item
+ @return Amount details object
+ */
+- (instancetype _Nullable)initWithCurrency:(NSString * _Nonnull)currency
+                                     value:(NSNumber * _Nonnull)value;
 
 @end

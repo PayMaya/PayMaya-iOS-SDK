@@ -56,4 +56,15 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutStatus) {
  */
 @property (nonatomic, strong) NSString *checkoutId;
 
+
+/**
+ Default initializer
+
+ @return Checkout result
+ */
+- (instancetype _Nonnull)init;
+
+- (instancetype _Nonnull)initWithStatus:(PMSDKCheckoutStatus)status
+                             checkoutId:(NSString * _Nullable)checkoutId;
+
 @end

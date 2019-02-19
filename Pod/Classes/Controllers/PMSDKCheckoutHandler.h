@@ -32,6 +32,6 @@
 - (instancetype)initWithCheckoutInformation:(PMSDKCheckoutInformation *)checkoutInformation delegate:(id <PayMayaCheckoutDelegate>)delegate;
 - (instancetype)initWithCheckoutInformation:(PMSDKCheckoutInformation *)checkoutInformation result:(PayMayaCheckoutResultBlock)result;
 
-- (void)presentCheckoutViewController;
+- (void)presentCheckoutIn:(UIViewController *)viewController;
 
 @end
