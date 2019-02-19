@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
     return self;
 }
 
-- (void)presentCheckoutViewController
+- (void)presentCheckoutIn:(UIViewController *)viewController
 {
     if (!self.checkoutAPIManager) {
         self.checkoutError = [NSError errorWithDomain:PMSDKCheckoutErrorDomain code:PMSDKCheckoutNotInitializedErrorCode userInfo:@{NSLocalizedDescriptionKey : @"Checkout SDK not initialized."}];
@@ -79,8 +79,7 @@ typedef NS_ENUM(NSInteger, PMSDKCheckoutType) {
     PMSDKCheckoutViewController* controller = [[PMSDKCheckoutViewController alloc] initWithCheckoutInformation:self.checkoutInformation];
     controller.checkoutAPIManager = self.checkoutAPIManager;
     controller.checkoutDelegate = self;
-    UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
-    [keyWindow.rootViewController presentViewController:controller animated:YES completion:nil];
+    [viewController presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark - PMSDKCheckoutViewControllerDelegate methods

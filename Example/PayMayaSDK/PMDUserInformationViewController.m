@@ -26,6 +26,7 @@
 #import "PMDProduct.h"
 #import "PMDCustomer.h"
 #import "PMDUtilities.h"
+#import <PayMayaSDK/PayMayaSDK.h>
 
 @interface PMDUserInformationViewController () <PayMayaCheckoutDelegate, PMDCardVaultViewControllerDelegate>
 
@@ -342,9 +343,9 @@
                                          };
     
     PMSDKCheckoutInformation *checkoutInformation = [[PMSDKCheckoutInformation alloc] initWithDictionary:checkoutDictionary];
-    [[PayMayaSDK sharedInstance] checkout:checkoutInformation result:^(PMSDKCheckoutResult *result, NSError *error) {
-        [self displayAlertViewWithCheckoutResult:result];
-    }];
+//    [[PayMayaSDK sharedInstance] checkout:checkoutInformation result:^(PMSDKCheckoutResult *result, NSError *error) {
+//        [self displayAlertViewWithCheckoutResult:result];
+//    }];
 }
 
 #pragma mark - Payments API
